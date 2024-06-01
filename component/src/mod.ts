@@ -9,25 +9,17 @@ import {Render} from "../../render/src/queue_render.js";
 // a context that holds state
 // if a mouse event happens? simply save the mouse event and call render
 // render can figure out if it needs to render based on a mouse event
+
+// so a component with reactive state can be expressed succinctly:
 class WctkComponent extends HTMLElement {
     #rc = new Render(this);
 
-    // signifies a kind of state change
     attributeChangedCallback() {
-        // regardless, call a render
         this.#rc.render();
     }
 
     render() {
-        // prevent extra renders
         if (this.#rc.queued) return;
-        // grab state
-
         // do something, i dunno what stack people use who cares
     }
 }
-
-
-export type { }
-
-export { WctkComponent }
