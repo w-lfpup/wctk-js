@@ -1,11 +1,15 @@
 {
-    "workspaces": [
-        "render",
-        "component"
-    ],
-    "devDependencies": {
-        "prettier": "^3.3.0",
-        "rollup": "^4.18.0",
-        "typescript": "^5.4.5"
-    }
+  "workspaces": [
+    "render",
+    "component"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "format": "prettier --write ./"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.0",
+    "rollup": "^4.18.0",
+    "typescript": "^5.4.5"
+  }
 }

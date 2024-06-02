@@ -2,8 +2,6 @@
 
 This module is for build confirmations with controllers.
 
-Below are examples 
-
 ## Minimal Web Component
 
 from [this](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) mdn example.
@@ -17,7 +15,7 @@ class MyCustomElement extends HTMLElement {
   constructor() {
     super();
     // find out if unhydrated shadow root exists
-      // add event listeners
+    // add event listeners
     // subscribe to data store
   }
 
@@ -43,29 +41,28 @@ class MyCustomElement extends HTMLElement {
 }
 ```
 
-## One extra step
+## Reactivity
 
-After this initial, required, and inescapable inheritance, wolfpup can't do more inheritance ;_;
+After this initial, required, and inescapable inheritance, wolfpup can't do more inheritance ;\_;
 
 Controllers are compositional. What defines an "render" is ambiguous.
 
 This is the smallest reactive pattern I can think of without sinking time into extra libraries is a "controller" patterns for renders.
 
-What is rendered is up to devs.
-
+All that matters is there is a render method on the component class.
 
 ```js
 class WctkComponent extends HTMLElement {
-    #rc = new Render(this);
+  #rc = new Render(this);
 
-    attributeChangedCallback() {
-        this.#rc.render();
-    }
+  attributeChangedCallback() {
+    this.#rc.render();
+  }
 
-    render() {
-        if (this.#rc.queued) return;
-        // do something, i dunno what stack people use who cares
-    }
+  render() {
+    if (this.#rc.queued) return;
+    // do something, i dunno what stack people use who cares
+  }
 }
 ```
 
