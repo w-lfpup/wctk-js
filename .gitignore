@@ -3,4 +3,5 @@ render/dist/
 shadow/dist/
 styles/dist/
 examples/dist/
-
+wctk/dist/mod.d.ts
+wctk/dist/mod.js

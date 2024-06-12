@@ -2,10 +2,10 @@ class Styles {
 	#root: DocumentOrShadowRoot;
 
 	constructor(
-		sd: DocumentOrShadowRoot,
+		sr: DocumentOrShadowRoot,
 		stylesheetTemplates: (CSSStyleSheet | string)[],
 	) {
-		this.#root = sd;
+		this.#root = sr;
 		this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
 	}
 
@@ -33,4 +33,11 @@ function getStylesheets(
 	return stylesheets;
 }
 
-export { Styles };
+function addStyles(
+	sr: DocumentOrShadowRoot,
+	stylesheetTemplates: (CSSStyleSheet | string)[],
+) {
+	sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates)
+}
+
+export { addStyles, Styles };
