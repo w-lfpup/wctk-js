@@ -37,7 +37,9 @@ export { MyElement };
 
 ### Declarative shadow dom
 
-To better support declarative dom, an `addStyles` function is provided in case a controller is not needed or convenient.
+An `addStyles` function is provided in case a controller is not needed or convenient.
+
+In the example below, stylesheets are added to the shadow root _only_ if the shadow root is not declarative.
 
 ```ts
 import { addStyles } from "./render/dist/mod.js";

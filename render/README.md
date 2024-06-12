@@ -19,7 +19,7 @@ Add a `render` controller to a web component with `observerdAttributes` called `
 
 On `attributeChangedCallback` (or wherever appropriate) call `#rc.render()`;
 
-```js
+```ts
 import { Render } from "./render/dist/mod.js";
 
 class MyComponent extends HTMLElement {

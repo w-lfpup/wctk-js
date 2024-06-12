@@ -18,7 +18,7 @@ Wrangle the shadow dom!
 
 Add a `shadow` controller to a web component called `#sd`.
 
-```js
+```ts
 import { Shadow } from "./render/dist/mod.js";
 
 class MyElement extends HTMLElement {
