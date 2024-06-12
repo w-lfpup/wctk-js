@@ -29,7 +29,7 @@ layoutStyles.replaceSync(`
 `);
 
 class MyElement extends HTMLElement {
-	#sd = new Styles(this, [fontStyles, layoutStyles]);
+    #sd = new Styles(this, [fontStyles, layoutStyles]);
 }
 
 export { MyElement };
@@ -56,18 +56,18 @@ layoutStyles.replaceSync(`
 `);
 
 class MyElement extends HTMLElement {
-	#sd = new Shadow(this, { mode: "closed" });
+    #sd = new Shadow(this, { mode: "closed" });
 
-	constructor() {
-		super();
+    constructor() {
+        super();
 
-		if this.#sd.declarative {
-			// add event listeners to #this.sd.shadowRoot
-		} else {
-			// compose DOM and append to #this.sd.shadowRoot
-            addStyles(this.#sd.shadowRoot, [fontStyles, layoutStyles])
-		}
-	}
+        if this.#sd.declarative {
+            // add event listeners to #this.sd.shadowRoot
+        } else {
+            // compose DOM and append to #this.sd.shadowRoot
+            addStyles(this.#sd.shadowRoot, [fontStyles, layoutStyles]);
+        }
+    }
 }
 
 export { MyElement };
