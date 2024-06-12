@@ -10,8 +10,6 @@ It is designed to work _up until_ a developer needs to take control. Usually `co
 
 There is no inheritance other than initially extending an `HtmlElement`! (which is required by a browser anyways)
 
-Instead a `controllers` are used.
-
 ## Controllers
 
 Only a handful of controllers are needed to provide:
@@ -80,24 +78,13 @@ Add a `Render` controller for reactivity. This isn't always necessary but useful
 The example below queues a render everytime an `observedAttribute` value changes.
 
 ```ts
-import { Render, Shadow } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Render } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
 class MyElement extends HTMLElement {
     static observerdAttributes = ["message", "color"];
 
     // add controllers
     #rc = new Render(this);
-    #sd = new Shadow(this, { mode: "closed" });
-
-    constructor() {
-        super();
-
-        if this.#sd.declarative {
-            // ...
-        } else {
-            // ...
-        }
-    }
 
     // queue render on attribute changes
     attributeChangedCallback() {
