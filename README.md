@@ -30,10 +30,10 @@ The code below is all standard browser web apis.
 
 ```ts
 class MyElement extends HTMLElement {
-	// create reactive attributes
-	static observerdAttributes = ["message", "color"];
+    // create reactive attributes
+    static observerdAttributes = ["message", "color"];
 
-	attributeChangedCallback() {}
+    attributeChangedCallback() {}
 }
 
 customElements.define("my-element", MyElement);
@@ -54,7 +54,7 @@ class MyElement extends HTMLElement {
     static observerdAttributes = ["message", "color"];
 
     // add controllers
-	#sd = new Shadow(this, { mode: "closed" });
+    #sd = new Shadow(this, { mode: "closed" });
 
     // first render
     constructor() {
@@ -87,7 +87,7 @@ class MyElement extends HTMLElement {
 
     // add controllers
     #rc = new Render(this);
-	#sd = new Shadow(this, { mode: "closed" });
+    #sd = new Shadow(this, { mode: "closed" });
 
     constructor() {
         super();
@@ -100,15 +100,15 @@ class MyElement extends HTMLElement {
     }
 
     // queue render on attribute changes
-	attributeChangedCallback() {
-		this.#rc.render();
-	}
+    attributeChangedCallback() {
+        this.#rc.render();
+    }
 
     // get state and apply changes to shadowRoot
-	render() {
+    render() {
         if (this.#rc.queued) return;
         // do something here!
-	}
+    }
 }
 
 customElements.define('my-element', MyElement);
