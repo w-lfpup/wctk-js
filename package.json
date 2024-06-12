@@ -1,15 +1,21 @@
 {
-  "workspaces": [
-    "render",
-    "component"
-  ],
-  "scripts": {
-    "build": "npm run build --workspaces",
-    "format": "prettier --write ./"
-  },
-  "devDependencies": {
-    "prettier": "^3.3.0",
-    "rollup": "^4.18.0",
-    "typescript": "^5.4.5"
-  }
+	"workspaces": [
+		"shadow",
+		"styles",
+		"render",
+		"wctk",
+		"examples"
+	],
+	"scripts": {
+		"build": "npm run build --workspaces",
+		"bundle": "npm run bundle --workspace wctk",
+		"format": "prettier --write ./"
+	},
+	"devDependencies": {
+		"@rollup/plugin-terser": "^0.4.4",
+		"prettier": "^3.3.0",
+		"rollup": "^4.18.0",
+		"rollup-plugin-brotli": "^3.1.0",
+		"typescript": "^5.4.5"
+	}
 }
