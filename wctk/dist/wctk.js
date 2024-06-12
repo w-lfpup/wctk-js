@@ -41,8 +41,8 @@ class Shadow {
 
 class Styles {
     #root;
-    constructor(sd, stylesheetTemplates) {
-        this.#root = sd;
+    constructor(sr, stylesheetTemplates) {
+        this.#root = sr;
         this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
     }
     set adoptedStylesheets(stylesheetTemplates) {
@@ -63,5 +63,8 @@ function getStylesheets(stylesheetTemplates) {
     }
     return stylesheets;
 }
+function addStyles(sr, stylesheetTemplates) {
+    sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
+}
 
-export { Render, Shadow, Styles };
+export { Render, Shadow, Styles, addStyles };
