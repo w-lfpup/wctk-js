@@ -12,7 +12,7 @@ There is no inheritance other than initially extending an `HtmlElement`! (which 
 
 ## Controllers
 
-Only a handful of controllers are needed to provide:
+A handful of controllers can provide:
 
 - reactivity -> the [Render](./render/README.md) controller
 - declarative or imperative shadow dom -> the [Shadow](./shadow/README.md) controller
@@ -20,19 +20,12 @@ Only a handful of controllers are needed to provide:
 
 ## Example component
 
-### Custom elements
+### Custom element
 
-Start with the web component properties required to create a new custom element.
-
-The code below is all standard browser web apis.
+Create a custom element.
 
 ```ts
-class MyElement extends HTMLElement {
-    // create reactive attributes
-    static observerdAttributes = ["message", "color"];
-
-    attributeChangedCallback() {}
-}
+class MyElement extends HTMLElement {}
 
 customElements.define("my-element", MyElement);
 
@@ -73,7 +66,7 @@ export { MyElement };
 
 ### Reactivity
 
-Add a `Render` controller for reactivity. This isn't always necessary but useful for integrating external state into an application.
+Add a `Render` controller for reactivity. This isn't always necessary but useful for reflecting external state changes into the UI.
 
 The example below queues a render everytime an `observedAttribute` value changes.
 

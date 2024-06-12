@@ -23,6 +23,16 @@ import { Shadow } from "./render/dist/mod.js";
 
 class MyElement extends HTMLElement {
 	#sd = new Shadow(this, { mode: "closed" });
+
+	constructor() {
+		super();
+
+		if this.#sd.declarative {
+			// add event listeners to #this.sd.shadowRoot
+		} else {
+			// compose DOM and append to #this.sd.shadowRoot
+		}
+	}
 }
 
 export { MyElement };
