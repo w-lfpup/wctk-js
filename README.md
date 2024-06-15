@@ -6,8 +6,6 @@ Reactive web components without inheritance.
 
 `Wctk` is a compositional approach to web components.
 
-It is designed to work _up until_ a developer needs to take control. Usually `control` can be defined by gathering state, listening for state, and creating DOM.
-
 There is no inheritance other than initially extending an `HtmlElement`! (which is required by a browser anyways)
 
 ## Controllers
