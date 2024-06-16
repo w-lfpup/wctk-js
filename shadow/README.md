@@ -1,6 +1,6 @@
 # Shadow Root Controller
 
-Wrangle the shadow dom!
+Wrangle the shadow dom in <500 bytes!
 
 ## Api
 
@@ -16,27 +16,34 @@ Wrangle the shadow dom!
 
 ## How to use
 
-Add a `shadow` controller to a web component called `#sd`.
+Add a `Shadow` controller to wrangle the shadow dom.
+
+Check if the shadow dom is `declarative` in the `constructor`. If the shadow dom exists, add event listeners. Otherwise compose a dom fragment, add event listeners, and project the dom fragment onto the shadow dom.
 
 ```ts
-import { Shadow } from "./render/dist/mod.js";
+import { Shadow } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
 class MyElement extends HTMLElement {
-	#sd = new Shadow(this, { mode: "closed" });
+    static observerdAttributes = ["message", "color"];
 
-	constructor() {
-		super();
+    #sd = new Shadow(this, { mode: "closed" });
 
-		if this.#sd.declarative {
-			// add event listeners to #this.sd.shadowRoot
-		} else {
-			// compose DOM and append to #this.sd.shadowRoot
-		}
-	}
+    constructor() {
+        super();
+
+        if this.#sd.declarative {
+            // add event listeners to #this.sd.shadowRoot
+        } else {
+            // compose DOM and append to #this.sd.shadowRoot
+        }
+    }
 }
+
+customElements.define('my-element', MyElement);
 
 export { MyElement };
 ```
+
 
 ## About
 

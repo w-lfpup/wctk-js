@@ -1,6 +1,8 @@
 node_modules/
 render/dist/
 shadow/dist/
+events/dist/
+subscription/dist
 styles/dist/
 examples/dist/
 wctk/dist/mod.d.ts

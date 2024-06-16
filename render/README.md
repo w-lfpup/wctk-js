@@ -1,6 +1,6 @@
 # Render Controller
 
-Asyncronous reactivity for web components in <500 bytes.
+Asyncronous render controller for web components in <500 bytes.
 
 ## Api
 
@@ -15,14 +15,14 @@ Methods:
 
 ## How to use
 
-Add a `render` controller to a web component with `observerdAttributes` called `#rc`.
+Add a `render` controller to a web component.
 
-On `attributeChangedCallback` (or wherever appropriate) call `#rc.render()`;
+In the `attributeChangedCallback` method (or wherever appropriate) call `#rc.render()`;
 
 ```ts
 import { Render } from "./render/dist/mod.js";
 
-class MyComponent extends HTMLElement {
+class MyElement extends HTMLElement {
 	static observedAttributes = ["color", "size"];
 
 	#rc = new Render(this);
@@ -32,15 +32,18 @@ class MyComponent extends HTMLElement {
 	}
 
 	render() {
+		// no need to render if a render is queued!
+		if (this.#rc.queued) return;
+		
 		// do something here!
 	}
 }
 
-export { MyComponent };
+export { MyElement };
 ```
 
 ### details
 
 The `Redner.render()` method can be called multiple times but the corresponding `Element.render()` method will only be called _once_ per event loop.
 
-It's a kind of asyncronous rendering.
+It's a kind of asyncronous rendering using the `microtaskQueue`.
