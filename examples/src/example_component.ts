@@ -1,4 +1,4 @@
-import { Shadow, Styles, Render, Subscribe } from "../../wctk/dist/mod.js";
+import { Shadow, Styles, Render } from "../../wctk/dist/mod.js";
 
 const fontStyles = `
     :root {
@@ -12,24 +12,19 @@ const layoutStyles = `
 	} 
 `;
 
-function hello(el: HtmlELement & WithRender) {
-	el.render();
-	return store.subscribe(() => {el.render()})
-}
+// function hello(el: HtmlELement & WithRender) {
+// 	el.render();
+// 	return store.subscribe(() => {el.render()})
+// }
 
-function goodbye(unsubscribe, el: HtmlELement & WithRender) {
-	unsubscribe();
-}
+// function goodbye(unsubscribe, el: HtmlELement & WithRender) {
+// 	unsubscribe();
+// }
 
 class MyElement extends HTMLElement {
 	#rc = new Render(this);
 	#sd = new Shadow(this, { mode: "closed" });
 	#ss = new Styles(this.#sd.shadowRoot, [fontStyles, layoutStyles]);
-	#af = new Affect(this, hello, goodbye);
-	#ev = new Events(this.#sd, [
-		["pointerdown", this.#hello],
-		["goodbye", this.#hello],
-	]);
 
 	#hello(e: Event) {}
 
@@ -47,11 +42,11 @@ class MyElement extends HTMLElement {
 	}
 
 	onConnectedCallback() {
-		this.#af.connect();
+		// this.#af.connect();
 	}
 
 	onDisconnectedCallback() {
-		this.#af.disconnect();
+		// this.#af.disconnect();
 	}
 }
 

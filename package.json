@@ -1,10 +1,11 @@
 {
 	"workspaces": [
 		"shadow",
-		"styles",
 		"render",
-		"wctk",
-		"examples"
+		"events",
+		"subscription",
+		"styles",
+		"wctk"
 	],
 	"scripts": {
 		"build": "npm run build --workspaces",

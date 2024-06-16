@@ -39,6 +39,63 @@ class Shadow {
     }
 }
 
+class Events {
+    #connected = false;
+    #el;
+    #events = [];
+    constructor(el, callbacks) {
+        this.#el = el;
+        for (let [name, cb] of callbacks) {
+            let callback = cb;
+            if (callback instanceof Function) {
+                callback = callback.bind(this.#el);
+            }
+            this.#events.push([name, callback]);
+        }
+    }
+    connect() {
+        if (this.#connected)
+            return;
+        this.#connected = true;
+        for (let [name, callback] of this.#events) {
+            this.#el.addEventListener(name, callback);
+        }
+    }
+    disconnect() {
+        if (!this.#connected)
+            return;
+        this.#connected = false;
+        for (let [name, callback] of this.#events) {
+            this.#el.removeEventListener(name, callback);
+        }
+    }
+}
+
+class Subscription {
+    #connected = false;
+    #el;
+    #affect;
+    #onConnect;
+    #onDisconnect;
+    constructor(el, onConnect, onDisconnect) {
+        this.#el = el;
+        this.#onConnect = onConnect;
+        this.#onDisconnect = onDisconnect;
+    }
+    connect() {
+        if (this.#connected)
+            return;
+        this.#connected = true;
+        this.#affect = this.#onConnect(this.#el);
+    }
+    disconnect() {
+        if (!this.#connected)
+            return;
+        this.#connected = false;
+        this.#onDisconnect(this.#el, this.#affect);
+    }
+}
+
 class Styles {
     #root;
     constructor(sr, stylesheetTemplates) {
@@ -67,4 +124,4 @@ function addStyles(sr, stylesheetTemplates) {
     sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
 }
 
-export { Render, Shadow, Styles, addStyles };
+export { Events, Render, Shadow, Styles, Subscription, addStyles };

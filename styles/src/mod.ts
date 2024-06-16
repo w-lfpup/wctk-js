@@ -37,7 +37,7 @@ function addStyles(
 	sr: DocumentOrShadowRoot,
 	stylesheetTemplates: (CSSStyleSheet | string)[],
 ) {
-	sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates)
+	sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
 }
 
 export { addStyles, Styles };
