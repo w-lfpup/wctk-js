@@ -18,35 +18,29 @@ Wrangle the shadow dom in <500 bytes!
 
 Add a `Shadow` controller to wrangle the shadow dom.
 
-Check if the shadow dom is `declarative` in the `constructor`. If the shadow dom exists, add event listeners. Otherwise compose a dom fragment, add event listeners, and project the dom fragment onto the shadow dom.
+Check if the shadow dom is `declarative` in the `constructor`. If the shadow dom isn't declarative, compose a dom fragment and append the dom fragment onto the shadow root. Otherwise, add event listeners to the existing declarative shadow dom.
 
 ```ts
 import { Shadow } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
 class MyElement extends HTMLElement {
-    static observerdAttributes = ["message", "color"];
-
     #sd = new Shadow(this, { mode: "closed" });
 
     constructor() {
         super();
 
-        if this.#sd.declarative {
-            // add event listeners to #this.sd.shadowRoot
-        } else {
+        if !this.#sd.declarative {
             // compose DOM and append to #this.sd.shadowRoot
         }
+
+        // add event listeners to shadow dom
     }
 }
-
-customElements.define('my-element', MyElement);
-
-export { MyElement };
 ```
 
 
-## About
+## Details
 
-The `Shadow` controller inspects an element for declarative shadow dom.
+The `Shadow` controller inspects an element for declarative shadow dom. A new shadow dom is created if a declarative shadow dom is not found.
 
-A new shadow dom is created if a declarative shadow dom is not found.
+The shadow root will always be available at `this.#sd.shadowRoot`. It doesn't matter whether the shadow dom is open or closed.
