@@ -1,12 +1,12 @@
 # Shadow Root Controller
 
-Wrangle the shadow dom in <500 bytes!
+Wrangle the shadow dom!
 
 ## Api
 
 ### Properties:
 
-- internals -> `ElementInternals`
+- elementInternals -> `ElementInternals`
 - declarative -> `boolean`
 - shadowRoot -> `ShadowRoot`
 
@@ -18,7 +18,7 @@ Wrangle the shadow dom in <500 bytes!
 
 Add a `Shadow` controller to wrangle the shadow dom.
 
-Check if the shadow dom is `declarative` in the `constructor`. If the shadow dom isn't declarative, compose a dom fragment and append the dom fragment onto the shadow root. Otherwise, add event listeners to the existing declarative shadow dom.
+Check if the shadow dom is `declarative` in the `constructor`. If the shadow dom is not declarative, compose a dom fragment and append the dom fragment onto the shadow root. Otherwise, add event listeners to the existing declarative shadow dom.
 
 ```ts
 import { Shadow } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
@@ -37,7 +37,6 @@ class MyElement extends HTMLElement {
     }
 }
 ```
-
 
 ## Details
 

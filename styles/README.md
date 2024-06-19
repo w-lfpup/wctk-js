@@ -10,10 +10,12 @@ Add stylesheets to a shadow root.
 
 ## How to use
 
-Add a `shadow` controller to a web component called `#sd` and pass a shadow root and an array of styles on construction.
+Add a `Styles` controller to a web component.
+
+Pass a shadow root and an array of styles on construction.
 
 ```ts
-import { Styles } from "./render/dist/mod.js";
+import { Styles } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
 const fontStyles = `
     :root {
@@ -29,18 +31,18 @@ layoutStyles.replaceSync(`
 `);
 
 class MyElement extends HTMLElement {
-    #sd = new Styles(this, [fontStyles, layoutStyles]);
+    #st = new Styles(this, [fontStyles, layoutStyles]);
 }
 ```
 
 ### Declarative shadow dom
 
-An `addStyles` function is provided in case a controller is not needed or convenient.
+A controller pattern aren't a perfect fit for conditionals like "is there an existing declarative shadow dom?" 
 
-In the example below, stylesheets are added to the shadow root _only_ if the shadow root is not declarative.
+In the example below, stylesheets are added to the shadow root _only_ if the shadow root is not declarative using the `addStyles` function.
 
 ```ts
-import { addStyles } from "./render/dist/mod.js";
+import { Shadow, addStyles } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
 const fontStyles = `
     :root {
@@ -61,18 +63,16 @@ class MyElement extends HTMLElement {
     constructor() {
         super();
 
-        if this.#sd.declarative {
-            // add event listeners to #this.sd.shadowRoot
-        } else {
+        if !this.#sd.declarative {
             // compose DOM and append to #this.sd.shadowRoot
             addStyles(this.#sd.shadowRoot, [fontStyles, layoutStyles]);
         }
+
+        // add event listeners to #this.sd.shadowRoot
     }
 }
 ```
 
-## About
+## Details
 
-The `Shadow` controller inspects an element for declarative shadow dom.
-
-A new shadow dom is created if a declarative shadow dom is not found.
+The `Styles` controller will create a `CSSStylesheet` from raw strings.

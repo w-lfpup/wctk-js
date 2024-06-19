@@ -1,6 +1,6 @@
 # Render Controller
 
-Asyncronous render controller for web components in <500 bytes.
+Asyncronous renders for web components.
 
 ## Api
 
@@ -20,7 +20,7 @@ Add a `render` controller to a web component.
 In the `attributeChangedCallback` method (or wherever appropriate) call `#rc.render()`;
 
 ```ts
-import { Render } from "./render/dist/mod.js";
+import { Render } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
 class MyElement extends HTMLElement {
 	static observedAttributes = ["color", "size"];
@@ -40,7 +40,7 @@ class MyElement extends HTMLElement {
 }
 ```
 
-### details
+### Details
 
 The `Redner.render()` method can be called multiple times but the corresponding `Element.render()` method will only be called _once_ per event loop.
 
