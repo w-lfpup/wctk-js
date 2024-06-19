@@ -8,13 +8,17 @@ Properties:
 - N/A
 
 Methods:
-- constructor -> `(HtmlElement, ConnectCallback, DisconnectCallback): void`
+- constructor -> `(HtmlElement, ConnectFunction, DisconnectFunction): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
+Connect and Disconnect constructor arguments
+- ConnectedFunction -> `(HtmlElement) -> Results`
+- DisconnectFunction -> `(HtmlElement, Results) -> void`
+
 ## How to use
 
-Add an `Subscription` controller to a web component.
+Add a `Subscription` controller to a web component.
 
 Provide functions to connect a web component to a data store. In the example below, the functions are called `subscribeToRedux` and `unsubscribeToRedux`.
 
@@ -37,18 +41,18 @@ class MyElement extends HTMLElement {
 }
 
 // return results of subscription in a connect function
-function subscribeToRedux(el: WithRender) {
+function subscribeToStore(el: WithRender) {
     return store.subscribe(() => {
         el.render();
     });
 }
 
 // results of subscription are passed to a disconnect function
-function unsubscribeToRedux(el: WithRender, results: Function) {
+function unsubscribeToStore(el: WithRender, results: Function) {
     results();
 }
 ```
 
-### details
+### Details
 
 The `Events` controller adds event listeners and binds callbacks to the host component.
