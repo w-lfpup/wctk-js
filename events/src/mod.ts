@@ -10,7 +10,10 @@ class Events<T> {
 
 		for (let [name, cb] of callbacks) {
 			let callback = cb;
-			if (callback instanceof Function) {
+			if (
+				callback instanceof Function &&
+				!callback.hasOwnProperty("prototype")
+			) {
 				callback = callback.bind(this.#el);
 			}
 			this.#events.push([name, callback]);

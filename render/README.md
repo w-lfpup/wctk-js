@@ -38,8 +38,6 @@ class MyElement extends HTMLElement {
 		// do something here!
 	}
 }
-
-export { MyElement };
 ```
 
 ### details
