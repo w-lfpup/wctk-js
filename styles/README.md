@@ -31,8 +31,6 @@ layoutStyles.replaceSync(`
 class MyElement extends HTMLElement {
     #sd = new Styles(this, [fontStyles, layoutStyles]);
 }
-
-export { MyElement };
 ```
 
 ### Declarative shadow dom
@@ -71,8 +69,6 @@ class MyElement extends HTMLElement {
         }
     }
 }
-
-export { MyElement };
 ```
 
 ## About
