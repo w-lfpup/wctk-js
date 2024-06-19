@@ -12,7 +12,7 @@ Methods:
 - connect -> `(): void`
 - disconnect -> `(): void`
 
-Connect and Disconnect constructor arguments
+Constructor arguments
 - ConnectedFunction -> `(HtmlElement) -> Results`
 - DisconnectFunction -> `(HtmlElement, Results) -> void`
 
