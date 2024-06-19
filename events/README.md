@@ -1,6 +1,6 @@
 # Events Controller
 
-Events for web components made easy in <900 bytes.
+Events for web components.
 
 ## Api
 
@@ -8,7 +8,7 @@ Properties:
 - N/A
 
 Methods:
-- constructor -> `(HtmlElement): void`
+- constructor -> `(HtmlElement, [[string, eventListener]], ...): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
@@ -16,10 +16,10 @@ Methods:
 
 Add an `Events` controller to a web component.
 
-Add a list of `eventNames` and `callbacks`
+Add a list of event names and event listener callbacks on construction.
 
 ```ts
-import { Events } from "./render/dist/mod.js";
+import { Events } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
 class MyElement extends HTMLElement {
 	#ev = new Events(this, [
@@ -45,6 +45,6 @@ class MyElement extends HTMLElement {
 }
 ```
 
-### details
+### Details
 
-The `Events` controller adds event listeners and binds callbacks to the host component.
+The `Events` controller will bind any callbacks _not already bound_ to the host component.

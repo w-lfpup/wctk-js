@@ -4,28 +4,29 @@ Subscribe web components to external state.
 
 ## Api
 
+Required Callbacks
+- SubscribeFunction -> `(HtmlElement) -> Results`
+- UnsubscribeFunction -> `(HtmlElement, Results) -> void`
+
 Properties:
 - N/A
 
 Methods:
-- constructor -> `(HtmlElement, ConnectFunction, DisconnectFunction): void`
+- constructor -> `(HtmlElement, SubscribeFunction, UnsubscribeFunction): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
-
-Constructor arguments
-- ConnectedFunction -> `(HtmlElement) -> Results`
-- DisconnectFunction -> `(HtmlElement, Results) -> void`
 
 ## How to use
 
 Add a `Subscription` controller to a web component.
 
-Provide functions to connect a web component to a data store. In the example below, the functions are called `subscribeToRedux` and `unsubscribeToRedux`.
+Provide functions to subscribe and unsubscribe from a data store.
+
+In the example below, the functions are called `subscribeToStore` and `unsubscribeToStore`.
 
 ```ts
-import type { WithRender } from "./render/dist/mod.ts";
+import { Subscription } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
 
-import { Subscription } from "./render/dist/mod.js";
 import { store } from "./my-store.js";
 
 class MyElement extends HTMLElement {
@@ -41,18 +42,20 @@ class MyElement extends HTMLElement {
 }
 
 // return results of subscription in a connect function
-function subscribeToStore(el: WithRender) {
-    return store.subscribe(() => {
-        el.render();
+function subscribeToStore(el: HTMLElement) {
+    let subscriptionReceipt = store.subscribe(() => {
+        // update or render the web component!
     });
+
+	return subscriptionReceipt;
 }
 
 // results of subscription are passed to a disconnect function
-function unsubscribeToStore(el: WithRender, results: Function) {
-    results();
+function unsubscribeToStore(el: HTMLElement, results: Function) {
+    store.unsubscribe(results);
 }
 ```
 
 ### Details
 
-The `Events` controller adds event listeners and binds callbacks to the host component.
+The results of a subscribe function are passed as arguments of an unsubscribe function
