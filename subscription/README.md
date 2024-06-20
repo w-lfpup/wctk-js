@@ -41,7 +41,6 @@ class MyElement extends HTMLElement {
 	}
 }
 
-// return results of subscription in a connect function
 function subscribeToStore(el: HTMLElement) {
     let subscriptionReceipt = store.subscribe(() => {
         // update or render the web component!
@@ -50,7 +49,6 @@ function subscribeToStore(el: HTMLElement) {
 	return subscriptionReceipt;
 }
 
-// results of subscription are passed to a disconnect function
 function unsubscribeToStore(el: HTMLElement, results: Function) {
     store.unsubscribe(results);
 }

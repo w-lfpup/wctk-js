@@ -8,7 +8,7 @@ Properties:
 - N/A
 
 Methods:
-- constructor -> `(HtmlElement, [[string, eventListener]], ...): void`
+- constructor -> `(HtmlElement, [[string, eventListener], ...]): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
