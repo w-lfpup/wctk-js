@@ -33,11 +33,11 @@ function getStylesheets(
 	return stylesheets;
 }
 
-function addStyles(
+function styles(
 	sr: DocumentOrShadowRoot,
 	stylesheetTemplates: (CSSStyleSheet | string)[],
 ) {
 	sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
 }
 
-export { addStyles, Styles };
+export { styles, Styles };
