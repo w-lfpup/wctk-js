@@ -41,15 +41,15 @@ class MyElement extends HTMLElement {
 	}
 }
 
-function subscribeToStore(el: HTMLElement) {
-    let subscriptionReceipt = store.subscribe(() => {
+function subscribeToStore(el: HTMLElement): number {
+    let receipt: number = store.subscribe(() => {
         // update or render the web component!
     });
 
-	return subscriptionReceipt;
+	return receipt;
 }
 
-function unsubscribeToStore(el: HTMLElement, results: Function) {
+function unsubscribeToStore(el: HTMLElement, results: number): void {
     store.unsubscribe(results);
 }
 ```
