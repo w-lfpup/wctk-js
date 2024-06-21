@@ -9,7 +9,11 @@ class Styles {
 		this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
 	}
 
-	set adoptedStylesheets(stylesheetTemplates: (CSSStyleSheet | string)[]) {
+	get adoptedStyleSheets(): CSSStyleSheet[] {
+		return this.#root.adoptedStyleSheets;
+	}
+
+	set adoptedStyleSheets(stylesheetTemplates: (CSSStyleSheet | string)[]) {
 		this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
 	}
 }
@@ -33,11 +37,4 @@ function getStylesheets(
 	return stylesheets;
 }
 
-function addStyles(
-	sr: DocumentOrShadowRoot,
-	stylesheetTemplates: (CSSStyleSheet | string)[],
-) {
-	sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
-}
-
-export { addStyles, Styles };
+export { Styles };

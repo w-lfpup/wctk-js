@@ -14,6 +14,12 @@ A handful of controllers can provide:
 - [subscription](./subscription/README.md)s to data stores 
 - component [styles](./styles/README.md)
 
+## Developer Experience
+
+`Wctk` provides a opt-in controller patterns to build web components.
+
+Controller properties directly correlate to vanilla web component jargon.
+
 ## License
 
 `Wctk` is released under the BSD-3 Clause License.

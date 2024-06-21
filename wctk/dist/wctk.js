@@ -1,3 +1,36 @@
+class Events {
+    #connected = false;
+    #el;
+    #events = [];
+    constructor(el, callbacks) {
+        this.#el = el;
+        for (let [name, cb] of callbacks) {
+            let callback = cb;
+            if (callback instanceof Function &&
+                !callback.hasOwnProperty("prototype")) {
+                callback = callback.bind(this.#el);
+            }
+            this.#events.push([name, callback]);
+        }
+    }
+    connect() {
+        if (this.#connected)
+            return;
+        this.#connected = true;
+        for (let [name, callback] of this.#events) {
+            this.#el.addEventListener(name, callback);
+        }
+    }
+    disconnect() {
+        if (!this.#connected)
+            return;
+        this.#connected = false;
+        for (let [name, callback] of this.#events) {
+            this.#el.removeEventListener(name, callback);
+        }
+    }
+}
+
 class Render {
     #el;
     #queued = false;
@@ -39,36 +72,32 @@ class Shadow {
     }
 }
 
-class Events {
-    #connected = false;
-    #el;
-    #events = [];
-    constructor(el, callbacks) {
-        this.#el = el;
-        for (let [name, cb] of callbacks) {
-            let callback = cb;
-            if (callback instanceof Function) {
-                callback = callback.bind(this.#el);
-            }
-            this.#events.push([name, callback]);
+class Styles {
+    #root;
+    constructor(sr, stylesheetTemplates) {
+        this.#root = sr;
+        this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
+    }
+    get adoptedStyleSheets() {
+        return this.#root.adoptedStyleSheets;
+    }
+    set adoptedStyleSheets(stylesheetTemplates) {
+        this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
+    }
+}
+function getStylesheets(stylesheetTemplates) {
+    let stylesheets = [];
+    for (let stylesheetTemplate of stylesheetTemplates) {
+        if (stylesheetTemplate instanceof CSSStyleSheet) {
+            stylesheets.push(stylesheetTemplate);
+        }
+        if (typeof stylesheetTemplate === "string") {
+            const sheet = new CSSStyleSheet();
+            sheet.replaceSync(stylesheetTemplate);
+            stylesheets.push(sheet);
         }
     }
-    connect() {
-        if (this.#connected)
-            return;
-        this.#connected = true;
-        for (let [name, callback] of this.#events) {
-            this.#el.addEventListener(name, callback);
-        }
-    }
-    disconnect() {
-        if (!this.#connected)
-            return;
-        this.#connected = false;
-        for (let [name, callback] of this.#events) {
-            this.#el.removeEventListener(name, callback);
-        }
-    }
+    return stylesheets;
 }
 
 class Subscription {
@@ -96,32 +125,4 @@ class Subscription {
     }
 }
 
-class Styles {
-    #root;
-    constructor(sr, stylesheetTemplates) {
-        this.#root = sr;
-        this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
-    }
-    set adoptedStylesheets(stylesheetTemplates) {
-        this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
-    }
-}
-function getStylesheets(stylesheetTemplates) {
-    let stylesheets = [];
-    for (let stylesheetTemplate of stylesheetTemplates) {
-        if (stylesheetTemplate instanceof CSSStyleSheet) {
-            stylesheets.push(stylesheetTemplate);
-        }
-        if (typeof stylesheetTemplate === "string") {
-            const sheet = new CSSStyleSheet();
-            sheet.replaceSync(stylesheetTemplate);
-            stylesheets.push(sheet);
-        }
-    }
-    return stylesheets;
-}
-function addStyles(sr, stylesheetTemplates) {
-    sr.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
-}
-
-export { Events, Render, Shadow, Styles, Subscription, addStyles };
+export { Events, Render, Shadow, Styles, Subscription };

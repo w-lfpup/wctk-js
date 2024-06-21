@@ -1,18 +1,14 @@
-type Connect<T> = (el: HTMLElement) => T;
-type Disconnect<T> = (el: HTMLElement, args: T) => T;
+type Connect<E, A> = (el: E) => A;
+type Disconnect<E, A> = (el: E, args: A) => A;
 
-class Subscription<T> {
+class Subscription<E, A> {
 	#connected: boolean = false;
-	#el: HTMLElement;
-	#affect: T | undefined;
-	#onConnect: Connect<T>;
-	#onDisconnect: Disconnect<T>;
+	#el: E;
+	#affect: A | undefined;
+	#onConnect: Connect<E, A>;
+	#onDisconnect: Disconnect<E, A>;
 
-	constructor(
-		el: HTMLElement,
-		onConnect: Connect<T>,
-		onDisconnect: Disconnect<T>,
-	) {
+	constructor(el: E, onConnect: Connect<E, A>, onDisconnect: Disconnect<E, A>) {
 		this.#el = el;
 		this.#onConnect = onConnect;
 		this.#onDisconnect = onDisconnect;
@@ -33,4 +29,5 @@ class Subscription<T> {
 	}
 }
 
+export type { Connect, Disconnect };
 export { Subscription };
