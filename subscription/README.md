@@ -30,7 +30,7 @@ import { Subscription } from "https://raw.githubusercontent.com/wolfpup-software
 import { store } from "./my-store.js";
 
 class MyElement extends HTMLElement {
-	#sb = new Subscribe(this, subscribeToRedux, unsubscribeToRedux);
+	#sb = new Subscribe(this, subscribeToStore, unsubscribeToStore);
 
 	connectedCallback() {
 		this.#sb.connect();

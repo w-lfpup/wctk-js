@@ -2,7 +2,10 @@ interface WithRender {
 	render(): void;
 }
 
-class Render {
+// this might change, don't completely couple
+type RenderImpl = WithRender;
+
+class Render implements RenderImpl {
 	#el: WithRender;
 	#queued = false;
 
@@ -25,6 +28,6 @@ class Render {
 	}
 }
 
-export type { WithRender };
+export type { RenderImpl, WithRender };
 
 export { Render };

@@ -1,24 +1,22 @@
 # Web Component Tool Kit
 
-`Wctk` is a compositional approach to building web components.
-
-It's <600 bytes minified and zipped.
+Build web components quickly (<600 bytes minified and zipped).
 
 ## Controllers
 
-A handful of controllers can provide:
+A handful of controller classes can wrangle:
 
 - declarative or imperative [shadow](./shadow/README.md) dom
-- asynchronous [render](./render/README.md)s
-- [events](./events/README.md) and bindings
-- [subscription](./subscription/README.md)s to data stores 
 - component [styles](./styles/README.md)
+- asynchronous [renders](./render/README.md)
+- [events](./events/README.md) and bindings
+- [subscriptions](./subscription/README.md) to external data 
 
 ## Developer Experience
 
-`Wctk` provides a opt-in controller patterns to build web components.
+`Wctk` is a set of opt-in compositional utility classes to quickly build web components.
 
-Controller properties directly correlate to vanilla web component jargon.
+`Wctk` is designed to directly correlate with vanilla web component features and jargon. It attempts to reduce unneccessary complexity while avoiding inheritance.
 
 ## License
 

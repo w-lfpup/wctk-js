@@ -1,6 +1,11 @@
 type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
 
-class Events<T> {
+interface EventsImpl {
+	connect(): void;
+	disconnect(): void;
+}
+
+class Events<T> implements EventsImpl {
 	#connected: boolean = false;
 	#el: Node;
 	#events: Callbacks = [];
@@ -39,5 +44,5 @@ class Events<T> {
 	}
 }
 
-export type { Callbacks };
+export type { Callbacks, EventsImpl };
 export { Events };

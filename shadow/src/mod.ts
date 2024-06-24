@@ -1,4 +1,10 @@
-class Shadow {
+interface ShadowImpl {
+	readonly internals: ElementInternals;
+	readonly declarative: boolean;
+	readonly shadowRoot: ShadowRoot;
+}
+
+class Shadow implements ShadowImpl {
 	#internals: ElementInternals;
 	#declarative: boolean;
 
@@ -22,5 +28,7 @@ class Shadow {
 		return this.#internals.shadowRoot;
 	}
 }
+
+export type { ShadowImpl };
 
 export { Shadow };
