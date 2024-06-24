@@ -1,7 +1,12 @@
 type Connect<E, A> = (el: E) => A;
 type Disconnect<E, A> = (el: E, args: A) => A;
 
-class Subscription<E, A> {
+interface SubscriptionImpl {
+	connect(): void;
+	disconnect(): void;
+}
+
+class Subscription<E, A> implements SubscriptionImpl {
 	#connected: boolean = false;
 	#el: E;
 	#affect: A | undefined;
@@ -29,5 +34,6 @@ class Subscription<E, A> {
 	}
 }
 
-export type { Connect, Disconnect };
+export type { Connect, Disconnect, SubscriptionImpl };
+
 export { Subscription };
