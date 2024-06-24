@@ -5,7 +5,7 @@ interface EventsImpl {
 	disconnect(): void;
 }
 
-class Events<T> {
+class Events<T> implements EventsImpl {
 	#connected: boolean = false;
 	#el: Node;
 	#events: Callbacks = [];

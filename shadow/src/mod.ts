@@ -4,7 +4,7 @@ interface ShadowImpl {
 	readonly shadowRoot: ShadowRoot;
 }
 
-class Shadow {
+class Shadow implements ShadowImpl {
 	#internals: ElementInternals;
 	#declarative: boolean;
 

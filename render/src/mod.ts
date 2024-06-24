@@ -5,7 +5,7 @@ interface WithRender {
 // this might change, don't completely couple
 type RenderImpl = WithRender;
 
-class Render {
+class Render implements RenderImpl {
 	#el: WithRender;
 	#queued = false;
 
