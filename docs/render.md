@@ -20,7 +20,7 @@ Add a `render` controller to a web component.
 In the `attributeChangedCallback` method (or wherever appropriate) call `#rc.render()`;
 
 ```ts
-import { Render } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Render } from "wctk";
 
 class MyElement extends HTMLElement {
 	static observedAttributes = ["color", "size"];

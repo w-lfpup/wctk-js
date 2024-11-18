@@ -15,7 +15,7 @@ Add a `Styles` controller to a web component.
 Pass a shadow root and an array of styles on construction.
 
 ```ts
-import { Shadow, Styles } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Shadow, Styles } from "wctk";
 
 const fontStyles = `
     :root {
@@ -41,7 +41,7 @@ class MyElement extends HTMLElement {
 In the example below, stylesheets are added to the shadow root _only_ if the shadow root is not declarative.
 
 ```ts
-import { Shadow, Styles } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Shadow, Styles } from "wctk";
 
 const fontStyles = `
     :root {

@@ -25,7 +25,7 @@ Provide functions to subscribe and unsubscribe from a data store.
 In the example below, the functions are called `subscribeToStore` and `unsubscribeToStore`.
 
 ```ts
-import { Subscription } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Subscription } from "wctk";
 
 import { store } from "./my-store.js";
 

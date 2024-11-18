@@ -1,22 +1,30 @@
 # Web Component Tool Kit
 
-Build web components quickly (<600 bytes minified and zipped).
+Build web components quickly.
+
+## Install
+
+```bash
+npm install --save-dev https://github.com/wolfpup-software/wctk-js
+```
 
 ## Controllers
 
-A handful of controller classes can wrangle:
+A handful of controller classes can:
 
-- declarative or imperative [shadow](./shadow/README.md) dom
-- component [styles](./styles/README.md)
-- asynchronous [renders](./render/README.md)
-- [events](./events/README.md) and bindings
-- [subscriptions](./subscription/README.md) to external data 
+- wrangle declarative and imperative [shadow dom](./docs/shadow.md)
+- [style](./docs/styles.md) web components
+- [render](./docs/render.md) asynchronously
+- bind [events](./docs/events.md) to web compoonents
+- [subscribe](./docs/subscription.md) to external data
 
 ## Developer Experience
 
-`Wctk` is a set of opt-in compositional utility classes to quickly build web components.
+`Wctk` builds web components with an extremely tiny foot print.
 
-`Wctk` is designed to directly correlate with vanilla web component features and jargon. It attempts to reduce unneccessary complexity while avoiding inheritance.
+It's designed to directly correlate with vanilla web component features and jargon.
+
+`Wctk` is based on my experience with the [Lit](https://lit.dev) team.
 
 ## License
 
