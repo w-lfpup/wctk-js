@@ -18,8 +18,6 @@ A handful of controller classes can:
 - bind [events](./docs/events.md) to web compoonents
 - [subscribe](./docs/subscription.md) to external data
 
-
-
 ## Developer Experience
 
 `Wctk` builds web components with an extremely tiny foot print.

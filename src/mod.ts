@@ -1,15 +1,15 @@
-export type { EventsInterface } from "./events.js";
-export type { RenderInterface } from "./render.js";
-export type { ShadowInterface } from "./shadow_dom.js";
-export type { StylesInterface } from "./styles.js";
+export type { EventsInterface } from "./events.ts";
+export type { RenderInterface } from "./render.ts";
+export type { ShadowInterface } from "./shadow_dom.ts";
+export type { StylesInterface } from "./styles.ts";
 export type {
 	Connect,
 	Disconnect,
 	SubscriptionInterface,
-} from "./subscribe.js";
+} from "./subscription.ts";
 
 export { Events } from "./events.js";
 export { Render } from "./render.js";
 export { Shadow } from "./shadow_dom.js";
 export { Styles } from "./styles.js";
-export { Subscription } from "./subscribe.js";
+export { Subscription } from "./subscription.js";

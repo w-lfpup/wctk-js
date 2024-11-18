@@ -15,7 +15,7 @@ Add a `Styles` controller to a web component.
 Pass a shadow root and an array of styles on construction.
 
 ```ts
-import { Shadow, Styles } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Shadow, Styles } from "wctk";
 
 const fontStyles = `
     :root {

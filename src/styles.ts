@@ -10,7 +10,7 @@ class Styles implements StylesInterface {
 		stylesheetTemplates: (CSSStyleSheet | string)[],
 	) {
 		this.#root = sr;
-		this.#root.adoptedStyleSheets = getStylesheets(stylesheetTemplates);
+		this.adoptedStyleSheets = stylesheetTemplates;
 	}
 
 	get adoptedStyleSheets(): CSSStyleSheet[] {
