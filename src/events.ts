@@ -1,4 +1,6 @@
-type Callbacks = Array<[keyof HTMLBodyElementEventMap, EventListenerOrEventListenerObject]>;
+type Callbacks = Array<
+	[keyof HTMLBodyElementEventMap, EventListenerOrEventListenerObject]
+>;
 
 interface EventsInterface {
 	connect(): void;
