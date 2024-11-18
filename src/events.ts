@@ -1,11 +1,11 @@
-type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
+type Callbacks = Array<[keyof HTMLBodyElementEventMap, EventListenerOrEventListenerObject]>;
 
-interface EventsImpl {
+interface EventsInterface {
 	connect(): void;
 	disconnect(): void;
 }
 
-class Events<T> implements EventsImpl {
+class Events implements EventsInterface {
 	#connected: boolean = false;
 	#el: Node;
 	#events: Callbacks = [];
@@ -31,6 +31,7 @@ class Events<T> implements EventsImpl {
 
 		for (let [name, callback] of this.#events) {
 			this.#el.addEventListener(name, callback);
+			this.#el.addEventListener(name, callback);
 		}
 	}
 
@@ -44,5 +45,5 @@ class Events<T> implements EventsImpl {
 	}
 }
 
-export type { Callbacks, EventsImpl };
+export type { Callbacks, EventsInterface };
 export { Events };

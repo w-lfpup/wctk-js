@@ -21,7 +21,7 @@ Add a `Shadow` controller to wrangle the shadow dom.
 Check if the shadow dom is `declarative` in the `constructor`. If the shadow dom is not declarative, compose a dom fragment and append the dom fragment onto the shadow root. Otherwise, add event listeners to the existing declarative shadow dom.
 
 ```ts
-import { Shadow } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Shadow } from "wctk";
 
 class MyElement extends HTMLElement {
     #sd = new Shadow(this, { mode: "closed" });

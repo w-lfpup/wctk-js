@@ -1,15 +1,13 @@
-interface WithRender {
+interface RenderInterface {
 	render(): void;
 }
 
 // this might change, don't completely couple
-type RenderImpl = WithRender;
-
-class Render implements RenderImpl {
-	#el: WithRender;
+class Render implements RenderInterface {
+	#el: RenderInterface;
 	#queued = false;
 
-	constructor(el: WithRender) {
+	constructor(el: RenderInterface) {
 		this.#el = el;
 	}
 
@@ -28,6 +26,6 @@ class Render implements RenderImpl {
 	}
 }
 
-export type { RenderImpl, WithRender };
+export type { RenderInterface };
 
 export { Render };

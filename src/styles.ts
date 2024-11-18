@@ -1,8 +1,8 @@
-interface StylesImpl {
-	readonly adoptedStyleSheets: CSSStyleSheet[];
+interface StylesInterface {
+	adoptedStyleSheets: CSSStyleSheet[];
 }
 
-class Styles implements StylesImpl {
+class Styles implements StylesInterface {
 	#root: DocumentOrShadowRoot;
 
 	constructor(
@@ -41,6 +41,6 @@ function getStylesheets(
 	return stylesheets;
 }
 
-export type { StylesImpl };
+export type { StylesInterface };
 
 export { Styles };

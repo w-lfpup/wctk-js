@@ -1,22 +1,17 @@
 {
-	"workspaces": [
-		"shadow",
-		"render",
-		"events",
-		"subscription",
-		"styles",
-		"wctk"
-	],
+	"name": "wctk",
+	"type": "module",
+	"main": "dist/mod.js",
 	"scripts": {
-		"build": "npm run build --workspaces",
-		"bundle": "npm run bundle --workspace wctk",
+		"build": "npx tsc --build",
 		"format": "prettier --write ./"
 	},
 	"devDependencies": {
-		"@rollup/plugin-terser": "^0.4.4",
 		"prettier": "^3.3.0",
-		"rollup": "^4.18.0",
-		"rollup-plugin-brotli": "^3.1.0",
 		"typescript": "^5.4.5"
-	}
+	},
+	"author": "wolfpup",
+	"version": "0.1.0",
+	"description": "",
+	"license": "BSD-3-Clause"
 }

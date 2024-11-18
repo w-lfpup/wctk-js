@@ -19,7 +19,7 @@ Add an `Events` controller to a web component.
 Add a list of event names and event listener callbacks on construction.
 
 ```ts
-import { Events } from "https://raw.githubusercontent.com/wolfpup-software/wctk-js/main/wctk/dist/wctk.js";
+import { Events } from "wctk";
 
 class MyElement extends HTMLElement {
 	#ev = new Events(this, [
