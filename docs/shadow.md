@@ -30,10 +30,10 @@ class MyElement extends HTMLElement {
         super();
 
         if !this.#sd.declarative {
-            // compose DOM and append to #this.sd.shadowRoot
+            // compose and append DOM to this.#sd.shadowRoot
         }
 
-        // add event listeners to shadow dom
+        // add event listeners to DOM
     }
 }
 ```
@@ -42,4 +42,4 @@ class MyElement extends HTMLElement {
 
 The `Shadow` controller inspects an element for declarative shadow dom. A new shadow dom is created if a declarative shadow dom is not found.
 
-The shadow root will always be available at `this.#sd.shadowRoot`. It doesn't matter whether the shadow dom is open or closed.
+The shadow root will always be available at `this.#sd.shadowRoot`. It doesn't matter if the shadow dom is open or closed.

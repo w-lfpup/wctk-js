@@ -1,6 +1,6 @@
 # Render Controller
 
-Asyncronous renders for web components.
+Asyncronous render utility class for custom elements.
 
 ## Api
 
@@ -23,7 +23,7 @@ In the `attributeChangedCallback` method (or wherever appropriate) call `#rc.ren
 import { Render } from "wctk";
 
 class MyElement extends HTMLElement {
-	static observedAttributes = ["color", "size"];
+	static observedAttributes = ["width", "height"];
 
 	#rc = new Render(this);
 
@@ -32,9 +32,6 @@ class MyElement extends HTMLElement {
 	}
 
 	render() {
-		// no need to render if a render is queued!
-		if (this.#rc.queued) return;
-		
 		// do something here!
 	}
 }
