@@ -26,7 +26,6 @@ In the example below, the functions are called `subscribeToStore` and `unsubscri
 
 ```ts
 import { Subscription } from "wctk";
-
 import { store } from "./my-store.js";
 
 class MyElement extends HTMLElement {
@@ -39,17 +38,19 @@ class MyElement extends HTMLElement {
 	disconnectedCallback() {
 		this.#sb.disconnect();
 	}
+
+	render() {
+		// use the store to update the element 
+	}
 }
 
-function subscribeToStore(el: HTMLElement): number {
-    let receipt: number = store.subscribe(() => {
-        // update or render the web component!
+function subscribeToStore(el: MyElement): number {
+    return store.subscribe(() => {
+		el.render();
     });
-
-	return receipt;
 }
 
-function unsubscribeToStore(el: HTMLElement, results: number): void {
+function unsubscribeToStore(el: MyElement, results: number): void {
     store.unsubscribe(results);
 }
 ```

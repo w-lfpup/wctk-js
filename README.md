@@ -10,21 +10,21 @@ npm install --save-dev https://github.com/wolfpup-software/wctk-js
 
 ## Controllers
 
-A handful of controller classes can:
+Features like reactivity and subscriptions are compositional and optional. 
 
-- wrangle declarative and imperative [shadow dom](./docs/shadow.md)
+A handful of utility classes can:
+
+- wrangle the [shadow dom](./docs/shadow.md)
 - [style](./docs/styles.md) web components
-- [render](./docs/render.md) asynchronously
-- bind [events](./docs/events.md) to web compoonents
-- [subscribe](./docs/subscription.md) to external data
+- asynchronously [render](./docs/render.md) components
+- bind [events](./docs/events.md) to components
+- [subscribe](./docs/subscription.md) components to external data
 
 ## Developer Experience
 
-`Wctk` builds web components with an extremely tiny foot print.
+`Wctk` builds web components with an extremely tiny foot print. (~<5kb unminified and uncompressed).
 
-It's designed to directly correlate with vanilla web component features and jargon.
-
-`Wctk` is based on my experience with the [Lit](https://lit.dev) team.
+It directly correlates with vanilla web component features and jargon.
 
 ## License
 

@@ -1,6 +1,6 @@
 # Events Controller
 
-Events for web components.
+Bind event listeners to custom elements.
 
 ## Api
 
@@ -36,11 +36,11 @@ class MyElement extends HTMLElement {
 	}
 
 	#onPointerUp(e: PointerEvent) {
-		// do something with the pointer event
+		// do pointer event stuff here
 	}
 
 	#onKeyDown(e: KeyboardEvent) {
-		// do something with the pointer event
+		// do something with keyboard events here!
 	}
 }
 ```
