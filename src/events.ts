@@ -33,7 +33,6 @@ class Events implements EventsInterface {
 
 		for (let [name, callback] of this.#events) {
 			this.#el.addEventListener(name, callback);
-			this.#el.addEventListener(name, callback);
 		}
 	}
 
