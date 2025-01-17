@@ -5,13 +5,16 @@ Subscribe web components to external state.
 ## Api
 
 Required Callbacks
+
 - SubscribeFunction -> `(HtmlElement) -> Results`
 - UnsubscribeFunction -> `(HtmlElement, Results) -> void`
 
 Properties:
+
 - N/A
 
 Methods:
+
 - constructor -> `(HtmlElement, SubscribeFunction, UnsubscribeFunction): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
@@ -40,18 +43,18 @@ class MyElement extends HTMLElement {
 	}
 
 	render() {
-		// use the store to update the element 
+		// use the store to update the element
 	}
 }
 
 function subscribeToStore(el: MyElement): number {
-    return store.subscribe(() => {
+	return store.subscribe(() => {
 		el.render();
-    });
+	});
 }
 
 function unsubscribeToStore(el: MyElement, results: number): void {
-    store.unsubscribe(results);
+	store.unsubscribe(results);
 }
 ```
 

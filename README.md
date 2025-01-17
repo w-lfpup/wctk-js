@@ -10,7 +10,7 @@ npm install --save-dev https://github.com/wolfpup-software/wctk-js
 
 ## Controllers
 
-Features like reactivity and subscriptions are compositional and optional. 
+Features like reactivity and subscriptions are compositional and optional.
 
 A handful of utility classes can:
 
