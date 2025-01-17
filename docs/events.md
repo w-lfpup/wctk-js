@@ -5,10 +5,12 @@ Bind event listeners to custom elements.
 ## Api
 
 Properties:
+
 - N/A
 
 Methods:
-- constructor -> `(HtmlElement, [[string, eventListener], ...]): void`
+
+- constructor -> `(HtmlElement, [[string, EventListener], ...]): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
@@ -24,7 +26,7 @@ import { Events } from "wctk";
 class MyElement extends HTMLElement {
 	#ev = new Events(this, [
 		["pointerup", this.#onPointerUp],
-		["keydown", this.#onKeyDown]
+		["keydown", this.#onKeyDown],
 	]);
 
 	connectedCallback() {
