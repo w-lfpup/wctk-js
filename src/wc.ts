@@ -1,4 +1,4 @@
-interface WebComponentInterface {
+interface WcInterface {
 	readonly declarative: boolean;
 	readonly shadowRoot: ShadowRoot;
 	setFormValue: ElementInternals["setFormValue"];
@@ -6,7 +6,7 @@ interface WebComponentInterface {
 	reportValidity: ElementInternals["reportValidity"];
 }
 
-class WebComponent implements WebComponentInterface {
+class Wc implements WcInterface {
 	#internals: ElementInternals;
 	#declarative: boolean;
 
@@ -54,6 +54,6 @@ class WebComponent implements WebComponentInterface {
 	}
 }
 
-export type { WebComponentInterface };
+export type { WcInterface };
 
-export { WebComponent };
+export { Wc };
