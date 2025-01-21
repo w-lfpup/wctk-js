@@ -14,7 +14,7 @@ Features like reactivity and subscriptions are compositional.
 
 A handful of utility classes can:
 
-- wrangle the [shadow dom](./docs/shadow.md)
+- wrangle the [shadow dom](./docs/wc.md)
 - add reactivity and [render](./docs/render.md) components
 - bind [events](./docs/events.md) to components
 - [subscribe](./docs/subscription.md) components to external data
@@ -26,6 +26,8 @@ A handful of utility classes can:
 It directly correlates with vanilla web component features and jargon.
 
 The `wctk` is based on my experiences at Google on the [Lit](https://lit.dev) team.
+
+Less is more in this wolf's opinion.
 
 ## License
 
