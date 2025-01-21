@@ -12,13 +12,16 @@ Build a web component!
 
 ### Methods
 
-- constructor -> `(HtmlElement, ShadowRootInit): void`
+- constructor -> `(HtmlElement, ShadowRootInit) => void`
+- setFormValue -> `(value: File | string | FormData | null, state?: File | string | FormData | null) => void`
+- setValidity -> `(flags?: ValidityStateFlags, message?: string, anchor?: HTMLElement) => void`
+- reportValidity -> `() => boolean`
 
 ## How to use
 
-Add a `Wc` controller to wrangle the shadow dom.
+Add a `Wc` controller to a custom element.
 
-Check if the shadow dom is `declarative` in the `constructor`. If the shadow dom is not declarative, compose a dom fragment and append the dom fragment onto the shadow root. Otherwise, add event listeners to the existing declarative shadow dom.
+The `Wc` controller inspects a custom element for declarative shadow dom. A shadow dom is created if a declarative shadow dom is not found.
 
 ```ts
 import { Wc } from "wctk";
@@ -31,12 +34,9 @@ class MyElement extends HTMLElement {
 
         if this.#wc.declarative {
             // declarative DOM  exists
+        } else {
+            // otherwise build something
         }
-
     }
 }
 ```
-
-## Details
-
-The `Wc` controller inspects a custom element for declarative shadow dom. A shadow dom is created if a declarative shadow dom is not found.
