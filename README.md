@@ -1,8 +1,8 @@
 # The Web Component Tool Kit
 
-Build web components .
+Build web components with bare metal browser tools.
 
-(<3.9kb unminified uncompressed).
+(~3kb unminified uncompressed).
 
 ## Install
 
