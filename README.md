@@ -12,20 +12,20 @@ npm install --save-dev https://github.com/wolfpup-software/wctk-js
 
 Features like reactivity and subscriptions are compositional.
 
-A handful of utility classes can:
+A handful of utility classes lets developers:
 
 - wrangle the [shadow dom](./docs/wc.md)
-- add reactivity and [render](./docs/render.md) components
-- bind [events](./docs/events.md) to components
-- [subscribe](./docs/subscription.md) components to external data
+- add reactive [renders](./docs/render.md)
+- bind [events](./docs/events.md)
+- [subscribe](./docs/subscription.md) to external data
 
 ## Developer Experience
 
+Create web components with an extremely tiny footprint.
+
+(3.9kb unminified un compressed).
+
 `Wctk` directly correlates with vanilla web component features and jargon.
-
-It creates web components with an extremely tiny foot prints.
-
-The `wctk` is based on my experiences at Google on the [Lit](https://lit.dev) team.
 
 ## License
 
