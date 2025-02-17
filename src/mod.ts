@@ -1,5 +1,5 @@
 export type { EventsInterface } from "./events.ts";
-export type { RenderInterface } from "./render.ts";
+export type { RenderElementInterface, RenderInterface } from "./render.ts";
 export type {
 	Connect,
 	Disconnect,

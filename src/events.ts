@@ -47,4 +47,5 @@ class Events implements EventsInterface {
 }
 
 export type { Callbacks, EventsInterface };
+
 export { Events };
