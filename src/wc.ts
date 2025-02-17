@@ -1,16 +1,26 @@
 interface WcInterface {
 	readonly declarative: boolean;
-	readonly shadowRoot: ShadowRoot;
+	readonly shadowRoot: DocumentOrShadowRoot;
+	adoptedStyleSheets: DocumentOrShadowRoot["adoptedStyleSheets"];
 	setFormValue: ElementInternals["setFormValue"];
 	setValidity: ElementInternals["setValidity"];
 	reportValidity: ElementInternals["reportValidity"];
+}
+
+const shadowRootInit: ShadowRootInit = {
+	mode: "closed",
+};
+
+interface WcElementInterface {
+	attachInternals: HTMLElement["attachInternals"];
+	attachShadow: HTMLElement["attachShadow"];
 }
 
 class Wc implements WcInterface {
 	#internals: ElementInternals;
 	#declarative: boolean;
 
-	constructor(el: HTMLElement, init: ShadowRootInit) {
+	constructor(el: WcElementInterface, init: ShadowRootInit = shadowRootInit) {
 		this.#internals = el.attachInternals();
 		this.#declarative = this.#internals.shadowRoot !== null;
 		if (!this.#declarative) {
@@ -26,11 +36,11 @@ class Wc implements WcInterface {
 		return this.#internals.shadowRoot;
 	}
 
-	get adoptedStylesheets(): CSSStyleSheet[] {
+	get adoptedStyleSheets(): CSSStyleSheet[] {
 		return this.#internals.shadowRoot.adoptedStyleSheets;
 	}
 
-	set adoptedStylesheets(stylesheets: CSSStyleSheet[]) {
+	set adoptedStyleSheets(stylesheets: CSSStyleSheet[]) {
 		this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
 	}
 

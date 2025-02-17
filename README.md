@@ -1,6 +1,6 @@
 # The Web Component Tool Kit
 
-Build web components with bare metal browser tools.
+Build web components .
 
 (<3.9kb unminified uncompressed).
 
@@ -12,14 +12,12 @@ npm install --save-dev https://github.com/wolfpup-software/wctk-js
 
 ## Controllers
 
-Features like reactivity and subscriptions are compositional.
+A handful of facades let developers:
 
-A handful of utility classes lets developers:
-
-- wrangle the [shadow dom](./docs/wc.md)
-- add reactive [renders](./docs/render.md)
-- bind [events](./docs/events.md)
+- build [shadow dom](./docs/wc.md)
+- listen to [events](./docs/events.md)
 - [subscribe](./docs/subscription.md) to external data
+- [render](./docs/render.md) changes
 
 ## License
 
