@@ -21,13 +21,11 @@ A handful of utility classes can:
 
 ## Developer Experience
 
-`Wctk` builds web components with an extremely tiny foot print. (~<5kb unminified and uncompressed).
+`Wctk` directly correlates with vanilla web component features and jargon.
 
-It directly correlates with vanilla web component features and jargon.
+It creates web components with an extremely tiny foot prints.
 
 The `wctk` is based on my experiences at Google on the [Lit](https://lit.dev) team.
-
-Less is more in this wolf's opinion.
 
 ## License
 
