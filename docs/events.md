@@ -10,7 +10,7 @@ Properties:
 
 Methods:
 
-- constructor -> `(el: Node, callbacks: [[string, EventListener], ...], eventTargetEl: Node?]): void`
+- constructor -> `(el: Node, callbacks: [[string, EventListener], ...], eventTargetEl?: Node]): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 

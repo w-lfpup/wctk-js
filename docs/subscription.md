@@ -4,18 +4,13 @@ Subscribe web components to external state.
 
 ## Api
 
-Required Callbacks
-
-- SubscribeFunction -> `(el: HtmlElement) -> Results`
-- UnsubscribeFunction -> `(el: HtmlElement, Results) -> void`
-
 Properties:
 
 - N/A
 
 Methods:
 
-- constructor -> `(el: HtmlElement, subsecribe: () => {}, unsubscribe: () => {}): void`
+- constructor -> `<E, A>(el: E, subscribe: () => A, unsubscribe: (results: A) => {}): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
