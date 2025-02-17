@@ -2,6 +2,8 @@
 
 Build web components with bare metal browser tools.
 
+(<3.9kb unminified uncompressed).
+
 ## Install
 
 ```bash
@@ -18,14 +20,6 @@ A handful of utility classes lets developers:
 - add reactive [renders](./docs/render.md)
 - bind [events](./docs/events.md)
 - [subscribe](./docs/subscription.md) to external data
-
-## Developer Experience
-
-Create web components with an extremely tiny footprint.
-
-(3.9kb unminified un compressed).
-
-`Wctk` directly correlates with vanilla web component features and jargon.
 
 ## License
 
