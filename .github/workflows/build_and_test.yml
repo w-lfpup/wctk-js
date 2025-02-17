@@ -14,5 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
       - name: Install
         run: npm ci
+      - name: Format
+        run: npm run format
       - name: Build
         run: npm run build
