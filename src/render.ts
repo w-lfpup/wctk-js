@@ -30,6 +30,6 @@ class Render implements RenderInterface {
 	}
 }
 
-export type { RenderInterface };
+export type { RenderElementInterface, RenderInterface };
 
 export { Render };

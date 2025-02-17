@@ -10,20 +10,22 @@ Properties:
 
 Methods:
 
-- constructor -> `(HtmlElement): void`
+- constructor -> `(el: {render(): void}): void`
 - render -> `void`
 
 ## How to use
 
 Add a `render` controller to a web component.
 
-In the `attributeChangedCallback` method (or wherever appropriate) call `#rc.render()`;
+Call `#rc.render()` wherever appropriate.
+
+In the example below, a "render" occurs when the `width` attribute changes.
 
 ```ts
 import { Render } from "wctk";
 
 class MyElement extends HTMLElement {
-	static observedAttributes = ["width", "height"];
+	static observedAttributes = ["width"];
 
 	#rc = new Render(this);
 
@@ -32,7 +34,10 @@ class MyElement extends HTMLElement {
 	}
 
 	render() {
-		// do something here!
+		// update dom here!
+		//
+		// optional, skip if render is already queued!
+		if (!this.#rc.queued) return;
 	}
 }
 ```

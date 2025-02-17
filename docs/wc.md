@@ -12,7 +12,7 @@ Build a web component!
 
 ### Methods
 
-- constructor -> `(HtmlElement, ShadowRootInit) => void`
+- constructor -> `(el: HtmlElement, shadowRootInit?: ShadowRootInit) => void`
 - setFormValue -> `(value: File | string | FormData | null, state?: File | string | FormData | null) => void`
 - setValidity -> `(flags?: ValidityStateFlags, message?: string, anchor?: HTMLElement) => void`
 - reportValidity -> `() => boolean`
@@ -27,15 +27,16 @@ The `Wc` controller inspects a custom element for declarative shadow dom. A shad
 import { Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-    #wc = new Wc(this, { mode: "closed" });
+    #wc = new Wc(this);
 
     constructor() {
         super();
 
-        if this.#wc.declarative {
-            // declarative DOM  exists
-        } else {
-            // otherwise build something
+        if !this.#wc.declarative {
+            // declarative shadow DOM does not exist
+            // so build and append a dom fragment to:
+            //
+            // this.#wc.shadowRoot
         }
     }
 }

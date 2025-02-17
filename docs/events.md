@@ -10,7 +10,7 @@ Properties:
 
 Methods:
 
-- constructor -> `(HtmlElement, [[string, EventListener], HtmlElement?]): void`
+- constructor -> `(el: Node, callbacks: [[string, EventListener], ...], eventTargetEl?: Node]): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
@@ -24,10 +24,7 @@ Add a list of event names and event listener callbacks on construction.
 import { Events } from "wctk";
 
 class MyElement extends HTMLElement {
-	#ev = new Events(this, [
-		["pointerup", this.#onPointerUp],
-		["keydown", this.#onKeyDown],
-	]);
+	#ev = new Events(this, [["keydown", this.#onKeyDown]]);
 
 	connectedCallback() {
 		this.#ev.connect();
@@ -35,10 +32,6 @@ class MyElement extends HTMLElement {
 
 	disconnectedCallback() {
 		this.#ev.disconnect();
-	}
-
-	#onPointerUp(e: PointerEvent) {
-		// do pointer event stuff here
 	}
 
 	#onKeyDown(e: KeyboardEvent) {

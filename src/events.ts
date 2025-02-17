@@ -1,19 +1,26 @@
-type Callbacks = Array<
-	[keyof HTMLBodyElementEventMap, EventListenerOrEventListenerObject]
->;
+type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
 
 interface EventsInterface {
 	connect(): void;
 	disconnect(): void;
 }
 
+interface EventsElementInterface {
+	addEventListener: Node["addEventListener"];
+	removeEventListener: Node["removeEventListener"];
+}
+
 class Events implements EventsInterface {
 	#connected: boolean = false;
-	#el: Node;
+	#el: EventsElementInterface;
 	#events: Callbacks = [];
-	#targetEl: Node;
+	#targetEl: EventsElementInterface;
 
-	constructor(el: Node, callbacks: Callbacks, targetEl: Node = el) {
+	constructor(
+		el: EventsElementInterface,
+		callbacks: Callbacks,
+		targetEl: EventsElementInterface = el,
+	) {
 		this.#el = el;
 		this.#targetEl = targetEl;
 
@@ -46,5 +53,6 @@ class Events implements EventsInterface {
 	}
 }
 
-export type { Callbacks, EventsInterface };
+export type { Callbacks, EventsInterface, EventsElementInterface };
+
 export { Events };
