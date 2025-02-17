@@ -10,7 +10,7 @@ Properties:
 
 Methods:
 
-- constructor -> `(HtmlElement, [[string, EventListener], ...]): void`
+- constructor -> `(HtmlElement, [[string, EventListener], HtmlElement?]): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
@@ -46,7 +46,3 @@ class MyElement extends HTMLElement {
 	}
 }
 ```
-
-### Details
-
-The `Events` controller will bind any callbacks _not already bound_ to the host component.

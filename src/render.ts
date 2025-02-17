@@ -1,13 +1,17 @@
 interface RenderInterface {
+	readonly queued: boolean;
 	render(): void;
 }
 
-// this might change, don't completely couple
+interface RenderElementInterface {
+	render(): void;
+}
+
 class Render implements RenderInterface {
-	#el: RenderInterface;
+	#el: RenderElementInterface;
 	#queued = false;
 
-	constructor(el: RenderInterface) {
+	constructor(el: RenderElementInterface) {
 		this.#el = el;
 	}
 
