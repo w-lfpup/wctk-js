@@ -2,6 +2,8 @@
 
 Build web components with bare metal browser tools.
 
+No dependencies. No inheritance.
+
 (~3kb unminified uncompressed).
 
 ## Install
