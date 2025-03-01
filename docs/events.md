@@ -10,7 +10,7 @@ Properties:
 
 Methods:
 
-- constructor -> `(el: Node, callbacks: [[string, EventListener], ...], eventTargetEl?: Node]): void`
+- constructor -> `({bind: Node, target?: Node, callbacks: [[string, EventListener], ...]]): void`
 - connect -> `(): void`
 - disconnect -> `(): void`
 
@@ -24,7 +24,10 @@ Add a list of event names and event listener callbacks on construction.
 import { Events } from "wctk";
 
 class MyElement extends HTMLElement {
-	#ev = new Events(this, [["keydown", this.#onKeyDown]]);
+	#ev = new Events({
+		bind: this,
+		callbacks: [["keydown", this.#onKeyDown]],
+	});
 
 	connectedCallback() {
 		this.#ev.connect();

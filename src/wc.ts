@@ -7,20 +7,23 @@ interface WcInterface {
 	reportValidity: ElementInternals["reportValidity"];
 }
 
-const shadowRootInit: ShadowRootInit = {
-	mode: "closed",
-};
-
 interface WcElementInterface {
 	attachInternals: HTMLElement["attachInternals"];
 	attachShadow: HTMLElement["attachShadow"];
 }
 
+const shadowRootInit: ShadowRootInit = {
+	mode: "closed",
+};
+
 class Wc implements WcInterface {
 	#internals: ElementInternals;
 	#declarative: boolean;
 
-	constructor(el: WcElementInterface, init: ShadowRootInit = shadowRootInit) {
+	constructor(
+		el: WcElementInterface,
+		init: ShadowRootInit = { ...shadowRootInit },
+	) {
 		this.#internals = el.attachInternals();
 		this.#declarative = this.#internals.shadowRoot !== null;
 		if (!this.#declarative) {
@@ -64,6 +67,6 @@ class Wc implements WcInterface {
 	}
 }
 
-export type { WcInterface };
+export type { WcInterface, WcElementInterface };
 
 export { Wc };
