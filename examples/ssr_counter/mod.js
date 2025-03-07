@@ -7,36 +7,40 @@ class Counter extends HTMLElement {
 		callbacks: [["click", this.#clickHandler]],
 	});
 
-	#state = getInitialState(this.#wc.shadowRoot);
+	#state = getStateFromDOM(this.#wc.shadowRoot);
 
 	#clickHandler(e) {
 		if (!this.#state) return;
 
-		// could be replaced by e.originalTarget
-		// only works in firefox
-		for (let node of e.composedPath()) {
-			if (!(node instanceof HTMLButtonElement)) continue;
-
-			if ("increase" === node.getAttribute("slot")) {
-				this.#state.count += 1;
-			}
-			if ("decrease" === node.getAttribute("slot")) {
-				this.#state.count -= 1;
-			}
-		}
-
-		if (this.#state.span) {
+		let increment = getIncrement(e);
+		if (increment) {
+			this.#state.count += increment;
 			this.#state.span.textContent = this.#state.count;
 		}
 	}
 }
 
-function getInitialState(shadowRoot) {
+function getStateFromDOM(shadowRoot) {
 	let slot = shadowRoot.querySelector("slot:not([name])");
 
 	for (let el of slot.assignedNodes()) {
 		if (el instanceof HTMLSpanElement) {
 			return { span: el, count: parseInt(el.textContent) };
+		}
+	}
+}
+
+function getIncrement(e) {
+	// could be replaced by e.originalTarget
+	// only works in firefox though
+	for (let node of e.composedPath()) {
+		if (!(node instanceof HTMLButtonElement)) continue;
+
+		if ("increase" === node.getAttribute("slot")) {
+			return 1;
+		}
+		if ("decrease" === node.getAttribute("slot")) {
+			return -1;
 		}
 	}
 }

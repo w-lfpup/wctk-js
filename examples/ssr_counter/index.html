@@ -14,7 +14,9 @@
 		<script src="/examples/ssr_counter/mod.js" type=module></script>
 	</head>
 	<main>
+		<!-- web component -->
 		<counter-wc>
+			<!-- SSR template -->
 			<template shadowrootmode="closed">
 				<style>
 					:host {
@@ -28,6 +30,7 @@
 				<slot name=increase></slot>
 			</template>
 
+			<!-- template content -->
 			<button slot="decrease">-</button>
 			<button slot="increase">+</button>
 			<span>42</span>
