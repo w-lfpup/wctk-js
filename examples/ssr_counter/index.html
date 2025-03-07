@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<body>
+	<head>
+		<!-- styles -->
+		<link href="/examples/ssr_counter/styles.css" rel="stylesheet">
+		<!-- scripts -->
+		<script type="importmap">
+			{
+			  "imports": {
+				"wctk": "/dist/mod.js"
+			  }
+			}
+		</script>
+		<script src="/examples/ssr_counter/mod.js" type=module></script>
+	</head>
+	<main>
+		<counter-wc>
+			<template shadowrootmode="closed">
+				<style>
+					:host {
+						display: inline-flex;
+						align-items:baseline;
+						gap: min(2rem, 24px);
+					}
+				</style>
+				<slot name=decrease></slot>
+				<slot></slot>
+				<slot name=increase></slot>
+			</template>
+
+			<button slot="decrease">-</button>
+			<button slot="increase">+</button>
+			<span>42</span>
+		</counter-wc>
+	</main>
+</body>
