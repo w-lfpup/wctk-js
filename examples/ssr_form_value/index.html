@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<body>
+	<head>
+		<!-- scripts -->
+		<script type="importmap">
+			{
+			  "imports": {
+				"wctk": "/dist/mod.js"
+			  }
+			}
+		</script>
+		<script src="/examples/ssr_form_value/mod.js" type=module></script>
+	</head>
+	<main>
+		<!-- web component -->
+		<form>
+			<text-wc role="text">
+				<!-- template -->
+				<template shadowrootmode="closed">
+					<style></style>
+					<input value="aawwooo!">
+				</template>
+			</text-wc>
+			<button type="submit">submit !</button>
+		</form>
+	</main>
+</body>

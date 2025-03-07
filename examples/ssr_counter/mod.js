@@ -13,10 +13,7 @@ class Counter extends HTMLElement {
 		if (!this.#state) return;
 
 		let increment = getIncrement(e);
-		if (increment) {
-			this.#state.count += increment;
-			this.#state.span.textContent = this.#state.count;
-		}
+		updateDOM(this.#state, increment);
 	}
 }
 
@@ -42,6 +39,13 @@ function getIncrement(e) {
 		if ("decrease" === node.getAttribute("slot")) {
 			return -1;
 		}
+	}
+}
+
+function updateDOM(state, increment) {
+	if (increment) {
+		state.count += increment;
+		state.span.textContent = state.count;
 	}
 }
 

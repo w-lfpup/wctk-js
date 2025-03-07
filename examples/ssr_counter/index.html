@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <body>
 	<head>
-		<!-- styles -->
-		<link href="/examples/ssr_counter/styles.css" rel="stylesheet">
 		<!-- scripts -->
 		<script type="importmap">
 			{
@@ -16,13 +14,13 @@
 	<main>
 		<!-- web component -->
 		<counter-wc>
-			<!-- SSR template -->
+			<!-- template -->
 			<template shadowrootmode="closed">
 				<style>
 					:host {
 						display: inline-flex;
 						align-items:baseline;
-						gap: min(2rem, 24px);
+						gap: min(1rem, 16px);
 					}
 				</style>
 				<slot name=decrease></slot>
