@@ -7,6 +7,11 @@ Controller examples
 
 Real World
 
-- counter (wc, events, render)
-- SSR counter (wc, events, render)
-- Squares and Bricks (wc, render)
+SSR examples
+
+- DONE counter (wc, events)
+- DONE form associated component (wc, events)
+
+- squares and bricks (wc, render, subscription)
+
+- stopwatch
