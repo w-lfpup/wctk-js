@@ -14,17 +14,17 @@ class Counter extends HTMLElement {
 		if (!this.#state) return;
 
 		let increment = getIncrement(e);
-		updateDOM(this.#state, increment);
+		if (increment) {
+			this.#state.count += increment;
+			this.#state.el.textContent = this.#state.count;
+		}
 	}
 }
 
 function getStateFromDOM(shadowRoot) {
-	let slot = shadowRoot.querySelector("slot:not([name])");
-
-	for (let el of slot.assignedNodes()) {
-		if (el instanceof HTMLSpanElement) {
-			return { el, count: parseInt(el.textContent) };
-		}
+	let el = shadowRoot.querySelector("span");
+	if (el instanceof HTMLSpanElement) {
+		return { el, count: parseInt(el.textContent) };
 	}
 }
 
@@ -40,15 +40,4 @@ function getIncrement(e) {
 	}
 }
 
-function updateDOM(state, increment) {
-	if (increment) {
-		state.count += increment;
-		state.el.textContent = state.count;
-	}
-}
-
 customElements.define("counter-wc", Counter);
-
-let statemap = document.querySelector("script[type=statemap]");
-let jsonStatemap = JSON.parse(statemap.textContent);
-console.log(jsonStatemap);
