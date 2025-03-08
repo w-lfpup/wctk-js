@@ -1,56 +1,70 @@
-import { Wc, Render } from "wctk";
+import { Bind, Wc, Render } from "wctk";
 
-function bind(el, cbs) {
-	for (let cb of cbs) {
-		el[cb.name] = cb.bind(el);
-	}
-}
 
 class Stopwatch extends HTMLElement {
 	#wc = new Wc(this);
 	#rc = new Render(this);
+	#bc = new Bind(this, [this.update]);
 
 	#state = getStateFromDOM(this.#wc.shadowRoot);
 
 	render() {
-
+		this.#state.el.textContent = this.#state.count.toFixed(2);
 	}
 
 	update(timestamp) {
-		let ts = performance.now();
+		this.#state.receipt = requestAnimationFrame(this.update);
+
+		let delta = (timestamp - this.#state.prevTimestamp) * 0.001;
+		this.#state.count += delta;
+		this.#state.prevTimestamp = timestamp;
+
 		this.#rc.render();
 	}
 
 	start() {
-		this.dispatchEvent(new Event("start_animation"));
+		if (this.#state.receipt) return;
+		this.#state.receipt = requestAnimationFrame(this.update);
+
+		this.#state.prevTimestamp = performance.now();
 	}
 
-	stop() {
-		this.dispatchEvent(new Event("stop_animation"));
+	pause() {
+		cancelAnimationFrame(this.#state.receipt);
+		this.#state.receipt = undefined;
 	}
 }
 
 function getStateFromDOM(shadowRoot) {
-	let slot = shadowRoot.querySelector("slot:not([name])");
+	let slot = shadowRoot.querySelector("slot");
 
 	for (let el of slot.assignedNodes()) {
 		if (el instanceof HTMLSpanElement) {
-			return { el, count: parseInt(el.textContent) };
+			let count = parseInt(el.textContent);
+			return {
+				el,
+				count,
+				receipt: undefined,
+				prevTimestamp: undefined,
+			};
 		}
 	}
 }
 
 customElements.define("stopwatch-wc", Stopwatch);
 
+
+/*
+	FOR DEMO PURPOSES
+	
+	connect example in index.html to stopwatch-wc
+*/
 const stopwatch = document.querySelector("stopwatch-wc");
 
-let reciept;
-
-function animate(timestamp) {
-	reciept = requestAnimationFrame(animate);
-	stopwatch.update(timestamp);
-}
-
-function cancelAnimation() {
-	cancelAnimationFrame(reciept);
-}
+document.addEventListener("click", function (e) {
+	if (e.target instanceof HTMLButtonElement) {
+		(e.target.hasAttribute("start"))
+			? stopwatch.start()
+			: stopwatch.pause();
+	}
+});

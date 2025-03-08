@@ -12,12 +12,18 @@
 		<script src="./mod.js" type=module></script>
 	</head>
 	<main>
+		<button start>| ></button>
+		<button>| |</button>
+
 		<!-- web component -->
-		<stopwatch-wc role="text">
+		<stopwatch-wc>
 			<!-- template -->
 			<template shadowrootmode="closed">
+				<slot></slot>
 			</template>
+			<!-- content -->
+			<span>117</span>
 		</stopwatch-wc>
-		<button>start !</button>
+
 	</main>
 </body>
