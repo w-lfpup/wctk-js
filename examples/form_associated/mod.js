@@ -11,7 +11,7 @@ class TextValue extends HTMLElement {
 	});
 
 	#changeHandler(e) {
-		this.#wc.setFormValue(e.target.value);
+		this.#wc.setFormValue(e.target.value, e.tartget.value);
 	}
 }
 
