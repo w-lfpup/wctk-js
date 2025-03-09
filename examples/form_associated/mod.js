@@ -23,12 +23,19 @@ customElements.define("text-wc", TextValue);
 	prevent form submission and provide results
 */
 
+const results = document.querySelector("[results]");
+
 document.addEventListener("submit", function (e) {
 	e.preventDefault();
+
 	if (e.target instanceof HTMLFormElement) {
 		let formdata = new FormData(e.target);
+
+		let data = {};
 		for (let [name, value] of formdata.entries()) {
-			console.log(name, value);
+			data[name] = value;
 		}
+
+		results.textContent = JSON.stringify(data);
 	}
 });
