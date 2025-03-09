@@ -1,4 +1,4 @@
-import "./input_wc.js";
+import "./text_input.js";
 
 const results = document.querySelector("[results]");
 
