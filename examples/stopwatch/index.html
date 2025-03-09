@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<body>
+	<head>
+		<!-- scripts -->
+		<script type="importmap">
+			{
+			  "imports": {
+				"wctk": "/dist/mod.js"
+			  }
+			}
+		</script>
+		<script src="./mod.js" type=module></script>
+	</head>
+	<main>
+		<button start>|></button>
+		<button>| |</button>
+
+		<!-- web component -->
+		<stopwatch-wc>
+			<!-- template -->
+			<template shadowrootmode="closed">
+				<slot></slot>
+			</template>
+			<!-- content -->
+			<span>117</span>
+		</stopwatch-wc>
+
+	</main>
+</body>

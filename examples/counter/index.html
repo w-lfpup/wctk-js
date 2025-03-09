@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<body>
+	<head>
+		<!-- scripts -->
+		<script type="importmap">
+			{
+			  "imports": {
+				"wctk": "/dist/mod.js"
+			  }
+			}
+		</script>
+		<script src="./mod.js" type=module></script>
+	</head>
+	<main>
+		<!-- web component -->
+		<counter-wc>
+			<!-- template -->
+			<template shadowrootmode="closed">
+				<style>
+					:host {
+						display: inline-flex;
+						align-items:baseline;
+						gap: min(1rem, 16px);
+					}
+				</style>
+				<button decrease>-</button>
+				<span>42</span>
+				<button increase>+</button>				
+			</template>
+		</counter-wc>
+	</main>
+</body>

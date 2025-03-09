@@ -26,7 +26,7 @@ class Events implements EventsInterface {
 		const { bind, target, callbacks } = params;
 
 		this.#el = bind;
-		this.#targetEl = target;
+		this.#targetEl = target ?? bind;
 
 		for (let [name, cb] of callbacks) {
 			let callback = cb;
@@ -36,6 +36,8 @@ class Events implements EventsInterface {
 
 			this.#events.push([name, callback]);
 		}
+
+		this.connect();
 	}
 
 	connect() {
