@@ -16,3 +16,19 @@ class TextValue extends HTMLElement {
 }
 
 customElements.define("text-wc", TextValue);
+
+/*
+	FOR DEMO PURPOSES
+
+	prevent form submission and provide results
+*/
+
+document.addEventListener("submit", function (e) {
+	e.preventDefault();
+	if (e.target instanceof HTMLFormElement) {
+		let formdata = new FormData(e.target);
+		for (let [name, value] of formdata.entries()) {
+			console.log(name, value);
+		}
+	}
+});

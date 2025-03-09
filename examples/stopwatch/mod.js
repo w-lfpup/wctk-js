@@ -1,6 +1,5 @@
 import { Bind, Wc, Render } from "wctk";
 
-
 class Stopwatch extends HTMLElement {
 	#wc = new Wc(this);
 	#rc = new Render(this);
@@ -19,6 +18,7 @@ class Stopwatch extends HTMLElement {
 		this.#state.count += delta;
 		this.#state.prevTimestamp = timestamp;
 
+		// queue a render
 		this.#rc.render();
 	}
 
@@ -53,18 +53,15 @@ function getStateFromDOM(shadowRoot) {
 
 customElements.define("stopwatch-wc", Stopwatch);
 
-
 /*
 	FOR DEMO PURPOSES
-	
-	connect example in index.html to stopwatch-wc
+
+	listen for button clicks to start or stop stopwatch-wc
 */
 const stopwatch = document.querySelector("stopwatch-wc");
 
 document.addEventListener("click", function (e) {
 	if (e.target instanceof HTMLButtonElement) {
-		(e.target.hasAttribute("start"))
-			? stopwatch.start()
-			: stopwatch.pause();
+		e.target.hasAttribute("start") ? stopwatch.start() : stopwatch.pause();
 	}
 });

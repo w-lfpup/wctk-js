@@ -8,7 +8,7 @@ class Counter extends HTMLElement {
 		callbacks: [["click", this.#clickHandler]],
 	});
 
-	#state = getStateFromDOM(this.#wc.shadowRoot);
+	#state = getStateFromShadowDOM(this.#wc.shadowRoot);
 
 	#clickHandler(e) {
 		if (!this.#state) return;
@@ -21,7 +21,7 @@ class Counter extends HTMLElement {
 	}
 }
 
-function getStateFromDOM(shadowRoot) {
+function getStateFromShadowDOM(shadowRoot) {
 	let el = shadowRoot.querySelector("span");
 	if (el instanceof HTMLSpanElement) {
 		return { el, count: parseInt(el.textContent) };
