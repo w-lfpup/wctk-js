@@ -3,9 +3,9 @@ import "./text_input.js";
 const results = document.querySelector("[results]");
 
 document.addEventListener("submit", function (e) {
-	if (!(e.target instanceof HTMLFormElement)) return;
 	e.preventDefault();
 
+	if (!(e.target instanceof HTMLFormElement)) return;
 	let formdata = new FormData(e.target);
 
 	let data = {};

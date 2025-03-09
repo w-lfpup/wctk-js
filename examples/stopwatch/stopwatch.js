@@ -17,11 +17,10 @@ class Stopwatch extends HTMLElement {
 	update(timestamp) {
 		this.#state.receipt = requestAnimationFrame(this.update);
 
-		let delta = (timestamp - this.#state.prevTimestamp) * 0.001;
-		this.#state.count += delta;
+		this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
 		this.#state.prevTimestamp = timestamp;
 
-		// queue a render
+		// push render to microtask queue
 		this.#rc.render();
 	}
 
