@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <head>
-	<!-- scripts -->
 	<script type="importmap">
 		{
 		  "imports": {
@@ -14,19 +13,14 @@
 	<main>
 		<!-- web component -->
 		<counter-wc>
-			<!-- template -->
 			<template shadowrootmode="closed">
-				<style>
-					:host {
-						display: inline-flex;
-						align-items:baseline;
-						gap: min(1rem, 16px);
-					}
-				</style>
 				<button decrease>-</button>
-				<span>42</span>
+				<slot></slot>
 				<button increase>+</button>				
 			</template>
+
+			<!-- DOM content -->
+			<span>42</span>
 		</counter-wc>
 	</main>
 </body>
