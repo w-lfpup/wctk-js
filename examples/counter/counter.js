@@ -35,12 +35,12 @@ function getStateFromDOM(shadowRoot) {
 }
 
 function getIncrement(e) {
-	let node = e.target;
-	if (node instanceof HTMLButtonElement) {
-		if (node.hasAttribute("increase")) {
+	let { target } = e;
+	if (target instanceof HTMLButtonElement) {
+		if (target.hasAttribute("increase")) {
 			return 1;
 		}
-		if (node.hasAttribute("decrease")) {
+		if (target.hasAttribute("decrease")) {
 			return -1;
 		}
 	}
