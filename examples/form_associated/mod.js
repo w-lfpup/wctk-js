@@ -1,5 +1,8 @@
 import { Wc, Events } from "wctk";
 
+/*
+	Custom Element that particpates in form value submissions.
+*/
 class TextValue extends HTMLElement {
 	static formAssociated = true;
 
@@ -11,7 +14,7 @@ class TextValue extends HTMLElement {
 	});
 
 	#changeHandler(e) {
-		this.#wc.setFormValue(e.target.value, e.target.value);
+		this.#wc.setFormValue(e.target.value);
 	}
 }
 
@@ -20,22 +23,21 @@ customElements.define("text-wc", TextValue);
 /*
 	FOR DEMO PURPOSES
 
-	prevent form submission and provide results
+	Prevent form submission and display form data as text.
 */
-
 const results = document.querySelector("[results]");
 
 document.addEventListener("submit", function (e) {
 	e.preventDefault();
 
-	if (e.target instanceof HTMLFormElement) {
-		let formdata = new FormData(e.target);
+	if (!(e.target instanceof HTMLFormElement)) return;
 
-		let data = {};
-		for (let [name, value] of formdata.entries()) {
-			data[name] = value;
-		}
+	let formdata = new FormData(e.target);
 
-		results.textContent = JSON.stringify(data);
+	let data = {};
+	for (let [name, value] of formdata.entries()) {
+		data[name] = value;
 	}
+
+	results.textContent = JSON.stringify(data, undefined, " ");
 });

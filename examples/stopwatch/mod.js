@@ -1,5 +1,8 @@
 import { Bind, Wc, Render } from "wctk";
 
+/*
+	Custom Element with performant and "asynchronous" renders.
+*/
 class Stopwatch extends HTMLElement {
 	#wc = new Wc(this);
 	#rc = new Render(this);
