@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<head>
-	<script type="importmap">
-		{
-		  "imports": {
-			"wctk": "../../dist/mod.js"
-		  }
-		}
-	</script>
-	<script src="./mod.js" type=module></script>
-</head>
-<body>
-	<main>
-		<!-- web component -->
-		<counter-wc>
-			<template shadowrootmode="closed">
-				<button decrease>-</button>
-				<slot></slot>
-				<button increase>+</button>				
-			</template>
+<html lang="en-us">
+	<head>
+		<meta charset=utf-8>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		<script type="importmap">
+			{
+				"imports": {
+					"wctk": "../../dist/mod.js"
+				}
+			}
+		</script>
+		<script src="./mod.js" type=module></script>
+	</head>
+	<body>
+		<main>
+			<!-- web component -->
+			<counter-wc>
+				<template shadowrootmode="closed">
+					<button decrease>-</button>
+					<slot></slot>
+					<button increase>+</button>				
+				</template>
 
-			<!-- DOM content -->
-			<span>42</span>
-		</counter-wc>
-	</main>
-</body>
+				<!-- DOM content -->
+				<span>42</span>
+			</counter-wc>
+		</main>
+	</body>
+</html>
