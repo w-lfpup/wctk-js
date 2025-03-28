@@ -16,6 +16,11 @@ class TextInput extends HTMLElement {
 	#changeHandler(e) {
 		this.#wc.setFormValue(e.target.value);
 	}
+
+	// form lifecycle callback
+	formStateRestoreCallback(state, reason) {
+		this.#wc.shadowRoot.querySelector("input").value = state;
+	}
 }
 
 customElements.define("text-input", TextInput);

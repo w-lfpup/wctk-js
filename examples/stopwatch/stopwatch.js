@@ -26,8 +26,8 @@ class Stopwatch extends HTMLElement {
 
 	start() {
 		if (this.#state.receipt) return;
-		this.#state.receipt = requestAnimationFrame(this.update);
 
+		this.#state.receipt = requestAnimationFrame(this.update);
 		this.#state.prevTimestamp = performance.now();
 	}
 

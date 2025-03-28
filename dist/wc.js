@@ -23,14 +23,17 @@ class Wc {
     set adoptedStyleSheets(stylesheets) {
         this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
     }
+    checkValidity() {
+        return this.#internals.checkValidity();
+    }
+    reportValidity() {
+        return this.#internals.reportValidity();
+    }
     setFormValue(value, state) {
         this.#internals.setFormValue(value, state);
     }
     setValidity(flags, message, anchor) {
         this.#internals.setValidity(flags, message, anchor);
-    }
-    reportValidity() {
-        return this.#internals.reportValidity();
     }
 }
 export { Wc };

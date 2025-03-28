@@ -17,9 +17,10 @@ declare class Wc implements WcInterface {
     get shadowRoot(): ShadowRoot;
     get adoptedStyleSheets(): CSSStyleSheet[];
     set adoptedStyleSheets(stylesheets: CSSStyleSheet[]);
+    checkValidity(): boolean;
+    reportValidity(): boolean;
     setFormValue(value: File | string | FormData | null, state?: File | string | FormData | null): void;
     setValidity(flags?: ValidityStateFlags, message?: string, anchor?: HTMLElement): void;
-    reportValidity(): boolean;
 }
 export type { WcInterface, WcElementInterface };
 export { Wc };

@@ -16,14 +16,15 @@ npm install --save-dev https://github.com/wolfpup-software/wctk-js
 
 A handful of facades let developers:
 
-- build [shadow dom](./docs/wc.md)
+- create [shadow dom](./docs/wc.md)
+- [bind](./docs/bind.md) functions to elements
 - listen to [events](./docs/events.md)
 - [subscribe](./docs/subscription.md) to external data
 - [render](./docs/render.md) changes
 
 ## Examples
 
-Click [here](https://wolfpup-software.github.io/wctk-js/) for live examples and code.
+Click [here](https://wolfpup-software.github.io/wctk-js/examples/) for live examples.
 
 ## License
 

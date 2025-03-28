@@ -1,40 +1,50 @@
 # Events Controller
 
-Bind event listeners to custom elements.
-
-## Api
-
-Properties:
-
-- N/A
-
-Methods:
-
-- constructor -> `({bind: Node, target?: Node, callbacks: [[string, EventListener], ...]]): void`
-- connect -> `(): void`
-- disconnect -> `(): void`
+Pass custom element functions to event listeners.
 
 ## How to use
 
-Add an `Events` controller to a web component.
+### Params
 
-Add a list of event names and event listener callbacks on construction.
+An Events `params` object has three properties:
 
 ```ts
-import { Events } from "wctk";
+interface EventParams {
+	bind: Node;
+	callbacks: Array<[string, EventListener]>;
+	target?: Node;
+}
+```
+
+Two required properties instruct the Events controller to `bind` a set of `callbacks` to a Node.
+
+Afterwards, the Events controller adds the bound callbacks as event listeners on a `target` Node.
+
+The `target` Node could be a shadowRoot, a document, or the custom element itself.
+
+If a `target` property is not defined, the `bind` property is used as a fallback.
+
+### Controller
+
+Below is an example of the `Events` controller participating in web component lifecycle methods.
+
+```ts
+import { Events, Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-	#ev = new Events({
+	#wc = new Wc();
+	#ec = new Events({
 		bind: this,
+		target: this.#wc.shadowRoot,
 		callbacks: [["keydown", this.#onKeyDown]],
 	});
 
 	connectedCallback() {
-		this.#ev.connect();
+		this.#ec.connect();
 	}
 
 	disconnectedCallback() {
-		this.#ev.disconnect();
+		this.#ec.disconnect();
 	}
 
 	#onKeyDown(e: KeyboardEvent) {

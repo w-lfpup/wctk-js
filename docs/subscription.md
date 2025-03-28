@@ -2,51 +2,46 @@
 
 Subscribe web components to external state.
 
-## Api
-
-Properties:
-
-- N/A
-
-Methods:
-
-- constructor -> `<E, A>(el: E, subscribe: () => A, unsubscribe: (results: A) => {}): void`
-- connect -> `(): void`
-- disconnect -> `(): void`
-
 ## How to use
 
-Add a `Subscription` controller to a web component.
+### Callbacks
 
-Provide functions to subscribe and unsubscribe from a data store.
+Create callback functions that subscribe and unsubscribe an element from a data store.
 
-### IMPORTANT
-
-The results of a subscribe function are passed as arguments of an unsubscribe function
+The results of the subscribe function are the arguments to the unsubscribe function.
 
 ```ts
-import { Subscription } from "wctk";
 import { store } from "./my-store.js";
 
-class MyElement extends HTMLElement {
-	#sb = new Subscribe(this, subscribeToStore, unsubscribeToStore);
-
-	connectedCallback() {
-		this.#sb.connect();
-	}
-
-	disconnectedCallback() {
-		this.#sb.disconnect();
-	}
-}
-
-function subscribeToStore(el: MyElement): number {
+function subscribeToStore(el) {
 	return store.subscribe(() => {
 		// do stuff here!
 	});
 }
 
-function unsubscribeToStore(el: MyElement, results: number): void {
+function unsubscribeToStore(el, results): void {
 	store.unsubscribe(results);
+}
+```
+
+### Controller
+
+Add a `Subscription` controller to a web component and pass subscribe and unsubscribe functions on instantiation.
+
+The `Subscription` controller example below participates in web component lifecycle methods.
+
+```ts
+import { Subscription } from "wctk";
+
+class MyElement extends HTMLElement {
+	#sc = new Subscribe(this, subscribeToStore, unsubscribeToStore);
+
+	connectedCallback() {
+		this.#sc.connect();
+	}
+
+	disconnectedCallback() {
+		this.#sc.disconnect();
+	}
 }
 ```

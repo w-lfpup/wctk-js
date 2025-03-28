@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<head>
-	<script type="importmap">
-		{
-		  "imports": {
-			"wctk": "../../dist/mod.js"
-		  }
-		}
-	</script>
-	<script src="./mod.js" type=module></script>
-</head>
-<body>
-	<main>
-		<form>
-			<!-- html component input -->
-			<input name="html_element">
-			<!-- custom element input -->
-			<text-input name="web_component">
-				<template shadowrootmode="closed">
-					<input>
-				</template>
-			</text-input>
-			<button type="submit">submit !</button>
-		</form>
-		<pre results></pre>
-	</main>
-</body>
+<html lang="en-us">
+	<head>
+		<meta charset=utf-8>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		<script type="importmap">
+			{
+				"imports": {
+					"wctk": "../../dist/mod.js"
+				}
+			}
+		</script>
+		<script src="./mod.js" type=module></script>
+	</head>
+	<body>
+		<main>
+			<form>
+				<!-- html component input -->
+				<input name="html_element">
+				<!-- custom element input -->
+				<text-input name="web_component">
+					<template shadowrootmode="closed">
+						<input>
+					</template>
+				</text-input>
+				<button type="submit">submit !</button>
+			</form>
+			<pre results></pre>
+		</main>
+	</body>
+</html>
