@@ -30,14 +30,17 @@ class MyElement extends HTMLElement {
 		// https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/adoptedStyleSheets
 		this.#wc.adopedStylesheets;
 
+		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/checkValidity
+		this.#wc.checkValidity();
+
+		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/reportValidity
+		this.#wc.reportValidity();
+
 		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue
 		this.#wc.setFormValue(value, state);
 
 		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setValidity
 		this.#wc.setValidity(flags, message);
-
-		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/reportValidity
-		this.#wc.reportValidity();
 	}
 }
 ```

@@ -16,7 +16,6 @@ import { Render } from "wctk";
 class MyElement extends HTMLElement {
 	static observedAttributes = ["width"];
 
-	#wc = new Wc(this);
 	#rc = new Render(this);
 
 	attributeChangedCallback() {
@@ -27,8 +26,7 @@ class MyElement extends HTMLElement {
 		// skip if render is already queued (optional)
 		if (!this.#rc.queued) return;
 
-		// update the shadow dom here!
-		// this.#wc.shadowRoot
+		// update DOM here!
 	}
 }
 ```
