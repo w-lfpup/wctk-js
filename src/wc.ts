@@ -47,6 +47,14 @@ class Wc implements WcInterface {
 		this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
 	}
 
+	checkValidity() {
+		return this.#internals.checkValidity();
+	}
+
+	reportValidity(): boolean {
+		return this.#internals.reportValidity();
+	}
+
 	setFormValue(
 		value: File | string | FormData | null,
 		state?: File | string | FormData | null,
@@ -60,10 +68,6 @@ class Wc implements WcInterface {
 		anchor?: HTMLElement,
 	) {
 		this.#internals.setValidity(flags, message, anchor);
-	}
-
-	reportValidity(): boolean {
-		return this.#internals.reportValidity();
 	}
 }
 

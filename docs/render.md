@@ -1,17 +1,6 @@
 # Render Controller
 
-Asyncronous render utility class for custom elements.
-
-## Api
-
-Properties:
-
-- queued -> `bool`
-
-Methods:
-
-- constructor -> `(el: {render(): void}): void`
-- render -> `void`
+Render custom elements on the `microtask queue`.
 
 ## How to use
 
@@ -27,6 +16,7 @@ import { Render } from "wctk";
 class MyElement extends HTMLElement {
 	static observedAttributes = ["width"];
 
+	#wc = new Wc(this);
 	#rc = new Render(this);
 
 	attributeChangedCallback() {
@@ -34,16 +24,15 @@ class MyElement extends HTMLElement {
 	}
 
 	render() {
-		// update dom here!
-		//
-		// optional, skip if render is already queued!
+		// skip if render is already queued (optional)
 		if (!this.#rc.queued) return;
+
+		// update the shadow dom here!
+		// this.#wc.shadowRoot
 	}
 }
 ```
 
-### Details
-
-The `Redner.render()` method can be called multiple times but the corresponding `Element.render()` method will only be called _once_ per event loop.
+The `Redner.render()` method can be called multiple times but the corresponding `Element.render()` method will only be called _once_.
 
 It's a kind of asyncronous rendering using the `microtaskQueue`.

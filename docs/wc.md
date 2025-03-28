@@ -1,43 +1,43 @@
 # Wc Controller
 
-Build a web component!
-
-## Api
-
-### Properties:
-
-- declarative (read only) -> `boolean`
-- shadowRoot (read only) -> `ShadowRoot`
-- adoptedStylesheets -> `CSSStylesheets[]`
-
-### Methods
-
-- constructor -> `(el: HtmlElement, shadowRootInit?: ShadowRootInit) => void`
-- setFormValue -> `(value: File | string | FormData | null, state?: File | string | FormData | null) => void`
-- setValidity -> `(flags?: ValidityStateFlags, message?: string, anchor?: HTMLElement) => void`
-- reportValidity -> `() => boolean`
+Build a web component.
 
 ## How to use
 
 Add a `Wc` controller to a custom element.
 
-The `Wc` controller inspects a custom element for declarative shadow dom. A shadow dom is created if a declarative shadow dom is not found.
-
 ```ts
 import { Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-    #wc = new Wc(this);
+	#wc = new Wc(this);
+}
+```
 
-    constructor() {
-        super();
+The `Wc` controller directly directly mirrors bare metal browser apis.
 
-        if !this.#wc.declarative {
-            // declarative shadow DOM does not exist
-            // so build and append a dom fragment to:
-            //
-            // this.#wc.shadowRoot
-        }
-    }
+It collects a few core web componet APIs into a concice facade pattern.
+
+```ts
+class MyElement extends HTMLElement {
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#options
+	#wc = new Wc(this, { mode: "open" });
+
+	constructor() {
+		// true if declarative shadow dom is present
+		this.#wc.delcarative;
+
+		// https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/adoptedStyleSheets
+		this.#wc.adopedStylesheets;
+
+		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue
+		this.#wc.setFormValue(value, state);
+
+		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setValidity
+		this.#wc.setValidity(flags, message);
+
+		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/reportValidity
+		this.#wc.reportValidity();
+	}
 }
 ```
