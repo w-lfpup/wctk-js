@@ -30,6 +30,9 @@ class MyElement extends HTMLElement {
 		// https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/adoptedStyleSheets
 		this.#wc.adopedStylesheets;
 
+		// https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot
+		this.#wc.shadowRoot;
+
 		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/checkValidity
 		this.#wc.checkValidity();
 

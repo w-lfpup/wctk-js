@@ -1,14 +1,20 @@
-type Connect<E, A> = (el: E) => A;
-type Disconnect<E, A> = (el: E, args: A) => A;
+type Subscribe<E, A> = (cb: E) => A;
+type Unsubscribe<A> = (results: A) => void;
 interface SubscriptionInterface {
     connect(): void;
     disconnect(): void;
 }
-declare class Subscription<E, A> implements SubscriptionInterface {
+interface SubscriptionParams<E, A> {
+    bind: Element;
+    callback: Function;
+    subscribe: Subscribe<E, A>;
+    unsubscribe: Unsubscribe<A>;
+}
+declare class Subscription<E extends Function, A> implements SubscriptionInterface {
     #private;
-    constructor(el: E, onConnect: Connect<E, A>, onDisconnect: Disconnect<E, A>);
+    constructor(params: SubscriptionParams<E, A>);
     connect(): void;
     disconnect(): void;
 }
-export type { Connect, Disconnect, SubscriptionInterface };
+export type { Subscribe, Unsubscribe, SubscriptionInterface };
 export { Subscription };
