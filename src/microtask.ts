@@ -9,7 +9,7 @@ interface MicrotaskElementInterface {
 
 class Microtask implements MicrotaskInterface {
 	#queued = false;
-	#cb: () => void;
+	#cb: Function;
 
 	constructor(el: EventTarget, callback: Function) {
 		this.#cb = callback.bind(el);

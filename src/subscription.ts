@@ -1,20 +1,25 @@
-type Connect<E, A> = (el: E) => A;
-type Disconnect<E, A> = (el: E, args: A) => A;
+type Connect<E, A> = (cb: E) => A;
+type Disconnect<A> = (results: A) => void;
 
 interface SubscriptionInterface {
 	connect(): void;
 	disconnect(): void;
 }
 
-class Subscription<E, A> implements SubscriptionInterface {
+class Subscription<E extends Function, A> implements SubscriptionInterface {
 	#connected: boolean = false;
-	#el: E;
+	#cb: E;
 	#affect: A | undefined;
 	#onConnect: Connect<E, A>;
-	#onDisconnect: Disconnect<E, A>;
+	#onDisconnect: Disconnect<A>;
 
-	constructor(el: E, onConnect: Connect<E, A>, onDisconnect: Disconnect<E, A>) {
-		this.#el = el;
+	constructor(
+		el: Object,
+		cb: E,
+		onConnect: Connect<E, A>,
+		onDisconnect: Disconnect<A>,
+	) {
+		this.#cb = cb.bind(el);
 		this.#onConnect = onConnect;
 		this.#onDisconnect = onDisconnect;
 	}
@@ -23,14 +28,14 @@ class Subscription<E, A> implements SubscriptionInterface {
 		if (this.#connected) return;
 		this.#connected = true;
 
-		this.#affect = this.#onConnect(this.#el);
+		this.#affect = this.#onConnect(this.#cb);
 	}
 
 	disconnect() {
 		if (!this.#connected) return;
 		this.#connected = false;
 
-		this.#onDisconnect(this.#el, this.#affect);
+		this.#onDisconnect(this.#affect);
 	}
 }
 

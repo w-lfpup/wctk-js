@@ -1,5 +1,5 @@
 export type { EventsInterface, EventsElementInterface } from "./events.ts";
-export type { MicrotaskInterface, MicrotaskElementInterface } from "./microtask.js";
+export type { MicrotaskInterface, MicrotaskElementInterface, } from "./microtask.js";
 export type { Connect, Disconnect, SubscriptionInterface, } from "./subscription.ts";
 export type { WcInterface } from "./wc.js";
 export { Bind } from "./bind.js";
