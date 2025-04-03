@@ -42,9 +42,6 @@ class MyElement extends HTMLElement {
 	#update() {
 		let state = datastore.getState();
 		// do something with state
-
-		// queue render
-		this.#rc.queue();
 	}
 
 	connectedCallback() {
