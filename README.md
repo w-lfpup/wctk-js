@@ -20,7 +20,7 @@ A handful of facades let developers:
 - [bind](./docs/bind.md) functions to elements
 - listen to [events](./docs/events.md)
 - [subscribe](./docs/subscription.md) to external data
-- [render](./docs/render.md) changes
+- add renders to the [micro task](./docs/microtask.md) queue
 
 ## Examples
 

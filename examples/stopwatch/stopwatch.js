@@ -1,16 +1,16 @@
-import { Bind, Wc, Render } from "wctk";
+import { Bind, Wc, Microtask } from "wctk";
 
 /*
 	Custom Element with performant and "asynchronous" renders.
 */
 class Stopwatch extends HTMLElement {
 	#wc = new Wc(this);
-	#rc = new Render(this);
+	#rc = new Microtask(this, this.#render);
 	#bc = new Bind(this, [this.update]);
 
 	#state = getStateFromShadowDOM(this.#wc.shadowRoot);
 
-	render() {
+	#render() {
 		this.#state.el.textContent = this.#state.count.toFixed(2);
 	}
 
@@ -21,7 +21,7 @@ class Stopwatch extends HTMLElement {
 		this.#state.prevTimestamp = timestamp;
 
 		// push render to microtask queue
-		this.#rc.render();
+		this.#rc.queue();
 	}
 
 	start() {
