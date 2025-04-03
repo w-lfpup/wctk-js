@@ -4,8 +4,8 @@ export type {
 	MicrotaskElementInterface,
 } from "./microtask.js";
 export type {
-	Connect,
-	Disconnect,
+	Subscribe,
+	Unsubscribe,
 	SubscriptionInterface,
 } from "./subscription.ts";
 export type { WcInterface } from "./wc.js";

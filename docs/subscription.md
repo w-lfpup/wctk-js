@@ -37,7 +37,12 @@ import { Subscription } from "wctk";
 import { datastore, subscribe, unsubscribe } from "./my-store.js";
 
 class MyElement extends HTMLElement {
-	#sc = new Subscription(this, this.#update, subscribe, unsubscribe);
+	#sc = new Subscription({
+		bind: this,
+		callback: this.#update,
+		subscribe,
+		unsubscribe
+	});
 
 	#update() {
 		let state = datastore.getState();
