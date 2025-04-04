@@ -1,7 +1,8 @@
 import { Bind, Wc, Microtask } from "wctk";
 
 /*
-	Custom Element with performant and "asynchronous" renders.
+	Custom Element with performant and "asynchronous" renders
+	on the microtask queue.
 */
 class Stopwatch extends HTMLElement {
 	#wc = new Wc(this);
@@ -14,6 +15,7 @@ class Stopwatch extends HTMLElement {
 		this.#state.el.textContent = this.#state.count.toFixed(2);
 	}
 
+	// PUBLIC API
 	update(timestamp) {
 		this.#state.receipt = requestAnimationFrame(this.update);
 

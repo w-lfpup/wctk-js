@@ -1,8 +1,5 @@
 export type { EventsInterface, EventsElementInterface } from "./events.ts";
-export type {
-	MicrotaskInterface,
-	MicrotaskElementInterface,
-} from "./microtask.js";
+export type { MicrotaskInterface } from "./microtask.js";
 export type {
 	Subscribe,
 	Unsubscribe,

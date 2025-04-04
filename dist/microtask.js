@@ -4,9 +4,6 @@ class Microtask {
     constructor(el, callback) {
         this.#cb = callback.bind(el);
     }
-    get queued() {
-        return this.#queued;
-    }
     queue() {
         if (this.#queued)
             return;

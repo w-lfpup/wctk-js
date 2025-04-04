@@ -1,6 +1,4 @@
-type Callbacks = Function[];
 declare class Bind {
-    constructor(el: Object, callbacks: Callbacks);
+    constructor(el: Object, callbacks: Function[]);
 }
-export type { Callbacks };
 export { Bind };

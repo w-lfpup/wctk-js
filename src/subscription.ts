@@ -7,10 +7,10 @@ interface SubscriptionInterface {
 }
 
 interface SubscriptionParams<E, A> {
-	bind: Element,
-	callback: Function,
-	subscribe: Subscribe<E, A>,
-	unsubscribe: Unsubscribe<A>,
+	bind: Element;
+	callback: Function;
+	subscribe: Subscribe<E, A>;
+	unsubscribe: Unsubscribe<A>;
 }
 
 class Subscription<E extends Function, A> implements SubscriptionInterface {
@@ -21,7 +21,7 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 	#unsubscribe: Unsubscribe<A>;
 
 	constructor(params: SubscriptionParams<E, A>) {
-		let {bind, callback, subscribe, unsubscribe} = params;
+		let { bind, callback, subscribe, unsubscribe } = params;
 
 		this.#cb = callback.bind(bind);
 		this.#subscribe = subscribe;

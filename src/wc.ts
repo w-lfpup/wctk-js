@@ -1,15 +1,17 @@
 interface WcInterface {
 	readonly declarative: boolean;
 	readonly shadowRoot: ShadowRoot;
-	adoptedStyleSheets: ShadowRoot["adoptedStyleSheets"];
+	adoptedStyleSheets: DocumentOrShadowRoot["adoptedStyleSheets"];
 	setFormValue: ElementInternals["setFormValue"];
 	setValidity: ElementInternals["setValidity"];
 	reportValidity: ElementInternals["reportValidity"];
 }
 
+type FormDataTypes = File | string | FormData | null;
+
 interface WcElementInterface {
 	attachInternals: HTMLElement["attachInternals"];
-	attachShadow: HTMLElement["attachShadow"];
+	attachShadow: Element["attachShadow"];
 }
 
 const shadowRootInit: ShadowRootInit = {
@@ -55,10 +57,7 @@ class Wc implements WcInterface {
 		return this.#internals.reportValidity();
 	}
 
-	setFormValue(
-		value: File | string | FormData | null,
-		state?: File | string | FormData | null,
-	) {
+	setFormValue(value: FormDataTypes, state?: FormDataTypes) {
 		this.#internals.setFormValue(value, state);
 	}
 
