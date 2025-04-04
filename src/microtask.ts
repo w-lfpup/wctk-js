@@ -1,9 +1,4 @@
 interface MicrotaskInterface {
-	readonly queued: boolean;
-	queue(): void;
-}
-
-interface MicrotaskElementInterface {
 	queue(): void;
 }
 
@@ -13,10 +8,6 @@ class Microtask implements MicrotaskInterface {
 
 	constructor(el: EventTarget, callback: Function) {
 		this.#cb = callback.bind(el);
-	}
-
-	get queued() {
-		return this.#queued;
 	}
 
 	queue() {
@@ -30,6 +21,6 @@ class Microtask implements MicrotaskInterface {
 	}
 }
 
-export type { MicrotaskElementInterface, MicrotaskInterface };
+export type { MicrotaskInterface };
 
 export { Microtask };

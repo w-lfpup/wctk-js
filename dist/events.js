@@ -1,3 +1,14 @@
+function bindCallbacks(el, callbacks) {
+    let events = [];
+    for (let [name, cb] of callbacks) {
+        let callback = cb;
+        if (cb instanceof Function) {
+            callback = cb.bind(el);
+        }
+        events.push([name, callback]);
+    }
+    return events;
+}
 class Events {
     #connected = false;
     #el;
@@ -7,13 +18,7 @@ class Events {
         const { bind, target, callbacks } = params;
         this.#el = bind;
         this.#targetEl = target ?? bind;
-        for (let [name, cb] of callbacks) {
-            let callback = cb;
-            if (cb instanceof Function) {
-                callback = cb.bind(this.#el);
-            }
-            this.#events.push([name, callback]);
-        }
+        this.#events = bindCallbacks(this.#el, callbacks);
         this.connect();
     }
     connect() {

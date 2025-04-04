@@ -41,7 +41,7 @@ class MyElement extends HTMLElement {
 		bind: this,
 		callback: this.#update,
 		subscribe,
-		unsubscribe
+		unsubscribe,
 	});
 
 	#update() {

@@ -22,7 +22,7 @@ Afterwards, the Events controller adds the bound callbacks as event listeners on
 
 The `target` Node could be a shadowRoot, a document, or the custom element itself.
 
-If the `target` property is  undefined, the `bind` property is used as a fallback.
+If the `target` property is undefined, the `bind` property is used as a fallback.
 
 ### Controller
 

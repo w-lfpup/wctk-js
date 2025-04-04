@@ -1,7 +1,5 @@
-type Callbacks = Function[];
-
 class Bind {
-	constructor(el: Object, callbacks: Callbacks) {
+	constructor(el: Object, callbacks: Function[]) {
 		// do not bind and replace anonymous functions or private methods
 		for (let cb of callbacks) {
 			if (cb instanceof Function) {
@@ -13,7 +11,5 @@ class Bind {
 		}
 	}
 }
-
-export type { Callbacks };
 
 export { Bind };
