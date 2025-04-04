@@ -28,7 +28,7 @@ export { store, subscribe, unsubscribe };
 
 ### Controller
 
-Add a `Subscription` controller to a web component and pass subscribe and unsubscribe functions on instantiation.
+Add a `Subscription` controller to a web component, pass a callback, and subscribe and unsubscribe functions on instantiation.
 
 The `Subscription` controller example below participates in web component lifecycle methods.
 

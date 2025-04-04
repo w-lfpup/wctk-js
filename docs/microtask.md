@@ -6,7 +6,7 @@ Add functions to the `microtask queue`.
 
 Add a `Microtask` controller to a web component. Provide a callback.
 
-Call `Microtask.queue()` to add callback to the micro task queue.
+Call `Microtask.queue()` to push the callback to the microtask queue.
 
 In the example below, a Microtask controller queues a render when the `width` attribute changes.
 
@@ -28,4 +28,4 @@ class MyElement extends HTMLElement {
 }
 ```
 
-The `Microtask.queue()` method can be called multiple times but the provided callback function will only be called _once_ per microtask queue.
+The `Microtask.queue()` method can be called multiple times but the provided callback will only be called _once_ per microtask queue.
