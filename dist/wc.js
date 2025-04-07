@@ -1,8 +1,6 @@
 const shadowRootInitFallback = {
     mode: "closed",
 };
-// adoptedStylesheets
-//
 class Wc {
     #internals;
     #declarative;
@@ -18,12 +16,8 @@ class Wc {
         if (adoptedStyleSheets)
             this.adoptedStyleSheets = adoptedStyleSheets;
         let { formValue, formState } = params;
-        if (formValue || null === formValue) {
-            formState = (formState || null === formState)
-                ? formState
-                : formValue;
+        if (formValue)
             this.setFormValue(formValue, formState);
-        }
     }
     get declarative() {
         return this.#declarative;

@@ -6,7 +6,7 @@ import { Wc, Events } from "wctk";
 class TextInput extends HTMLElement {
 	static formAssociated = true;
 
-	#wc = new Wc({host: this});
+	#wc = new Wc({ host: this });
 	#ev = new Events({
 		bind: this,
 		target: this.#wc.shadowRoot,

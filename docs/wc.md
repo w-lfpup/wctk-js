@@ -10,7 +10,7 @@ Add a `Wc` controller to a custom element.
 import { Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-	#wc = new Wc({host: this});
+	#wc = new Wc({ host: this });
 }
 ```
 
@@ -23,10 +23,11 @@ It collects a few core web componet APIs into a concice facade pattern.
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#options
 class MyElement extends HTMLElement {
 	#wc = new Wc({
-		host: this, 
+		host: this,
 		shadowRootInit: { mode: "open" },
 		adoptedStyleSheets: [],
-		formValue: null,
+		formValue: "^_^",
+		stateValue: ":3",
 	});
 
 	constructor() {

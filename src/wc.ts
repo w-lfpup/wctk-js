@@ -1,3 +1,18 @@
+type FormDataTypes = File | string | FormData | null;
+
+interface WcElementInterface {
+	attachInternals: HTMLElement["attachInternals"];
+	attachShadow: Element["attachShadow"];
+}
+
+interface WcParams {
+	host: WcElementInterface;
+	adoptedStyleSheets?: CSSStyleSheet[];
+	shadowRootInit?: ShadowRootInit;
+	formValue?: FormDataTypes;
+	formState?: FormDataTypes;
+}
+
 interface WcInterface {
 	readonly declarative: boolean;
 	readonly shadowRoot: ShadowRoot;
@@ -7,36 +22,16 @@ interface WcInterface {
 	reportValidity: ElementInternals["reportValidity"];
 }
 
-type FormDataTypes = File | string | FormData | null;
-
-interface WcElementInterface {
-	attachInternals: HTMLElement["attachInternals"];
-	attachShadow: Element["attachShadow"];
-}
-
 const shadowRootInitFallback: ShadowRootInit = {
 	mode: "closed",
 };
-
-interface WcParams {
-	host: HTMLElement;
-	adoptedStyleSheets?: CSSStyleSheet[];
-	shadowRootInit?: ShadowRootInit;
-	formValue?: FormDataTypes;
-	formState?: FormDataTypes;
-}
-
-// adoptedStylesheets
-//
 
 class Wc implements WcInterface {
 	#internals: ElementInternals;
 	#declarative: boolean;
 
-	constructor(
-		params: WcParams,
-	) {
-		let {host} = params;
+	constructor(params: WcParams) {
+		let { host } = params;
 		this.#internals = host.attachInternals();
 		this.#declarative = this.#internals.shadowRoot !== null;
 
@@ -45,17 +40,11 @@ class Wc implements WcInterface {
 			host.attachShadow(shadowRootInit);
 		}
 
-		let {adoptedStyleSheets} = params;
+		let { adoptedStyleSheets } = params;
 		if (adoptedStyleSheets) this.adoptedStyleSheets = adoptedStyleSheets;
 
-		let {formValue, formState} = params;
-		if (formValue || null === formValue) {
-			formState = (formState || null === formState)
-				? formState
-				: formValue;
-				
-			this.setFormValue(formValue, formState);
-		}
+		let { formValue, formState } = params;
+		if (formValue) this.setFormValue(formValue, formState);
 	}
 
 	get declarative(): boolean {
