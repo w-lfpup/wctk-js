@@ -10,7 +10,7 @@ Add a `Wc` controller to a custom element.
 import { Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-	#wc = new Wc(this);
+	#wc = new Wc({ host: this });
 }
 ```
 
@@ -19,9 +19,16 @@ The `Wc` controller directly directly mirrors bare metal browser apis.
 It collects a few core web componet APIs into a concice facade pattern.
 
 ```ts
+// shadowRootInit api
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#options
 class MyElement extends HTMLElement {
-	// https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#options
-	#wc = new Wc(this, { mode: "open" });
+	#wc = new Wc({
+		host: this,
+		shadowRootInit: { mode: "open" },
+		adoptedStyleSheets: [],
+		formValue: "^_^",
+		formState: ":3",
+	});
 
 	constructor() {
 		// true if declarative shadow dom is present

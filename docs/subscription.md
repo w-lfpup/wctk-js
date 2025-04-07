@@ -49,10 +49,12 @@ class MyElement extends HTMLElement {
 		// do something with state
 	}
 
+	// lifecycle method
 	connectedCallback() {
 		this.#sc.connect();
 	}
 
+	// lifecycle method
 	disconnectedCallback() {
 		this.#sc.disconnect();
 	}

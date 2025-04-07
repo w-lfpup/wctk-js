@@ -18,12 +18,13 @@ class MyElement extends HTMLElement {
 
 	#rc = new Microtask(this, this.#render);
 
-	attributeChangedCallback() {
-		this.#rc.queue();
-	}
-
 	#render() {
 		// update DOM here!
+	}
+
+	// lifecycle method
+	attributeChangedCallback() {
+		this.#rc.queue();
 	}
 }
 ```

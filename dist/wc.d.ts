@@ -1,3 +1,15 @@
+type FormDataTypes = File | string | FormData | null;
+interface WcElementInterface {
+    attachInternals: HTMLElement["attachInternals"];
+    attachShadow: Element["attachShadow"];
+}
+interface WcParams {
+    host: WcElementInterface;
+    adoptedStyleSheets?: CSSStyleSheet[];
+    shadowRootInit?: ShadowRootInit;
+    formValue?: FormDataTypes;
+    formState?: FormDataTypes;
+}
 interface WcInterface {
     readonly declarative: boolean;
     readonly shadowRoot: ShadowRoot;
@@ -6,14 +18,9 @@ interface WcInterface {
     setValidity: ElementInternals["setValidity"];
     reportValidity: ElementInternals["reportValidity"];
 }
-type FormDataTypes = File | string | FormData | null;
-interface WcElementInterface {
-    attachInternals: HTMLElement["attachInternals"];
-    attachShadow: Element["attachShadow"];
-}
 declare class Wc implements WcInterface {
     #private;
-    constructor(el: WcElementInterface, init?: ShadowRootInit);
+    constructor(params: WcParams);
     get declarative(): boolean;
     get shadowRoot(): ShadowRoot;
     get adoptedStyleSheets(): CSSStyleSheet[];

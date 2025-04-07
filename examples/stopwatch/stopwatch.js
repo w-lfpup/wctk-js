@@ -5,7 +5,7 @@ import { Bind, Wc, Microtask } from "wctk";
 	on the microtask queue.
 */
 class Stopwatch extends HTMLElement {
-	#wc = new Wc(this);
+	#wc = new Wc({ host: this });
 	#rc = new Microtask(this, this.#render);
 	#bc = new Bind(this, [this.update]);
 
@@ -15,7 +15,6 @@ class Stopwatch extends HTMLElement {
 		this.#state.el.textContent = this.#state.count.toFixed(2);
 	}
 
-	// PUBLIC API
 	update(timestamp) {
 		this.#state.receipt = requestAnimationFrame(this.update);
 

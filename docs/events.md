@@ -39,16 +39,18 @@ class MyElement extends HTMLElement {
 		callbacks: [["keydown", this.#onKeyDown]],
 	});
 
+	#onKeyDown(e: KeyboardEvent) {
+		// do something with keyboard events here!
+	}
+
+	// lifecycle method
 	connectedCallback() {
 		this.#ec.connect();
 	}
 
+	// lifecycle method
 	disconnectedCallback() {
 		this.#ec.disconnect();
-	}
-
-	#onKeyDown(e: KeyboardEvent) {
-		// do something with keyboard events here!
 	}
 }
 ```
