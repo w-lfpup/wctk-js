@@ -11,9 +11,16 @@ interface WcElementInterface {
     attachInternals: HTMLElement["attachInternals"];
     attachShadow: Element["attachShadow"];
 }
+interface WcParams {
+    host: HTMLElement;
+    adoptedStyleSheets?: CSSStyleSheet[];
+    shadowRootInit?: ShadowRootInit;
+    formValue?: FormDataTypes;
+    formState?: FormDataTypes;
+}
 declare class Wc implements WcInterface {
     #private;
-    constructor(el: WcElementInterface, init?: ShadowRootInit);
+    constructor(params: WcParams);
     get declarative(): boolean;
     get shadowRoot(): ShadowRoot;
     get adoptedStyleSheets(): CSSStyleSheet[];

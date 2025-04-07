@@ -26,6 +26,18 @@ A handful of facades let developers:
 
 Click [here](https://wolfpup-software.github.io/wctk-js/examples/) for live examples.
 
+## DevX
+
+I'm a former member of the Lit and Material teams at google.
+
+I hate decorators. I hate unnecessary inheritance. I like to avoid constructors when I can.
+
+I want to encapsulate web components entirely (aside from lifecycle methods). I want to work with private functions.
+
+Unfortunately not a single web component library lets me do that. So I made my own.
+
+Hope it helps.
+
 ## License
 
 `Wctk` is released under the BSD-3 Clause License.

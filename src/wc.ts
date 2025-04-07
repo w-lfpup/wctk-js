@@ -14,22 +14,47 @@ interface WcElementInterface {
 	attachShadow: Element["attachShadow"];
 }
 
-const shadowRootInit: ShadowRootInit = {
+const shadowRootInitFallback: ShadowRootInit = {
 	mode: "closed",
 };
+
+interface WcParams {
+	host: HTMLElement;
+	adoptedStyleSheets?: CSSStyleSheet[];
+	shadowRootInit?: ShadowRootInit;
+	formValue?: FormDataTypes;
+	formState?: FormDataTypes;
+}
+
+// adoptedStylesheets
+//
 
 class Wc implements WcInterface {
 	#internals: ElementInternals;
 	#declarative: boolean;
 
 	constructor(
-		el: WcElementInterface,
-		init: ShadowRootInit = { ...shadowRootInit },
+		params: WcParams,
 	) {
-		this.#internals = el.attachInternals();
+		let {host} = params;
+		this.#internals = host.attachInternals();
 		this.#declarative = this.#internals.shadowRoot !== null;
+
 		if (!this.#declarative) {
-			el.attachShadow(init);
+			let shadowRootInit = params.shadowRootInit ?? shadowRootInitFallback;
+			host.attachShadow(shadowRootInit);
+		}
+
+		let {adoptedStyleSheets} = params;
+		if (adoptedStyleSheets) this.adoptedStyleSheets = adoptedStyleSheets;
+
+		let {formValue, formState} = params;
+		if (formValue || null === formValue) {
+			formState = (formState || null === formState)
+				? formState
+				: formValue;
+				
+			this.setFormValue(formValue, formState);
 		}
 	}
 

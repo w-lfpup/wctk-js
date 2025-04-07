@@ -6,7 +6,7 @@ import { Wc, Events } from "wctk";
 class TextInput extends HTMLElement {
 	static formAssociated = true;
 
-	#wc = new Wc(this);
+	#wc = new Wc({host: this});
 	#ev = new Events({
 		bind: this,
 		target: this.#wc.shadowRoot,
@@ -18,7 +18,7 @@ class TextInput extends HTMLElement {
 	}
 
 	// form lifecycle callback
-	formStateRestoreCallback(state, reason) {
+	formStateRestoreCallback(state) {
 		this.#wc.shadowRoot.querySelector("input").value = state;
 	}
 }

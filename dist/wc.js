@@ -1,14 +1,28 @@
-const shadowRootInit = {
+const shadowRootInitFallback = {
     mode: "closed",
 };
+// adoptedStylesheets
+//
 class Wc {
     #internals;
     #declarative;
-    constructor(el, init = { ...shadowRootInit }) {
-        this.#internals = el.attachInternals();
+    constructor(params) {
+        let { host } = params;
+        this.#internals = host.attachInternals();
         this.#declarative = this.#internals.shadowRoot !== null;
         if (!this.#declarative) {
-            el.attachShadow(init);
+            let shadowRootInit = params.shadowRootInit ?? shadowRootInitFallback;
+            host.attachShadow(shadowRootInit);
+        }
+        let { adoptedStyleSheets } = params;
+        if (adoptedStyleSheets)
+            this.adoptedStyleSheets = adoptedStyleSheets;
+        let { formValue, formState } = params;
+        if (formValue || null === formValue) {
+            formState = (formState || null === formState)
+                ? formState
+                : formValue;
+            this.setFormValue(formValue, formState);
         }
     }
     get declarative() {
