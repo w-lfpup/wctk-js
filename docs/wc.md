@@ -27,7 +27,7 @@ class MyElement extends HTMLElement {
 		shadowRootInit: { mode: "open" },
 		adoptedStyleSheets: [],
 		formValue: "^_^",
-		stateValue: ":3",
+		formState: ":3",
 	});
 
 	constructor() {
