@@ -43,10 +43,12 @@ class MyElement extends HTMLElement {
 		// do something with keyboard events here!
 	}
 
+	// lifecycle method
 	connectedCallback() {
 		this.#ec.connect();
 	}
 
+	// lifecycle method
 	disconnectedCallback() {
 		this.#ec.disconnect();
 	}

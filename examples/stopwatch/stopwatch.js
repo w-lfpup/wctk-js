@@ -15,7 +15,6 @@ class Stopwatch extends HTMLElement {
 		this.#state.el.textContent = this.#state.count.toFixed(2);
 	}
 
-	// PUBLIC API
 	update(timestamp) {
 		this.#state.receipt = requestAnimationFrame(this.update);
 

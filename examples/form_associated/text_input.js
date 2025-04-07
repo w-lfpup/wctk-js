@@ -17,7 +17,7 @@ class TextInput extends HTMLElement {
 		this.#wc.setFormValue(e.target.value);
 	}
 
-	// form lifecycle callback
+	// lifecycle method
 	formStateRestoreCallback(state) {
 		this.#wc.shadowRoot.querySelector("input").value = state;
 	}
