@@ -11,7 +11,7 @@ interface EventsElementInterface {
 }
 
 interface EventParams {
-	bind: Node;
+	host: Node;
 	target?: Node;
 	callbacks: Callbacks;
 }
@@ -37,13 +37,11 @@ class Events implements EventsInterface {
 	#targetEl: EventsElementInterface;
 
 	constructor(params: EventParams) {
-		const { bind, target, callbacks } = params;
+		const { host, target, callbacks } = params;
 
-		this.#el = bind;
-		this.#targetEl = target ?? bind;
+		this.#el = host;
+		this.#targetEl = target ?? host;
 		this.#events = bindCallbacks(this.#el, callbacks);
-
-		this.connect();
 	}
 
 	connect() {

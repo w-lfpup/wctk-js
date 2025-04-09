@@ -16,7 +16,7 @@ class MyElement extends HTMLElement {
 
 The `Wc` controller directly directly mirrors bare metal browser apis.
 
-It collects a few core web componet APIs into a concice facade pattern.
+It is a facade for a few core web componet APIs.
 
 ```ts
 // shadowRootInit api

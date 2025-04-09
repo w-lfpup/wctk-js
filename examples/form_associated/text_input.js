@@ -8,13 +8,23 @@ class TextInput extends HTMLElement {
 
 	#wc = new Wc({ host: this });
 	#ev = new Events({
-		bind: this,
+		host: this,
 		target: this.#wc.shadowRoot,
 		callbacks: [["change", this.#changeHandler]],
 	});
 
 	#changeHandler(e) {
 		this.#wc.setFormValue(e.target.value);
+	}
+
+	// lifecycle method
+	connectedCallback() {
+		this.#ev.connect();
+	}
+
+	// lifecycle method
+	disconnectedCallback() {
+		this.#ev.disconnect();
 	}
 
 	// lifecycle method

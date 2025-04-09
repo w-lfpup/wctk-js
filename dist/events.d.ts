@@ -8,7 +8,7 @@ interface EventsElementInterface {
     removeEventListener: Node["removeEventListener"];
 }
 interface EventParams {
-    bind: Node;
+    host: Node;
     target?: Node;
     callbacks: Callbacks;
 }

@@ -15,11 +15,10 @@ class Events {
     #events = [];
     #targetEl;
     constructor(params) {
-        const { bind, target, callbacks } = params;
-        this.#el = bind;
-        this.#targetEl = target ?? bind;
+        const { host, target, callbacks } = params;
+        this.#el = host;
+        this.#targetEl = target ?? host;
         this.#events = bindCallbacks(this.#el, callbacks);
-        this.connect();
     }
     connect() {
         if (this.#connected)
