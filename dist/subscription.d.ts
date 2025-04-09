@@ -5,7 +5,7 @@ interface SubscriptionInterface {
     disconnect(): void;
 }
 interface SubscriptionParams<E, A> {
-    bind: Element;
+    host: Element;
     callback: Function;
     subscribe: Subscribe<E, A>;
     unsubscribe: Unsubscribe<A>;

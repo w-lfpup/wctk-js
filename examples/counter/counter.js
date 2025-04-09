@@ -6,7 +6,7 @@ import { Wc, Events } from "wctk";
 class Counter extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#ev = new Events({
-		bind: this,
+		host: this,
 		target: this.#wc.shadowRoot,
 		callbacks: [["click", this.#clickHandler]],
 	});
@@ -21,6 +21,16 @@ class Counter extends HTMLElement {
 			this.#state.count += increment;
 			this.#state.el.textContent = this.#state.count;
 		}
+	}
+
+	// lifecycle method
+	connectedCallback() {
+		this.#ev.connect();
+	}
+
+	// lifecycle method
+	disconnectedCallback() {
+		this.#ev.disconnect();
 	}
 }
 

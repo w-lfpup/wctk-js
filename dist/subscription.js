@@ -5,8 +5,8 @@ class Subscription {
     #subscribe;
     #unsubscribe;
     constructor(params) {
-        let { bind, callback, subscribe, unsubscribe } = params;
-        this.#cb = callback.bind(bind);
+        let { host, callback, subscribe, unsubscribe } = params;
+        this.#cb = callback.bind(host);
         this.#subscribe = subscribe;
         this.#unsubscribe = unsubscribe;
     }

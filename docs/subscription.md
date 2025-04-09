@@ -38,7 +38,7 @@ import { datastore, subscribe, unsubscribe } from "./my-store.js";
 
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
-		bind: this,
+		host: this,
 		callback: this.#update,
 		subscribe,
 		unsubscribe,

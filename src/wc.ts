@@ -1,4 +1,4 @@
-type FormDataTypes = File | string | FormData | null;
+type FormDataTypes = File | string | FormData;
 
 interface WcElementInterface {
 	attachInternals: HTMLElement["attachInternals"];
