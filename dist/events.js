@@ -11,20 +11,20 @@ function bindCallbacks(el, callbacks) {
 }
 class Events {
     #connected = false;
-    #el;
-    #events = [];
+    #callbacks = [];
     #targetEl;
     constructor(params) {
-        const { host, target, callbacks } = params;
-        this.#el = host;
+        const { host, target, callbacks, connected } = params;
         this.#targetEl = target ?? host;
-        this.#events = bindCallbacks(this.#el, callbacks);
+        this.#callbacks = bindCallbacks(host, callbacks);
+        if (connected)
+            this.connect();
     }
     connect() {
         if (this.#connected)
             return;
         this.#connected = true;
-        for (let [name, callback] of this.#events) {
+        for (let [name, callback] of this.#callbacks) {
             this.#targetEl.addEventListener(name, callback);
         }
     }
@@ -32,7 +32,7 @@ class Events {
         if (!this.#connected)
             return;
         this.#connected = false;
-        for (let [name, callback] of this.#events) {
+        for (let [name, callback] of this.#callbacks) {
             this.#targetEl.removeEventListener(name, callback);
         }
     }

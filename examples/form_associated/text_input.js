@@ -10,21 +10,12 @@ class TextInput extends HTMLElement {
 	#ev = new Events({
 		host: this,
 		target: this.#wc.shadowRoot,
+		connected: true,
 		callbacks: [["change", this.#changeHandler]],
 	});
 
 	#changeHandler(e) {
 		this.#wc.setFormValue(e.target.value);
-	}
-
-	// lifecycle method
-	connectedCallback() {
-		this.#ev.connect();
-	}
-
-	// lifecycle method
-	disconnectedCallback() {
-		this.#ev.disconnect();
 	}
 
 	// lifecycle method

@@ -1,8 +1,10 @@
 class Microtask {
     #queued = false;
-    #cb;
-    constructor(el, callback) {
-        this.#cb = callback.bind(el);
+    #callbacks = [];
+    constructor(el, callbacks) {
+        for (let callback of callbacks) {
+            this.#callbacks.push(callback.bind(el));
+        }
     }
     queue() {
         if (this.#queued)
@@ -10,7 +12,9 @@ class Microtask {
         this.#queued = true;
         queueMicrotask(() => {
             this.#queued = false;
-            this.#cb();
+            for (let callback of this.#callbacks) {
+                callback();
+            }
         });
     }
 }

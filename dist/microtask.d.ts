@@ -3,7 +3,7 @@ interface MicrotaskInterface {
 }
 declare class Microtask implements MicrotaskInterface {
     #private;
-    constructor(el: EventTarget, callback: Function);
+    constructor(el: EventTarget, callbacks: Function[]);
     queue(): void;
 }
 export type { MicrotaskInterface };
