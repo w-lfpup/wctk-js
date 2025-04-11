@@ -6,6 +6,7 @@ interface SubscriptionInterface {
 }
 interface SubscriptionParams<E, A> {
     host: Element;
+    connected?: boolean;
     callback: Function;
     subscribe: Subscribe<E, A>;
     unsubscribe: Unsubscribe<A>;

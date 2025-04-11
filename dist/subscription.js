@@ -1,20 +1,22 @@
 class Subscription {
     #connected = false;
-    #cb;
+    #callback;
     #affect;
     #subscribe;
     #unsubscribe;
     constructor(params) {
-        let { host, callback, subscribe, unsubscribe } = params;
-        this.#cb = callback.bind(host);
+        let { host, callback, connected, subscribe, unsubscribe } = params;
+        this.#callback = callback.bind(host);
         this.#subscribe = subscribe;
         this.#unsubscribe = unsubscribe;
+        if (connected)
+            this.connect();
     }
     connect() {
         if (this.#connected)
             return;
         this.#connected = true;
-        this.#affect = this.#subscribe(this.#cb);
+        this.#affect = this.#subscribe(this.#callback);
     }
     disconnect() {
         if (!this.#connected)

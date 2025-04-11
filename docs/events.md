@@ -12,6 +12,7 @@ An Events `params` object has three properties:
 interface EventParams {
 	host: Node;
 	callbacks: Array<[string, EventListener]>;
+	connected?: boolean;
 	target?: Node;
 }
 ```
@@ -27,6 +28,32 @@ If the `target` property is undefined, the `host` property is used as a fallback
 ### Controller
 
 Below is an example of the `Events` controller.
+
+```ts
+import { Events, Wc } from "wctk";
+
+class MyElement extends HTMLElement {
+	#wc = new Wc();
+	#ec = new Events({
+		host: this,
+		connected: true,
+		target: this.#wc.shadowRoot,
+		callbacks: [["keydown", this.#onKeyDown]],
+	});
+
+	#onKeyDown(e: KeyboardEvent) {
+		// do something with keyboard events here!
+	}
+}
+```
+
+### Life cycle methods
+
+The `Events` controller can participate in web component lifecycle methods.
+
+In the example below the `connected` property is not included. It has a fallback value of `false`.
+
+So the `Events` controller should be connected during the component's lifecycle methods:
 
 ```ts
 import { Events, Wc } from "wctk";

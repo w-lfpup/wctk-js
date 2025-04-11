@@ -4,10 +4,12 @@ interface MicrotaskInterface {
 
 class Microtask implements MicrotaskInterface {
 	#queued = false;
-	#cb: Function;
+	#callbacks: Function[] = [];
 
-	constructor(el: EventTarget, callback: Function) {
-		this.#cb = callback.bind(el);
+	constructor(el: EventTarget, callbacks: Function[]) {
+		for (let callback of callbacks) {
+			this.#callbacks.push(callback.bind(el));
+		}
 	}
 
 	queue() {
@@ -16,7 +18,9 @@ class Microtask implements MicrotaskInterface {
 
 		queueMicrotask(() => {
 			this.#queued = false;
-			this.#cb();
+			for (let callback of this.#callbacks) {
+				callback();
+			}
 		});
 	}
 }

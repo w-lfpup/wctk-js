@@ -12,6 +12,7 @@ interface EventsElementInterface {
 
 interface EventParams {
 	host: Node;
+	connected?: boolean;
 	target?: Node;
 	callbacks: Callbacks;
 }
@@ -32,23 +33,23 @@ function bindCallbacks(el: Object, callbacks: Callbacks) {
 
 class Events implements EventsInterface {
 	#connected: boolean = false;
-	#el: EventsElementInterface;
-	#events: Callbacks = [];
+	#callbacks: Callbacks = [];
 	#targetEl: EventsElementInterface;
 
 	constructor(params: EventParams) {
-		const { host, target, callbacks } = params;
+		const { host, target, callbacks, connected } = params;
 
-		this.#el = host;
 		this.#targetEl = target ?? host;
-		this.#events = bindCallbacks(this.#el, callbacks);
+		this.#callbacks = bindCallbacks(host, callbacks);
+
+		if (connected) this.connect();
 	}
 
 	connect() {
 		if (this.#connected) return;
 		this.#connected = true;
 
-		for (let [name, callback] of this.#events) {
+		for (let [name, callback] of this.#callbacks) {
 			this.#targetEl.addEventListener(name, callback);
 		}
 	}
@@ -57,7 +58,7 @@ class Events implements EventsInterface {
 		if (!this.#connected) return;
 		this.#connected = false;
 
-		for (let [name, callback] of this.#events) {
+		for (let [name, callback] of this.#callbacks) {
 			this.#targetEl.removeEventListener(name, callback);
 		}
 	}

@@ -8,6 +8,7 @@ class Counter extends HTMLElement {
 	#ev = new Events({
 		host: this,
 		target: this.#wc.shadowRoot,
+		connected: true,
 		callbacks: [["click", this.#clickHandler]],
 	});
 
@@ -21,16 +22,6 @@ class Counter extends HTMLElement {
 			this.#state.count += increment;
 			this.#state.el.textContent = this.#state.count;
 		}
-	}
-
-	// lifecycle method
-	connectedCallback() {
-		this.#ev.connect();
-	}
-
-	// lifecycle method
-	disconnectedCallback() {
-		this.#ev.disconnect();
 	}
 }
 

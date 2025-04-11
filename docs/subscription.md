@@ -30,7 +30,33 @@ export { store, subscribe, unsubscribe };
 
 Add a `Subscription` controller to a web component, pass a callback, and subscribe and unsubscribe functions on instantiation.
 
-The `Subscription` controller example below participates in web component lifecycle methods.
+```ts
+import { Subscription } from "wctk";
+import { datastore, subscribe, unsubscribe } from "./my-store.js";
+
+class MyElement extends HTMLElement {
+	#sc = new Subscription({
+		host: this,
+		connected: true,
+		callback: this.#update,
+		subscribe,
+		unsubscribe,
+	});
+
+	#update() {
+		let state = datastore.getState();
+		// do something with state
+	}
+}
+```
+
+### Life cycle methods
+
+The `Subscription` controller can participate in web component lifecycle methods.
+
+In the example below the `connected` property is not included and has a fallback value of `false`.
+
+The `Subscription` controller should be connected manually during the component's lifecycle methods:
 
 ```ts
 import { Subscription } from "wctk";

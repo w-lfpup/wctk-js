@@ -9,6 +9,7 @@ interface EventsElementInterface {
 }
 interface EventParams {
     host: Node;
+    connected?: boolean;
     target?: Node;
     callbacks: Callbacks;
 }
