@@ -33,15 +33,22 @@ Below is an example of the `Events` controller.
 import { Events, Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-	#wc = new Wc();
+	#wc = new Wc({ this: host });
 	#ec = new Events({
 		host: this,
 		connected: true,
 		target: this.#wc.shadowRoot,
-		callbacks: [["keydown", this.#onKeyDown]],
+		callbacks: [
+			["click", this.#onClick],
+			["pointerover", this.#onPointerOver],
+		],
 	});
 
-	#onKeyDown(e: KeyboardEvent) {
+	#onClick(e: PointerEvent) {
+		// do something with click events here!
+	}
+
+	#pointerOver(e: PointerEvent) {
 		// do something with keyboard events here!
 	}
 }
@@ -59,14 +66,21 @@ So the `Events` controller should be connected during the component's lifecycle 
 import { Events, Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-	#wc = new Wc();
+	#wc = new Wc({ this: host });
 	#ec = new Events({
 		host: this,
 		target: this.#wc.shadowRoot,
-		callbacks: [["keydown", this.#onKeyDown]],
+		callbacks: [
+			["click", this.#onClick],
+			["pointerover", this.#onPointerOver],
+		],
 	});
 
-	#onKeyDown(e: KeyboardEvent) {
+	#onClick(e: PointerEvent) {
+		// do something with click events here!
+	}
+
+	#pointerOver(e: PointerEvent) {
 		// do something with keyboard events here!
 	}
 

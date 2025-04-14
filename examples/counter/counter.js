@@ -15,8 +15,6 @@ class Counter extends HTMLElement {
 	#state = getStateFromDOM(this.#wc.shadowRoot);
 
 	#clickHandler(e) {
-		if (!this.#state) return;
-
 		let increment = getIncrement(e);
 		if (increment) {
 			this.#state.count += increment;
@@ -38,12 +36,8 @@ function getStateFromDOM(shadowRoot) {
 function getIncrement(e) {
 	let { target } = e;
 	if (target instanceof HTMLButtonElement) {
-		if (target.hasAttribute("increase")) {
-			return 1;
-		}
-		if (target.hasAttribute("decrease")) {
-			return -1;
-		}
+		if (target.hasAttribute("increase")) return 1;
+		return -1;
 	}
 }
 
