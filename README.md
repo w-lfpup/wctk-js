@@ -12,15 +12,15 @@ Build web components with bare metal browser tools.
 
 `WCKT-js` provides support for:
 
-- SSR
 - Reactivity
+- SSR
 - Events
 - Forms
 - Subscriptions
 
 All features are optional and compositional.
 
-`WCTK-js` even supports `#private` functions as callbacks for event listerners and data stores. This fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+`WCTK-js` supports `#private` functions as callbacks for event listerners and data stores. This fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## Install
 
