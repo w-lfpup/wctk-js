@@ -3,9 +3,9 @@
 	"type": "module",
 	"main": "./dist/mod.js",
 	"scripts": {
-		"build": "npx tsc --build",
+		"build:dev": "npx tsc --build",
 		"remove_dist": "rm -rf ./dist",
-		"prod_build": "npm run remove_dist && npm run build",
+		"build": "npm run remove_dist && npm run build:dev",
 		"format": "prettier --write ./"
 	},
 	"devDependencies": {
