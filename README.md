@@ -10,14 +10,13 @@ Build web components with bare metal browser tools.
 - No (unncessary) inheritance
 - No extra dependencies
 
-All features are optional providing developers the opportunity to focus on:
+All features are optional providing developers the opportunity to focus on features like:
 
-- SSR compatible
-- Form associated
-- Reactive
-- `#private` function friendly
+- SSR
+- Forms
+- Reactivity
 
-`WCTK-js` can use private functions as callbacks for event listerners and external data stores. This means developers can (aside from required [life cycle](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks) methods) encapsulate their web component API entirely.
+`WCTK-js` can use `#private` functions as callbacks for event listerners and external data stores. This means developers can (aside from required [life cycle](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks) methods) encapsulate their web component API entirely.
 
 ## Install
 
@@ -37,7 +36,7 @@ A handful of facades let developers:
 
 ## Examples
 
-Click [here](https://wolfpup-software.github.io/wctk-js/examples/) for live examples.
+Click [here](https://w_lfpup.github.io/wctk-js/examples/) for live examples.
 
 ## License
 
