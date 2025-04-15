@@ -1,9 +1,11 @@
 {
 	"name": "wctk",
 	"type": "module",
-	"main": "dist/mod.js",
+	"main": "./dist/mod.js",
 	"scripts": {
 		"build": "npx tsc --build",
+		"remove_dist": "rm -rf ./dist",
+		"prod_build": "npm run remove_dist && npm run build",
 		"format": "prettier --write ./"
 	},
 	"devDependencies": {
