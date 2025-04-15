@@ -4,8 +4,8 @@ interface SubscriptionInterface {
     connect(): void;
     disconnect(): void;
 }
-interface SubscriptionParams<E, A> {
-    host: Element;
+interface SubscriptionParamsInterface<E, A> {
+    host: Object;
     connected?: boolean;
     callback: Function;
     subscribe: Subscribe<E, A>;
@@ -13,9 +13,9 @@ interface SubscriptionParams<E, A> {
 }
 declare class Subscription<E extends Function, A> implements SubscriptionInterface {
     #private;
-    constructor(params: SubscriptionParams<E, A>);
+    constructor(params: SubscriptionParamsInterface<E, A>);
     connect(): void;
     disconnect(): void;
 }
-export type { Subscribe, Unsubscribe, SubscriptionInterface };
+export type { Subscribe, Unsubscribe, SubscriptionParamsInterface, SubscriptionInterface, };
 export { Subscription };

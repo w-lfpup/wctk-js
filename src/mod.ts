@@ -4,6 +4,7 @@ export type {
 	Subscribe,
 	Unsubscribe,
 	SubscriptionInterface,
+	SubscriptionParamsInterface,
 } from "./subscription.ts";
 export type { WcInterface } from "./wc.js";
 

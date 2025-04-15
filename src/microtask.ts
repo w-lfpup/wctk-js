@@ -6,7 +6,7 @@ class Microtask implements MicrotaskInterface {
 	#queued = false;
 	#callbacks: Function[] = [];
 
-	constructor(el: EventTarget, callbacks: Function[]) {
+	constructor(el: Object, callbacks: Function[]) {
 		for (let callback of callbacks) {
 			this.#callbacks.push(callback.bind(el));
 		}

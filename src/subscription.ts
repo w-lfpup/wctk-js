@@ -6,8 +6,8 @@ interface SubscriptionInterface {
 	disconnect(): void;
 }
 
-interface SubscriptionParams<E, A> {
-	host: Element;
+interface SubscriptionParamsInterface<E, A> {
+	host: Object;
 	connected?: boolean;
 	callback: Function;
 	subscribe: Subscribe<E, A>;
@@ -21,7 +21,7 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 	#subscribe: Subscribe<E, A>;
 	#unsubscribe: Unsubscribe<A>;
 
-	constructor(params: SubscriptionParams<E, A>) {
+	constructor(params: SubscriptionParamsInterface<E, A>) {
 		let { host, callback, connected, subscribe, unsubscribe } = params;
 
 		this.#callback = callback.bind(host);
@@ -46,6 +46,11 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 	}
 }
 
-export type { Subscribe, Unsubscribe, SubscriptionInterface };
+export type {
+	Subscribe,
+	Unsubscribe,
+	SubscriptionParamsInterface,
+	SubscriptionInterface,
+};
 
 export { Subscription };
