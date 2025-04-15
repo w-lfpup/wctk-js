@@ -2,13 +2,22 @@
 
 Build web components with bare metal browser tools.
 
-Features:
+## About
 
-- SSR compatible
-- Form associated elements
-- No dependencies
+`WCTK-js` is the smallest and quickest way to create web components with:
+
 - No decorators
 - No (unncessary) inheritance
+- No extra dependencies
+
+All features are optional providing developers the opportunity to focus on:
+
+- SSR compatible
+- Form associated
+- Reactive
+- `#private` function friendly
+
+`WCTK-js` can use private functions as callbacks for event listerners and external data stores. This means developers can (aside from required [life cycle](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks) methods) encapsulate their web component API entirely.
 
 ## Install
 

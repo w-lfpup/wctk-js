@@ -19,11 +19,10 @@ The `Wc` controller directly directly mirrors bare metal browser apis.
 It is a facade for a few core web componet APIs.
 
 ```ts
-// shadowRootInit api
-// https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#options
 class MyElement extends HTMLElement {
 	#wc = new Wc({
 		host: this,
+		// https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#options
 		shadowRootInit: { mode: "open" },
 		adoptedStyleSheets: [],
 		formValue: "^_^",

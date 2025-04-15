@@ -11,13 +11,13 @@ class Wc {
         if (!this.#declarative) {
             let shadowRootInit = params.shadowRootInit ?? shadowRootInitFallback;
             host.attachShadow(shadowRootInit);
+            let { formValue, formState } = params;
+            if (formValue)
+                this.setFormValue(formValue, formState);
         }
         let { adoptedStyleSheets } = params;
         if (adoptedStyleSheets)
             this.adoptedStyleSheets = adoptedStyleSheets;
-        let { formValue, formState } = params;
-        if (formValue)
-            this.setFormValue(formValue, formState);
     }
     get declarative() {
         return this.#declarative;
