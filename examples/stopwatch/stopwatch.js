@@ -33,8 +33,7 @@ class Stopwatch extends HTMLElement {
 	}
 
 	pause() {
-		cancelAnimationFrame(this.#state.receipt);
-		this.#state.receipt = undefined;
+		this.#state.receipt = cancelAnimationFrame(this.#state.receipt);;
 	}
 }
 
