@@ -33,15 +33,22 @@ Below is an example of the `Events` controller.
 import { Events, Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-	#wc = new Wc();
+	#wc = new Wc({ this: host });
 	#ec = new Events({
 		host: this,
-		connected: true,
 		target: this.#wc.shadowRoot,
-		callbacks: [["keydown", this.#onKeyDown]],
+		connected: true,
+		callbacks: [
+			["click", this.#onClick],
+			["pointerover", this.#onPointerOver],
+		],
 	});
 
-	#onKeyDown(e: KeyboardEvent) {
+	#onClick(e: PointerEvent) {
+		// do something with click events here!
+	}
+
+	#pointerOver(e: PointerEvent) {
 		// do something with keyboard events here!
 	}
 }
@@ -51,7 +58,7 @@ class MyElement extends HTMLElement {
 
 The `Events` controller can participate in web component lifecycle methods.
 
-In the example below the `connected` property is not included. It has a fallback value of `false`.
+In the example below, the `connected` property is not included. It has a fallback value of `false`.
 
 So the `Events` controller should be connected during the component's lifecycle methods:
 
@@ -59,14 +66,21 @@ So the `Events` controller should be connected during the component's lifecycle 
 import { Events, Wc } from "wctk";
 
 class MyElement extends HTMLElement {
-	#wc = new Wc();
+	#wc = new Wc({ this: host });
 	#ec = new Events({
 		host: this,
 		target: this.#wc.shadowRoot,
-		callbacks: [["keydown", this.#onKeyDown]],
+		callbacks: [
+			["click", this.#onClick],
+			["pointerover", this.#onPointerOver],
+		],
 	});
 
-	#onKeyDown(e: KeyboardEvent) {
+	#onClick(e: PointerEvent) {
+		// do something with click events here!
+	}
+
+	#pointerOver(e: PointerEvent) {
 		// do something with keyboard events here!
 	}
 

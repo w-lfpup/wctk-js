@@ -10,10 +10,10 @@ interface EventsElementInterface {
 	removeEventListener: Node["removeEventListener"];
 }
 
-interface EventParams {
-	host: Node;
+interface EventParamsInterface {
+	host: EventsElementInterface;
 	connected?: boolean;
-	target?: Node;
+	target?: EventsElementInterface;
 	callbacks: Callbacks;
 }
 
@@ -36,7 +36,7 @@ class Events implements EventsInterface {
 	#callbacks: Callbacks = [];
 	#targetEl: EventsElementInterface;
 
-	constructor(params: EventParams) {
+	constructor(params: EventParamsInterface) {
 		const { host, target, callbacks, connected } = params;
 
 		this.#targetEl = target ?? host;
@@ -64,6 +64,6 @@ class Events implements EventsInterface {
 	}
 }
 
-export type { Callbacks, EventsInterface, EventsElementInterface, EventParams };
+export type { Callbacks, EventsInterface, EventsElementInterface, EventParamsInterface };
 
 export { Events };

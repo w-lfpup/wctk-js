@@ -1,5 +1,17 @@
 import { Bind, Wc, Microtask } from "wctk";
 
+function getStateFromShadowDOM(shadowRoot) {
+	let el = shadowRoot.querySelector("span");
+	if (el instanceof HTMLSpanElement) {
+		return {
+			el,
+			count: parseInt(el.textContent),
+			receipt: undefined,
+			prevTimestamp: undefined,
+		};
+	}
+}
+
 /*
 	Custom Element with performant and "asynchronous" renders
 	on the microtask queue.
@@ -33,20 +45,7 @@ class Stopwatch extends HTMLElement {
 	}
 
 	pause() {
-		cancelAnimationFrame(this.#state.receipt);
-		this.#state.receipt = undefined;
-	}
-}
-
-function getStateFromShadowDOM(shadowRoot) {
-	let el = shadowRoot.querySelector("span");
-	if (el instanceof HTMLSpanElement) {
-		return {
-			el,
-			count: parseInt(el.textContent),
-			receipt: undefined,
-			prevTimestamp: undefined,
-		};
+		this.#state.receipt = cancelAnimationFrame(this.#state.receipt);
 	}
 }
 

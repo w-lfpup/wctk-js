@@ -1,7 +1,7 @@
 import { Wc, Events } from "wctk";
 
 /*
-	Custom Element that particpates in form value submissions.
+	Form associated custom element.
 */
 class TextInput extends HTMLElement {
 	static formAssociated = true;

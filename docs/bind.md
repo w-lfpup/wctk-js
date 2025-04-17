@@ -17,8 +17,7 @@ class MyElement extends HTMLElement {
 	#bc = new Bind(this, [this.elementCallback];
 
 	elementCallback(e: KeyboardEvent) {
-		// This function is bound on construction!
-		// It can be passed as a callback to event listeners now!
+		// This function can be passed as a callback to event listeners now!
 	}
 }
 ```

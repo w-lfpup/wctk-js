@@ -15,11 +15,11 @@ import { Datastore } from "./some-datastore.js";
 
 let store = new Datastore();
 
-function subscribe(callback) {
+function subscribe(callback): number {
 	return store.subscribe(callback);
 }
 
-function unsubscribe(results): void {
+function unsubscribe(results: number): void {
 	store.unsubscribe(results);
 }
 
@@ -37,8 +37,8 @@ import { datastore, subscribe, unsubscribe } from "./my-store.js";
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
 		host: this,
-		connected: true,
 		callback: this.#update,
+		connected: true,
 		subscribe,
 		unsubscribe,
 	});

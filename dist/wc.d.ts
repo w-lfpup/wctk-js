@@ -3,7 +3,7 @@ interface WcElementInterface {
     attachInternals: HTMLElement["attachInternals"];
     attachShadow: Element["attachShadow"];
 }
-interface WcParams {
+interface WcParamsInterface {
     host: WcElementInterface;
     adoptedStyleSheets?: CSSStyleSheet[];
     shadowRootInit?: ShadowRootInit;
@@ -20,7 +20,7 @@ interface WcInterface {
 }
 declare class Wc implements WcInterface {
     #private;
-    constructor(params: WcParams);
+    constructor(params: WcParamsInterface);
     get declarative(): boolean;
     get shadowRoot(): ShadowRoot;
     get adoptedStyleSheets(): CSSStyleSheet[];

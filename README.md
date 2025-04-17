@@ -1,42 +1,52 @@
-# The Web Component Tool Kit
+# Wctk-JS
 
-Build web components with bare metal browser tools.
-
-No dependencies. No inheritance.
-
-(~3kb unminified uncompressed).
+The web component tool kit.
 
 ## Install
 
 ```bash
-npm install --save-dev https://github.com/wolfpup-software/wctk-js
+npm install --save-dev https://github.com/w-lfpup/wctk-js/
 ```
 
 ## Controllers
 
-A handful of facades let developers:
+A handful of facades:
 
-- create [shadow dom](./docs/wc.md)
-- [bind](./docs/bind.md) functions to elements
+- create [shadow dom](./docs/wc.md) and manage form values
 - listen to [events](./docs/events.md)
-- [subscribe](./docs/subscription.md) to external data
-- add renders to the [micro task](./docs/microtask.md) queue
+- [subscribe](./docs/subscription.md) to external data stores
+- push actions like "renders" to the [micro task](./docs/microtask.md) queue
+- [bind](./docs/bind.md) functions to elements
 
 ## Examples
 
-Click [here](https://wolfpup-software.github.io/wctk-js/examples/) for live examples.
+### SSR (server side rendering)
 
-## DevX
+The following examples demonstrate several common SSR use cases:
 
-I'm a former member of the Lit and Material teams at google.
+- a [counter](https://w-lfpup.github.io/wctk-js/examples/counter/) with initial state in the DOM ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/counter/)).
+- a [stopwatch](https://w-lfpup.github.io/wctk-js/examples/stopwatch/) with initial state in the Shadow DOM ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/stopwatch/)).
+- a [form associated](https://w-lfpup.github.io/wctk-js/examples/form_associated/) element ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/form_associated/)).
 
-I hate decorators. I hate unnecessary inheritance. I like to avoid constructors when I can.
+## About
 
-I want to encapsulate web components entirely (aside from lifecycle methods). I want to work with private functions.
+`Wctk-js` is a concise way to create web components with:
 
-Unfortunately not a single web component library lets me do that. So I made my own.
+- No decorators
+- No (unncessary) inheritance
+- No extra dependencies
 
-Hope it helps.
+`Wctk-js` provides support for:
+
+- Reactivity
+- SSR
+- Events
+- Forms
+- Subscriptions
+
+All features are optional and compositional.
+
+`Wctk-js` supports `#private` functions as callbacks for event listerners and data stores. This fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## License
 

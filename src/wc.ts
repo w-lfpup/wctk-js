@@ -5,7 +5,7 @@ interface WcElementInterface {
 	attachShadow: Element["attachShadow"];
 }
 
-interface WcParams {
+interface WcParamsInterface {
 	host: WcElementInterface;
 	adoptedStyleSheets?: CSSStyleSheet[];
 	shadowRootInit?: ShadowRootInit;
@@ -30,7 +30,7 @@ class Wc implements WcInterface {
 	#internals: ElementInternals;
 	#declarative: boolean;
 
-	constructor(params: WcParams) {
+	constructor(params: WcParamsInterface) {
 		let { host } = params;
 		this.#internals = host.attachInternals();
 		this.#declarative = this.#internals.shadowRoot !== null;
@@ -38,13 +38,13 @@ class Wc implements WcInterface {
 		if (!this.#declarative) {
 			let shadowRootInit = params.shadowRootInit ?? shadowRootInitFallback;
 			host.attachShadow(shadowRootInit);
+
+			let { formValue, formState } = params;
+			if (formValue) this.setFormValue(formValue, formState);
 		}
 
 		let { adoptedStyleSheets } = params;
 		if (adoptedStyleSheets) this.adoptedStyleSheets = adoptedStyleSheets;
-
-		let { formValue, formState } = params;
-		if (formValue) this.setFormValue(formValue, formState);
 	}
 
 	get declarative(): boolean {
