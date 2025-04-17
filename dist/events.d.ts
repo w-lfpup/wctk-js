@@ -7,17 +7,17 @@ interface EventsElementInterface {
     addEventListener: Node["addEventListener"];
     removeEventListener: Node["removeEventListener"];
 }
-interface EventParams {
-    host: Node;
+interface EventParamsInterface {
+    host: EventsElementInterface;
     connected?: boolean;
-    target?: Node;
+    target?: EventsElementInterface;
     callbacks: Callbacks;
 }
 declare class Events implements EventsInterface {
     #private;
-    constructor(params: EventParams);
+    constructor(params: EventParamsInterface);
     connect(): void;
     disconnect(): void;
 }
-export type { Callbacks, EventsInterface, EventsElementInterface, EventParams };
+export type { Callbacks, EventsInterface, EventsElementInterface, EventParamsInterface };
 export { Events };
