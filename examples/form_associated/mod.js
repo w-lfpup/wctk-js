@@ -6,6 +6,7 @@ document.addEventListener("submit", function (e) {
 	if (!(e.target instanceof HTMLFormElement)) return;
 
 	e.preventDefault();
+	
 	let formdata = new FormData(e.target);
 
 	let data = {};

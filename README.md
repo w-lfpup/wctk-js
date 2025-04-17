@@ -1,36 +1,16 @@
-# The Web Component Tool Kit
+# Wctk-JS
 
-Build web components with bare metal browser tools.
-
-## About
-
-`WCTK-js` is the most concise way to create web components:
-
-- No decorators
-- No (unncessary) inheritance
-- No extra dependencies
-
-`WCKT-js` provides support for:
-
-- Reactivity
-- SSR
-- Events
-- Forms
-- Subscriptions
-
-All features are optional and compositional.
-
-`WCTK-js` supports `#private` functions as callbacks for event listerners and data stores. This fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+The web component tool kit.
 
 ## Install
 
 ```bash
-npm install --save-dev https://github.com/w_lfpup/wctk-js
+npm install --save-dev https://github.com/w-lfpup/wctk-js/
 ```
 
 ## Controllers
 
-A handful of facades let developers:
+A handful of facades:
 
 - create [shadow dom](./docs/wc.md) and manage form values
 - listen to [events](./docs/events.md)
@@ -44,9 +24,29 @@ A handful of facades let developers:
 
 The following examples demonstrate several common SSR use cases:
 
-- a [counter](https://w_lfpup.github.io/wctk-js/examples/counter/) that queries the DOM for initial state ([code](https://github.com/wolfpup-software/wctk-js/tree/main/examples/counter/)).
-- a [stopwatch](https://w_lfpup.github.io/wctk-js/examples/stopwatch/) that queries the Shadow DOM for initial state ([code](https://github.com/wolfpup-software/wctk-js/tree/main/examples/stopwatch/)).
-- a [form associated element](https://w_lfpup.github.io/wctk-js/examples/form_associated/) ([code](https://github.com/wolfpup-software/wctk-js/tree/main/examples/form_associated/)).
+- a [counter](https://w-lfpup.github.io/wctk-js/examples/counter/) with initial state in the DOM ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/counter/)).
+- a [stopwatch](https://w-lfpup.github.io/wctk-js/examples/stopwatch/) with initial state in the Shadow DOM ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/stopwatch/)).
+- a [form associated](https://w-lfpup.github.io/wctk-js/examples/form_associated/) element ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/form_associated/)).
+
+## About
+
+`Wctk-js` is a concise way to create web components with:
+
+- No decorators
+- No (unncessary) inheritance
+- No extra dependencies
+
+`Wctk-js` provides support for:
+
+- Reactivity
+- SSR
+- Events
+- Forms
+- Subscriptions
+
+All features are optional and compositional.
+
+`Wctk-js` supports `#private` functions as callbacks for event listerners and data stores. This fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## License
 

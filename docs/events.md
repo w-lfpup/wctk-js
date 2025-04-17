@@ -36,8 +36,8 @@ class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
 	#ec = new Events({
 		host: this,
-		connected: true,
 		target: this.#wc.shadowRoot,
+		connected: true,
 		callbacks: [
 			["click", this.#onClick],
 			["pointerover", this.#onPointerOver],
@@ -58,7 +58,7 @@ class MyElement extends HTMLElement {
 
 The `Events` controller can participate in web component lifecycle methods.
 
-In the example below the `connected` property is not included. It has a fallback value of `false`.
+In the example below, the `connected` property is not included. It has a fallback value of `false`.
 
 So the `Events` controller should be connected during the component's lifecycle methods:
 
