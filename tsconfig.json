@@ -5,6 +5,7 @@
 		"lib": ["DOM", "ESNext"],
 		"module": "ESNext",
 		"target": "ESNext",
+		"strict": true,
 		"declaration": true
 	}
 }

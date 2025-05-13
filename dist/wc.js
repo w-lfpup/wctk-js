@@ -26,10 +26,11 @@ class Wc {
         return this.#internals.shadowRoot;
     }
     get adoptedStyleSheets() {
-        return this.#internals.shadowRoot.adoptedStyleSheets;
+        return this.#internals.shadowRoot?.adoptedStyleSheets ?? [];
     }
     set adoptedStyleSheets(stylesheets) {
-        this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
+        if (this.#internals.shadowRoot)
+            this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
     }
     checkValidity() {
         return this.#internals.checkValidity();

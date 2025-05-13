@@ -1,5 +1,5 @@
 type Subscribe<E, A> = (cb: E) => A;
-type Unsubscribe<A> = (results: A) => void;
+type Unsubscribe<A> = (affect?: A) => void;
 
 interface SubscriptionInterface {
 	connect(): void;

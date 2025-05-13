@@ -5,7 +5,7 @@ class Bind {
 			if (cb instanceof Function) {
 				let name = cb.name;
 				if (name && !name.startsWith("#")) {
-					el[name] = cb.bind(el);
+					el[name as keyof Object] = cb.bind(el);
 				}
 			}
 		}
