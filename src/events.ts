@@ -17,8 +17,8 @@ interface EventParamsInterface {
 	callbacks: Callbacks;
 }
 
-function bindCallbacks(el: Object, callbacks: Callbacks) {
-	let events = [];
+function bindCallbacks(el: Object, callbacks: Callbacks): Callbacks {
+	let events: Callbacks = [];
 	for (let [name, cb] of callbacks) {
 		let callback = cb;
 		if (cb instanceof Function) {
@@ -64,6 +64,11 @@ class Events implements EventsInterface {
 	}
 }
 
-export type { Callbacks, EventsInterface, EventsElementInterface, EventParamsInterface };
+export type {
+	Callbacks,
+	EventsInterface,
+	EventsElementInterface,
+	EventParamsInterface,
+};
 
 export { Events };

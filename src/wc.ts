@@ -15,7 +15,7 @@ interface WcParamsInterface {
 
 interface WcInterface {
 	readonly declarative: boolean;
-	readonly shadowRoot: ShadowRoot;
+	readonly shadowRoot: ShadowRoot | null;
 	adoptedStyleSheets: DocumentOrShadowRoot["adoptedStyleSheets"];
 	setFormValue: ElementInternals["setFormValue"];
 	setValidity: ElementInternals["setValidity"];
@@ -51,16 +51,17 @@ class Wc implements WcInterface {
 		return this.#declarative;
 	}
 
-	get shadowRoot(): ShadowRoot {
+	get shadowRoot(): ShadowRoot | null {
 		return this.#internals.shadowRoot;
 	}
 
 	get adoptedStyleSheets(): CSSStyleSheet[] {
-		return this.#internals.shadowRoot.adoptedStyleSheets;
+		return this.#internals.shadowRoot?.adoptedStyleSheets ?? [];
 	}
 
 	set adoptedStyleSheets(stylesheets: CSSStyleSheet[]) {
-		this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
+		if (this.#internals.shadowRoot)
+			this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
 	}
 
 	checkValidity() {
