@@ -17,30 +17,16 @@ interface EventParamsInterface {
 	callbacks: Callbacks;
 }
 
-function bindCallbacks(el: Object, callbacks: Callbacks): Callbacks {
-	let events: Callbacks = [];
-	for (let [name, cb] of callbacks) {
-		let callback = cb;
-		if (cb instanceof Function) {
-			callback = cb.bind(el);
-		}
-
-		events.push([name, callback]);
-	}
-
-	return events;
-}
-
 class Events implements EventsInterface {
 	#connected: boolean = false;
 	#callbacks: Callbacks = [];
-	#targetEl: EventsElementInterface;
+	#target: EventsElementInterface;
 
 	constructor(params: EventParamsInterface) {
 		const { host, target, callbacks, connected } = params;
 
-		this.#targetEl = target ?? host;
-		this.#callbacks = bindCallbacks(host, callbacks);
+		this.#target = target ?? host;
+		this.#callbacks = getBoundCallbacks(this.#target, callbacks);
 
 		if (connected) this.connect();
 	}
@@ -50,7 +36,7 @@ class Events implements EventsInterface {
 		this.#connected = true;
 
 		for (let [name, callback] of this.#callbacks) {
-			this.#targetEl.addEventListener(name, callback);
+			this.#target.addEventListener(name, callback);
 		}
 	}
 
@@ -59,9 +45,22 @@ class Events implements EventsInterface {
 		this.#connected = false;
 
 		for (let [name, callback] of this.#callbacks) {
-			this.#targetEl.removeEventListener(name, callback);
+			this.#target.removeEventListener(name, callback);
 		}
 	}
+}
+
+function getBoundCallbacks(el: Object, callbacks: Callbacks): Callbacks {
+	let events: Callbacks = [];
+	for (let [name, callback] of callbacks) {
+		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+			callback = callback.bind(el);
+		}
+
+		events.push([name, callback]);
+	}
+
+	return events;
 }
 
 export type {
