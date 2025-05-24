@@ -34,9 +34,9 @@ class QuerySelector implements QuerySelectorInterface {
 function getQueries(
 	params: QuerySelectorParamsInterface,
 ): Map<string, NodeListOf<Element>> {
-	let { target, selectors } = params;
+	const { target, selectors } = params;
 
-	let queries = new Map<string, NodeListOf<Element>>();
+	const queries = new Map<string, NodeListOf<Element>>();
 	for (let [name, query] of selectors) {
 		const queried = target.querySelectorAll(query);
 		queries.set(name, queried);
