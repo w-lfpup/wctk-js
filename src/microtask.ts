@@ -1,4 +1,4 @@
-interface MicrotaskParamsInterface<E extends Object> {
+interface MicrotaskParamsInterface<E> {
 	target: E;
 	callbacks: Function[];
 }
