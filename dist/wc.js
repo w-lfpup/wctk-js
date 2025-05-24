@@ -2,19 +2,20 @@ const shadowRootInitFallback = {
     mode: "closed",
 };
 class Wc {
+    #declarative = true;
     #internals;
-    #declarative;
+    #shadowRoot;
     constructor(params) {
-        let { host } = params;
+        let { host, shadowRootInit, adoptedStyleSheets, formValue, formState } = params;
         this.#internals = host.attachInternals();
-        this.#declarative = null !== this.#internals.shadowRoot;
-        if (!this.#declarative) {
-            let { shadowRootInit, formValue, formState } = params;
-            host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
-            if (formValue)
-                this.setFormValue(formValue, formState);
+        let { shadowRoot } = this.#internals;
+        if (!shadowRoot) {
+            this.#declarative = false;
+            shadowRoot = host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
         }
-        let { adoptedStyleSheets } = params;
+        this.#shadowRoot = shadowRoot;
+        if (formValue)
+            this.setFormValue(formValue, formState);
         if (adoptedStyleSheets)
             this.adoptedStyleSheets = adoptedStyleSheets;
     }
@@ -22,15 +23,13 @@ class Wc {
         return this.#declarative;
     }
     get shadowRoot() {
-        return this.#internals.shadowRoot;
+        return this.#shadowRoot;
     }
     get adoptedStyleSheets() {
-        return this.#internals.shadowRoot?.adoptedStyleSheets ?? [];
+        return this.#shadowRoot.adoptedStyleSheets ?? [];
     }
     set adoptedStyleSheets(stylesheets) {
-        let { shadowRoot } = this.#internals;
-        if (shadowRoot)
-            shadowRoot.adoptedStyleSheets = stylesheets;
+        this.#shadowRoot.adoptedStyleSheets = stylesheets;
     }
     checkValidity() {
         return this.#internals.checkValidity();
