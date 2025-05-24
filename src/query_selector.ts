@@ -4,12 +4,12 @@ interface QuerySelectorParamsInterface {
 }
 
 interface QuerySelectorInterface {
-	refresh(): void;
+	query(): void;
 	get(name: string): Element | undefined;
 	getAll(name: string): NodeListOf<Element> | undefined;
 }
 
-class QuerySelector {
+class QuerySelector implements QuerySelectorInterface {
 	#params: QuerySelectorParamsInterface;
 	#queries: Map<string, NodeListOf<Element>>;
 
@@ -18,7 +18,7 @@ class QuerySelector {
 		this.#queries = getQueries(params);
 	}
 
-	refresh() {
+	query() {
 		this.#queries = getQueries(this.#params);
 	}
 
