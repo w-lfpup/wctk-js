@@ -18,11 +18,11 @@ class Microtask {
     }
 }
 function getBoundCallbacks(params) {
-    let { target, callbacks } = params;
+    let { host, callbacks } = params;
     let boundCallbacks = [];
     for (let callback of callbacks) {
         if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
-            callback = callback.bind(target);
+            callback = callback.bind(host);
         }
         boundCallbacks.push(callback);
     }
