@@ -29,21 +29,21 @@ const shadowRootInitFallback: ShadowRootInit = {
 
 class Wc implements WcInterface {
 	#internals: ElementInternals;
-	#declarative: boolean;
+	#shadowRoot: ShadowRoot;
+	#declarative: boolean = true;
 
 	constructor(params: WcParamsInterface) {
-		let { host } = params;
+		let { host, shadowRootInit, adoptedStyleSheets, formValue, formState } = params;
 		this.#internals = host.attachInternals();
-		this.#declarative = null !== this.#internals.shadowRoot;
 
-		if (!this.#declarative) {
-			let { shadowRootInit, formValue, formState } = params;
-
-			host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
-			if (formValue) this.setFormValue(formValue, formState);
+		let {shadowRoot} = this.#internals;
+		if (!shadowRoot) {
+			this.#declarative = false;
+			shadowRoot = host.attachShadow(shadowRootInit ?? shadowRootInitFallback)
 		}
-
-		let { adoptedStyleSheets } = params;
+		this.#shadowRoot = shadowRoot;
+		
+		if (formValue) this.setFormValue(formValue, formState);
 		if (adoptedStyleSheets) this.adoptedStyleSheets = adoptedStyleSheets;
 	}
 
@@ -51,17 +51,16 @@ class Wc implements WcInterface {
 		return this.#declarative;
 	}
 
-	get shadowRoot(): ShadowRoot | null {
-		return this.#internals.shadowRoot;
+	get shadowRoot(): ShadowRoot {
+		return this.#shadowRoot;
 	}
 
 	get adoptedStyleSheets(): CSSStyleSheet[] {
-		return this.#internals.shadowRoot?.adoptedStyleSheets ?? [];
+		return this.#shadowRoot.adoptedStyleSheets ?? [];
 	}
 
 	set adoptedStyleSheets(stylesheets: CSSStyleSheet[]) {
-		let { shadowRoot } = this.#internals;
-		if (shadowRoot) shadowRoot.adoptedStyleSheets = stylesheets;
+		this.#shadowRoot.adoptedStyleSheets = stylesheets;
 	}
 
 	checkValidity() {
