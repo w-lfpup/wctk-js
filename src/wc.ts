@@ -29,21 +29,22 @@ const shadowRootInitFallback: ShadowRootInit = {
 
 class Wc implements WcInterface {
 	#declarative: boolean = true;
-	
+
 	#internals: ElementInternals;
 	#shadowRoot: ShadowRoot;
 
 	constructor(params: WcParamsInterface) {
-		let { host, shadowRootInit, adoptedStyleSheets, formValue, formState } = params;
+		let { host, shadowRootInit, adoptedStyleSheets, formValue, formState } =
+			params;
 		this.#internals = host.attachInternals();
 
-		let {shadowRoot} = this.#internals;
+		let { shadowRoot } = this.#internals;
 		if (!shadowRoot) {
 			this.#declarative = false;
-			shadowRoot = host.attachShadow(shadowRootInit ?? shadowRootInitFallback)
+			shadowRoot = host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
 		}
 		this.#shadowRoot = shadowRoot;
-		
+
 		if (formValue) this.setFormValue(formValue, formState);
 		if (adoptedStyleSheets) this.adoptedStyleSheets = adoptedStyleSheets;
 	}
