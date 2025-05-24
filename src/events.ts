@@ -26,7 +26,7 @@ class Events implements EventsInterface {
 		const { host, target, callbacks, connected } = params;
 
 		this.#target = target ?? host;
-		this.#callbacks = getBoundCallbacks(this.#target, callbacks);
+		this.#callbacks = getBoundCallbacks(host, callbacks);
 
 		if (connected) this.connect();
 	}
@@ -50,11 +50,11 @@ class Events implements EventsInterface {
 	}
 }
 
-function getBoundCallbacks(el: Object, callbacks: Callbacks): Callbacks {
+function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
 	let events: Callbacks = [];
 	for (let [name, callback] of callbacks) {
-		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
-			callback = callback.bind(el);
+		if (!callback.hasOwnProperty('prototype') && callback instanceof Function) {
+			callback = callback.bind(host);
 		}
 
 		events.push([name, callback]);

@@ -5,7 +5,7 @@ class Events {
     constructor(params) {
         const { host, target, callbacks, connected } = params;
         this.#target = target ?? host;
-        this.#callbacks = getBoundCallbacks(this.#target, callbacks);
+        this.#callbacks = getBoundCallbacks(host, callbacks);
         if (connected)
             this.connect();
     }
@@ -26,11 +26,14 @@ class Events {
         }
     }
 }
-function getBoundCallbacks(el, callbacks) {
+function getBoundCallbacks(host, callbacks) {
+    console.log("trying to bind events!");
     let events = [];
     for (let [name, callback] of callbacks) {
-        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
-            callback = callback.bind(el);
+        console.log(name, callback.hasOwnProperty('prototype'));
+        if (!callback.hasOwnProperty('prototype') && callback instanceof Function) {
+            console.log("binding a function!:", callback.name);
+            callback = callback.bind(host);
         }
         events.push([name, callback]);
     }

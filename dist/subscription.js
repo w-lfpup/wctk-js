@@ -9,7 +9,7 @@ class Subscription {
         this.#subscribe = subscribe;
         this.#unsubscribe = unsubscribe;
         this.#callback = callback;
-        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+        if (callback.hasOwnProperty("prototype") && callback instanceof Function) {
             this.#callback = callback.bind(host);
         }
         if (connected)

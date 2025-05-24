@@ -28,7 +28,7 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 		this.#unsubscribe = unsubscribe;
 
 		this.#callback = callback;
-		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+		if (callback.hasOwnProperty("prototype") && callback instanceof Function) {
 			this.#callback = callback.bind(host);
 		}
 

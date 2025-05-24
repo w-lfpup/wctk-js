@@ -1,6 +1,6 @@
 interface QuerySelectorParamsInterface {
 	target: Element | ShadowRoot | Document;
-	selectors: [string, string][];
+	selectors: Array<[string, string]>;
 }
 
 interface QuerySelectorInterface {
