@@ -12,7 +12,7 @@ interface WcParamsInterface {
 }
 interface WcInterface {
     readonly declarative: boolean;
-    readonly shadowRoot: ShadowRoot | null;
+    readonly shadowRoot: ShadowRoot;
     adoptedStyleSheets: DocumentOrShadowRoot["adoptedStyleSheets"];
     setFormValue: ElementInternals["setFormValue"];
     setValidity: ElementInternals["setValidity"];
@@ -22,7 +22,7 @@ declare class Wc implements WcInterface {
     #private;
     constructor(params: WcParamsInterface);
     get declarative(): boolean;
-    get shadowRoot(): ShadowRoot | null;
+    get shadowRoot(): ShadowRoot;
     get adoptedStyleSheets(): CSSStyleSheet[];
     set adoptedStyleSheets(stylesheets: CSSStyleSheet[]);
     checkValidity(): boolean;
