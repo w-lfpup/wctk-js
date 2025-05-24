@@ -1,5 +1,5 @@
 interface BindParamsInterface {
-    target: Object;
+    host: Object;
     callbacks: Function[];
 }
 declare class Bind {

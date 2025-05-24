@@ -1,5 +1,5 @@
 interface MicrotaskParamsInterface<E> {
-	target: E;
+	host: E;
 	callbacks: Function[];
 }
 
@@ -32,12 +32,12 @@ class Microtask<E extends Object> implements MicrotaskInterface {
 function getBoundCallbacks<E extends Object>(
 	params: MicrotaskParamsInterface<E>,
 ): Function[] {
-	let { target, callbacks } = params;
+	let { host, callbacks } = params;
 
 	let boundCallbacks: Function[] = [];
 	for (let callback of callbacks) {
 		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
-			callback = callback.bind(target);
+			callback = callback.bind(host);
 		}
 
 		boundCallbacks.push(callback);

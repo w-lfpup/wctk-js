@@ -1,5 +1,5 @@
 interface MicrotaskParamsInterface<E> {
-    target: E;
+    host: E;
     callbacks: Function[];
 }
 interface MicrotaskInterface {

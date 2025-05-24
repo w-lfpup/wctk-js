@@ -1,11 +1,11 @@
 interface BindParamsInterface {
-	target: Object;
+	host: Object;
 	callbacks: Function[];
 }
 
 class Bind {
 	constructor(params: BindParamsInterface) {
-		let { target, callbacks } = params;
+		let { host, callbacks } = params;
 
 		for (let callback of callbacks) {
 			// do not bind and replace already bound functions
@@ -13,7 +13,7 @@ class Bind {
 			if (callback instanceof Function) {
 				let { name } = callback;
 				if (!name.startsWith("#"))
-					target[name as keyof typeof target] = callback.bind(target);
+					host[name as keyof typeof host] = callback.bind(host);
 			}
 		}
 	}
