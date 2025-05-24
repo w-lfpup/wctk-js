@@ -5,7 +5,7 @@ class QuerySelector {
         this.#params = params;
         this.#queries = getQueries(params);
     }
-    refresh() {
+    query() {
         this.#queries = getQueries(this.#params);
     }
     get(name) {
@@ -16,8 +16,8 @@ class QuerySelector {
     }
 }
 function getQueries(params) {
-    let { target, selectors } = params;
-    let queries = new Map();
+    const { target, selectors } = params;
+    const queries = new Map();
     for (let [name, query] of selectors) {
         const queried = target.querySelectorAll(query);
         queries.set(name, queried);

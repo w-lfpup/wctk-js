@@ -1,4 +1,8 @@
+interface BindParamsInterface {
+    target: Object;
+    callbacks: Function[];
+}
 declare class Bind {
-    constructor(el: Object, callbacks: Function[]);
+    constructor(params: BindParamsInterface);
 }
 export { Bind };

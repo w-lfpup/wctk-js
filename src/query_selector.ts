@@ -1,15 +1,15 @@
 interface QuerySelectorParamsInterface {
 	target: Element | ShadowRoot | Document;
-	selectors: [string, string][];
+	selectors: Array<[string, string]>;
 }
 
 interface QuerySelectorInterface {
-	refresh(): void;
+	query(): void;
 	get(name: string): Element | undefined;
 	getAll(name: string): NodeListOf<Element> | undefined;
 }
 
-class QuerySelector {
+class QuerySelector implements QuerySelectorInterface {
 	#params: QuerySelectorParamsInterface;
 	#queries: Map<string, NodeListOf<Element>>;
 
@@ -18,7 +18,7 @@ class QuerySelector {
 		this.#queries = getQueries(params);
 	}
 
-	refresh() {
+	query() {
 		this.#queries = getQueries(this.#params);
 	}
 
@@ -34,9 +34,9 @@ class QuerySelector {
 function getQueries(
 	params: QuerySelectorParamsInterface,
 ): Map<string, NodeListOf<Element>> {
-	let { target, selectors } = params;
+	const { target, selectors } = params;
 
-	let queries = new Map<string, NodeListOf<Element>>();
+	const queries = new Map<string, NodeListOf<Element>>();
 	for (let [name, query] of selectors) {
 		const queried = target.querySelectorAll(query);
 		queries.set(name, queried);

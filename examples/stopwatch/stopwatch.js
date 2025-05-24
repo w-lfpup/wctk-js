@@ -1,25 +1,13 @@
 import { Bind, Wc, Microtask } from "wctk";
 
-function getStateFromShadowDOM(shadowRoot) {
-	let el = shadowRoot.querySelector("span");
-	if (el instanceof HTMLSpanElement) {
-		return {
-			el,
-			count: parseInt(el.textContent),
-			receipt: undefined,
-			prevTimestamp: undefined,
-		};
-	}
-}
-
 /*
 	Custom Element with performant and "asynchronous" renders
 	on the microtask queue.
 */
 class Stopwatch extends HTMLElement {
 	#wc = new Wc({ host: this });
-	#rc = new Microtask(this, [this.#render]);
-	#bc = new Bind(this, [this.update]);
+	#rc = new Microtask({ target: this, callbacks: [this.#render] });
+	#bc = new Bind({ target: this, callbacks: [this.update] });
 
 	#state = getStateFromShadowDOM(this.#wc.shadowRoot);
 
@@ -46,6 +34,18 @@ class Stopwatch extends HTMLElement {
 
 	pause() {
 		this.#state.receipt = cancelAnimationFrame(this.#state.receipt);
+	}
+}
+
+function getStateFromShadowDOM(shadowRoot) {
+	let el = shadowRoot.querySelector("span");
+	if (el instanceof HTMLSpanElement) {
+		return {
+			el,
+			count: parseInt(el.textContent),
+			receipt: undefined,
+			prevTimestamp: undefined,
+		};
 	}
 }
 

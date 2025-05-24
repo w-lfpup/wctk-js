@@ -1,15 +1,19 @@
+interface MicrotaskParamsInterface<E> {
+	target: E;
+	callbacks: Function[];
+}
+
 interface MicrotaskInterface {
 	queue(): void;
 }
 
-class Microtask implements MicrotaskInterface {
+class Microtask<E extends Object> implements MicrotaskInterface {
 	#queued = false;
-	#callbacks: Function[] = [];
+	#callbacks: Function[];
 
-	constructor(el: Object, callbacks: Function[]) {
-		for (let callback of callbacks) {
-			this.#callbacks.push(callback.bind(el));
-		}
+	constructor(params: MicrotaskParamsInterface<E>) {
+		this.queue = this.queue.bind(this);
+		this.#callbacks = getBoundCallbacks(params);
 	}
 
 	queue() {
@@ -23,6 +27,23 @@ class Microtask implements MicrotaskInterface {
 			}
 		});
 	}
+}
+
+function getBoundCallbacks<E extends Object>(
+	params: MicrotaskParamsInterface<E>,
+): Function[] {
+	let { target, callbacks } = params;
+
+	let boundCallbacks: Function[] = [];
+	for (let callback of callbacks) {
+		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+			callback = callback.bind(target);
+		}
+
+		boundCallbacks.push(callback);
+	}
+
+	return boundCallbacks;
 }
 
 export type { MicrotaskInterface };

@@ -1,11 +1,14 @@
 class Bind {
-    constructor(el, callbacks) {
-        // do not bind and replace anonymous functions or private methods
-        for (let cb of callbacks) {
-            if (cb instanceof Function) {
-                let name = cb.name;
-                if (name && !name.startsWith("#"))
-                    el[name] = cb.bind(el);
+    constructor(params) {
+        let { target, callbacks } = params;
+        for (let callback of callbacks) {
+            // do not bind and replace already bound functions
+            if (callback.hasOwnProperty("prototype"))
+                continue;
+            if (callback instanceof Function) {
+                let { name } = callback;
+                if (!name.startsWith("#"))
+                    target[name] = callback.bind(target);
             }
         }
     }

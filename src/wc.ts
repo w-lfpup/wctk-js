@@ -1,3 +1,4 @@
+// needed because typescript itself does not create a similar type
 type FormDataTypes = File | string | FormData;
 
 interface WcElementInterface {
@@ -33,13 +34,12 @@ class Wc implements WcInterface {
 	constructor(params: WcParamsInterface) {
 		let { host } = params;
 		this.#internals = host.attachInternals();
-		this.#declarative = this.#internals.shadowRoot !== null;
+		this.#declarative = null !== this.#internals.shadowRoot;
 
 		if (!this.#declarative) {
-			let shadowRootInit = params.shadowRootInit ?? shadowRootInitFallback;
-			host.attachShadow(shadowRootInit);
+			let { shadowRootInit, formValue, formState } = params;
 
-			let { formValue, formState } = params;
+			host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
 			if (formValue) this.setFormValue(formValue, formState);
 		}
 
@@ -60,8 +60,8 @@ class Wc implements WcInterface {
 	}
 
 	set adoptedStyleSheets(stylesheets: CSSStyleSheet[]) {
-		if (this.#internals.shadowRoot)
-			this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
+		let { shadowRoot } = this.#internals;
+		if (shadowRoot) shadowRoot.adoptedStyleSheets = stylesheets;
 	}
 
 	checkValidity() {

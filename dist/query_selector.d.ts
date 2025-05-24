@@ -1,16 +1,16 @@
 interface QuerySelectorParamsInterface {
     target: Element | ShadowRoot | Document;
-    selectors: [string, string][];
+    selectors: Array<[string, string]>;
 }
 interface QuerySelectorInterface {
-    refresh(): void;
+    query(): void;
     get(name: string): Element | undefined;
     getAll(name: string): NodeListOf<Element> | undefined;
 }
-declare class QuerySelector {
+declare class QuerySelector implements QuerySelectorInterface {
     #private;
     constructor(params: QuerySelectorParamsInterface);
-    refresh(): void;
+    query(): void;
     get(name: string): Element | undefined;
     getAll(name: string): NodeListOf<Element> | undefined;
 }

@@ -7,11 +7,10 @@ class Wc {
     constructor(params) {
         let { host } = params;
         this.#internals = host.attachInternals();
-        this.#declarative = this.#internals.shadowRoot !== null;
+        this.#declarative = null !== this.#internals.shadowRoot;
         if (!this.#declarative) {
-            let shadowRootInit = params.shadowRootInit ?? shadowRootInitFallback;
-            host.attachShadow(shadowRootInit);
-            let { formValue, formState } = params;
+            let { shadowRootInit, formValue, formState } = params;
+            host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
             if (formValue)
                 this.setFormValue(formValue, formState);
         }
@@ -29,8 +28,9 @@ class Wc {
         return this.#internals.shadowRoot?.adoptedStyleSheets ?? [];
     }
     set adoptedStyleSheets(stylesheets) {
-        if (this.#internals.shadowRoot)
-            this.#internals.shadowRoot.adoptedStyleSheets = stylesheets;
+        let { shadowRoot } = this.#internals;
+        if (shadowRoot)
+            shadowRoot.adoptedStyleSheets = stylesheets;
     }
     checkValidity() {
         return this.#internals.checkValidity();
