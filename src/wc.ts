@@ -16,7 +16,7 @@ interface WcParamsInterface {
 
 interface WcInterface {
 	readonly declarative: boolean;
-	readonly shadowRoot: ShadowRoot | null;
+	readonly shadowRoot: ShadowRoot;
 	adoptedStyleSheets: DocumentOrShadowRoot["adoptedStyleSheets"];
 	setFormValue: ElementInternals["setFormValue"];
 	setValidity: ElementInternals["setValidity"];
