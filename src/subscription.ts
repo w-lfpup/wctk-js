@@ -9,7 +9,7 @@ interface SubscriptionInterface {
 interface SubscriptionParamsInterface<E, A> {
 	host: Object;
 	connected?: boolean;
-	callback: Function;
+	callback: E;
 	subscribe: Subscribe<E, A>;
 	unsubscribe: Unsubscribe<A>;
 }
@@ -23,10 +23,14 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 
 	constructor(params: SubscriptionParamsInterface<E, A>) {
 		let { host, callback, connected, subscribe, unsubscribe } = params;
-
-		this.#callback = callback.bind(host);
+		
 		this.#subscribe = subscribe;
 		this.#unsubscribe = unsubscribe;
+
+		this.#callback = callback;
+		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+			this.#callback = callback.bind(host);
+		}
 
 		if (connected) this.connect();
 	}
