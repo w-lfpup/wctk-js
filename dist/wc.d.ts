@@ -30,5 +30,5 @@ declare class Wc implements WcInterface {
     setFormValue(value: FormDataTypes, state?: FormDataTypes): void;
     setValidity(flags?: ValidityStateFlags, message?: string, anchor?: HTMLElement): void;
 }
-export type { WcInterface, WcElementInterface };
+export type { WcInterface, WcElementInterface, WcParamsInterface };
 export { Wc };

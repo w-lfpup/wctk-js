@@ -4,9 +4,7 @@ class Bind {
 		for (let cb of callbacks) {
 			if (cb instanceof Function) {
 				let name = cb.name as keyof Object;
-				if (name && !name.startsWith("#")) {
-					el[name] = cb.bind(el);
-				}
+				if (name && !name.startsWith("#")) el[name] = cb.bind(el);
 			}
 		}
 	}

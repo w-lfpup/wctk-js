@@ -46,4 +46,5 @@ function getQueries(
 }
 
 export type { QuerySelectorInterface, QuerySelectorParamsInterface };
+
 export { QuerySelector };

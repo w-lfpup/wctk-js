@@ -85,6 +85,6 @@ class Wc implements WcInterface {
 	}
 }
 
-export type { WcInterface, WcElementInterface };
+export type { WcInterface, WcElementInterface, WcParamsInterface };
 
 export { Wc };
