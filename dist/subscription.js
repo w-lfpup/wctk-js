@@ -6,9 +6,12 @@ class Subscription {
     #unsubscribe;
     constructor(params) {
         let { host, callback, connected, subscribe, unsubscribe } = params;
-        this.#callback = callback.bind(host);
         this.#subscribe = subscribe;
         this.#unsubscribe = unsubscribe;
+        this.#callback = callback;
+        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+            this.#callback = callback.bind(host);
+        }
         if (connected)
             this.connect();
     }

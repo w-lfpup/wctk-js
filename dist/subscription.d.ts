@@ -7,7 +7,7 @@ interface SubscriptionInterface {
 interface SubscriptionParamsInterface<E, A> {
     host: Object;
     connected?: boolean;
-    callback: Function;
+    callback: E;
     subscribe: Subscribe<E, A>;
     unsubscribe: Unsubscribe<A>;
 }

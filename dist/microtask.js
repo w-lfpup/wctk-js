@@ -1,10 +1,9 @@
 class Microtask {
     #queued = false;
-    #callbacks = [];
-    constructor(el, callbacks) {
-        for (let callback of callbacks) {
-            this.#callbacks.push(callback.bind(el));
-        }
+    #callbacks;
+    constructor(params) {
+        this.queue = this.queue.bind(this);
+        this.#callbacks = getBoundCallbacks(params);
     }
     queue() {
         if (this.#queued)
@@ -17,5 +16,16 @@ class Microtask {
             }
         });
     }
+}
+function getBoundCallbacks(params) {
+    let { target, callbacks } = params;
+    let boundCallbacks = [];
+    for (let callback of callbacks) {
+        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+            callback = callback.bind(target);
+        }
+        boundCallbacks.push(callback);
+    }
+    return boundCallbacks;
 }
 export { Microtask };

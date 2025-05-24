@@ -23,7 +23,7 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 
 	constructor(params: SubscriptionParamsInterface<E, A>) {
 		let { host, callback, connected, subscribe, unsubscribe } = params;
-		
+
 		this.#subscribe = subscribe;
 		this.#unsubscribe = unsubscribe;
 

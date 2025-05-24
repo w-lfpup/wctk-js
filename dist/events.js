@@ -1,22 +1,11 @@
-function bindCallbacks(el, callbacks) {
-    let events = [];
-    for (let [name, cb] of callbacks) {
-        let callback = cb;
-        if (cb instanceof Function) {
-            callback = cb.bind(el);
-        }
-        events.push([name, callback]);
-    }
-    return events;
-}
 class Events {
     #connected = false;
     #callbacks = [];
-    #targetEl;
+    #target;
     constructor(params) {
         const { host, target, callbacks, connected } = params;
-        this.#targetEl = target ?? host;
-        this.#callbacks = bindCallbacks(host, callbacks);
+        this.#target = target ?? host;
+        this.#callbacks = getBoundCallbacks(this.#target, callbacks);
         if (connected)
             this.connect();
     }
@@ -25,7 +14,7 @@ class Events {
             return;
         this.#connected = true;
         for (let [name, callback] of this.#callbacks) {
-            this.#targetEl.addEventListener(name, callback);
+            this.#target.addEventListener(name, callback);
         }
     }
     disconnect() {
@@ -33,8 +22,18 @@ class Events {
             return;
         this.#connected = false;
         for (let [name, callback] of this.#callbacks) {
-            this.#targetEl.removeEventListener(name, callback);
+            this.#target.removeEventListener(name, callback);
         }
     }
+}
+function getBoundCallbacks(el, callbacks) {
+    let events = [];
+    for (let [name, callback] of callbacks) {
+        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+            callback = callback.bind(el);
+        }
+        events.push([name, callback]);
+    }
+    return events;
 }
 export { Events };
