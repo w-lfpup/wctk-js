@@ -28,9 +28,10 @@ const shadowRootInitFallback: ShadowRootInit = {
 };
 
 class Wc implements WcInterface {
+	#declarative: boolean = true;
+	
 	#internals: ElementInternals;
 	#shadowRoot: ShadowRoot;
-	#declarative: boolean = true;
 
 	constructor(params: WcParamsInterface) {
 		let { host, shadowRootInit, adoptedStyleSheets, formValue, formState } = params;
