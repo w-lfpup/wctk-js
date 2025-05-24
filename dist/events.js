@@ -27,12 +27,9 @@ class Events {
     }
 }
 function getBoundCallbacks(host, callbacks) {
-    console.log("trying to bind events!");
     let events = [];
     for (let [name, callback] of callbacks) {
-        console.log(name, callback.hasOwnProperty('prototype'));
-        if (!callback.hasOwnProperty('prototype') && callback instanceof Function) {
-            console.log("binding a function!:", callback.name);
+        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
             callback = callback.bind(host);
         }
         events.push([name, callback]);
