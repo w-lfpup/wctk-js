@@ -9,7 +9,7 @@ export type {
 export type {
 	QuerySelectorParamsInterface,
 	QuerySelectorInterface,
-} from "query_selector.ts";
+} from "./query_selector.ts";
 export type { WcInterface, WcParamsInterface } from "./wc.ts";
 
 export { Bind } from "./bind.js";
