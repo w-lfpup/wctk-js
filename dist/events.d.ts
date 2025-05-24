@@ -19,5 +19,5 @@ declare class Events implements EventsInterface {
     connect(): void;
     disconnect(): void;
 }
-export type { Callbacks, EventsInterface, EventsElementInterface, EventParamsInterface };
+export type { Callbacks, EventsInterface, EventsElementInterface, EventParamsInterface, };
 export { Events };
