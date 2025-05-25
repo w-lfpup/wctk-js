@@ -1,4 +1,4 @@
-export type { Callbacks, EventsInterface, EventParamsInterface } from "./events.ts";
+export type { Callbacks, EventsInterface, EventParamsInterface, } from "./events.ts";
 export type { MicrotaskInterface } from "./microtask.ts";
 export type { Subscribe, Unsubscribe, SubscriptionInterface, SubscriptionParamsInterface, } from "./subscription.ts";
 export type { QuerySelectorParamsInterface, QuerySelectorInterface, } from "./query_selector.ts";
