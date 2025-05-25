@@ -12,7 +12,7 @@ class Microtask<E extends Object> implements MicrotaskInterface {
 	#callbacks: Function[];
 
 	constructor(params: MicrotaskParamsInterface<E>) {
-		this.queue = this.queue.bind(this);
+		// this.queue = this.queue.bind(this);
 		this.#callbacks = getBoundCallbacks(params);
 	}
 
