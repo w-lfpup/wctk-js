@@ -1,17 +1,14 @@
 class Subscription {
     #connected = false;
-    #callback;
-    #affect;
+    #callbacks;
+    #affects;
     #subscribe;
     #unsubscribe;
     constructor(params) {
-        let { host, callback, connected, subscribe, unsubscribe } = params;
+        let { host, callbacks, connected, subscribe, unsubscribe } = params;
         this.#subscribe = subscribe;
         this.#unsubscribe = unsubscribe;
-        this.#callback = callback;
-        if (callback.hasOwnProperty("prototype") && callback instanceof Function) {
-            this.#callback = callback.bind(host);
-        }
+        this.#callbacks = getBoundCallbacks(host, callbacks);
         if (connected)
             this.connect();
     }
@@ -19,13 +16,30 @@ class Subscription {
         if (this.#connected)
             return;
         this.#connected = true;
-        this.#affect = this.#subscribe(this.#callback);
+        this.#affects = [];
+        for (let callback of this.#callbacks) {
+            this.#affects.push(this.#subscribe(callback));
+        }
     }
     disconnect() {
         if (!this.#connected)
             return;
         this.#connected = false;
-        this.#unsubscribe(this.#affect);
+        if (this.#affects) {
+            for (let callback of this.#affects) {
+                this.#unsubscribe(callback);
+            }
+        }
     }
+}
+function getBoundCallbacks(host, callbacks) {
+    let bounded = [];
+    for (let callback of callbacks) {
+        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+            callback = callback.bind(host);
+        }
+        bounded.push(callback);
+    }
+    return bounded;
 }
 export { Subscription };

@@ -1,4 +1,8 @@
-export type { EventsInterface, EventParamsInterface } from "./events.ts";
+export type {
+	Callbacks,
+	EventsInterface,
+	EventParamsInterface,
+} from "./events.ts";
 export type { MicrotaskInterface } from "./microtask.ts";
 export type {
 	Subscribe,
