@@ -8,8 +8,8 @@ interface SubscriptionInterface {
 
 interface SubscriptionParamsInterface<A> {
 	host: Object;
-	connected?: boolean;
 	callbacks: Function[];
+	connected?: boolean;
 	subscribe: Subscribe<A>;
 	unsubscribe: Unsubscribe<A>;
 }

@@ -29,7 +29,6 @@ const shadowRootInitFallback: ShadowRootInit = {
 
 class Wc implements WcInterface {
 	#declarative: boolean = true;
-
 	#internals: ElementInternals;
 	#shadowRoot: ShadowRoot;
 
