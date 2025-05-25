@@ -15,8 +15,9 @@ A handful of facades:
 - create [shadow dom](./docs/wc.md) and manage form values
 - listen to [events](./docs/events.md)
 - [subscribe](./docs/subscription.md) to external data stores
-- push actions like "renders" to the [micro task](./docs/microtask.md) queue
+- push renders to the [microtask](./docs/microtask.md) queue
 - [bind](./docs/bind.md) functions to elements
+- [query](./docs/query_selector.md) the shadow dom
 
 ## Examples
 

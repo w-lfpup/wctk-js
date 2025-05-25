@@ -14,7 +14,10 @@ Add a list of callbacks on instantiation.
 import { Bind } from "wctk";
 
 class MyElement extends HTMLElement {
-	#bc = new Bind(this, [this.elementCallback];
+	#bc = new Bind({
+		host: this,
+		callbacks: [this.elementCallback],
+	};
 
 	elementCallback(e: KeyboardEvent) {
 		// This function can be passed as a callback to event listeners now!
