@@ -2,6 +2,8 @@
 
 The web component tool kit.
 
+No dependencies. No decorators. No inheritance. Just web components.
+
 ## Install
 
 ```bash

@@ -1,7 +1,8 @@
 {
 	"name": "wctk",
+	"workspaces": ["toolkit", "examples"],
 	"type": "module",
-	"main": "./dist/mod.js",
+	"main": "toolkit/dist/mod.js",
 	"scripts": {
 		"build:dev": "npx tsc --build",
 		"remove_dist": "rm -rf ./dist",
