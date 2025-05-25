@@ -5,11 +5,11 @@ import { Bind, Wc, Microtask } from "wctk";
 	on the microtask queue.
 */
 class Stopwatch extends HTMLElement {
-	#bc = new Bind({ host: this, callbacks: [this.update] });
 	#wc = new Wc({ host: this });
-	#state = getStateFromShadowDOM(this.#wc.shadowRoot);
-
 	#rc = new Microtask({ host: this, callbacks: [this.#render] });
+	#bc = new Bind({ host: this, callbacks: [this.update] });
+
+	#state = getStateFromShadowDOM(this.#wc.shadowRoot);
 
 	#render() {
 		this.#state.el.textContent = this.#state.count.toFixed(2);

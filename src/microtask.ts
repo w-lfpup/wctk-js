@@ -1,5 +1,5 @@
-interface MicrotaskParamsInterface<E> {
-	host: E;
+interface MicrotaskParamsInterface {
+	host: Object;
 	callbacks: Function[];
 }
 
@@ -7,11 +7,11 @@ interface MicrotaskInterface {
 	queue(): void;
 }
 
-class Microtask<E extends Object> implements MicrotaskInterface {
+class Microtask implements MicrotaskInterface {
 	#queued = false;
 	#callbacks: Function[];
 
-	constructor(params: MicrotaskParamsInterface<E>) {
+	constructor(params: MicrotaskParamsInterface) {
 		// this.queue = this.queue.bind(this);
 		this.#callbacks = getBoundCallbacks(params);
 	}
@@ -29,9 +29,7 @@ class Microtask<E extends Object> implements MicrotaskInterface {
 	}
 }
 
-function getBoundCallbacks<E extends Object>(
-	params: MicrotaskParamsInterface<E>,
-): Function[] {
+function getBoundCallbacks(params: MicrotaskParamsInterface): Function[] {
 	let { host, callbacks } = params;
 
 	let boundCallbacks: Function[] = [];

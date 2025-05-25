@@ -16,7 +16,10 @@ import { Microtask } from "wctk";
 class MyElement extends HTMLElement {
 	static observedAttributes = ["width"];
 
-	#rc = new Microtask(this, [this.#render]);
+	#rc = new Microtask({
+		host: this,
+		callbacks: [this.#render],
+	});
 
 	#render() {
 		// update DOM here!
