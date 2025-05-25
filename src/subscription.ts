@@ -1,4 +1,4 @@
-type Subscribe<A> = (cb: Function) => A;
+type Subscribe<E, A> = (cb: E) => A;
 type Unsubscribe<A> = (affect?: A) => void;
 
 interface SubscriptionInterface {
@@ -6,22 +6,22 @@ interface SubscriptionInterface {
 	disconnect(): void;
 }
 
-interface SubscriptionParamsInterface<A> {
+interface SubscriptionParamsInterface<E extends Function, A> {
 	host: Object;
-	callbacks: Function[];
+	callbacks: E[];
 	connected?: boolean;
-	subscribe: Subscribe<A>;
+	subscribe: Subscribe<E, A>;
 	unsubscribe: Unsubscribe<A>;
 }
 
-class Subscription<A> implements SubscriptionInterface {
+class Subscription<E extends Function, A> implements SubscriptionInterface {
 	#connected: boolean = false;
-	#callbacks: Function[];
+	#callbacks: E[];
 	#affects?: A[];
-	#subscribe: Subscribe<A>;
+	#subscribe: Subscribe<E, A>;
 	#unsubscribe: Unsubscribe<A>;
 
-	constructor(params: SubscriptionParamsInterface<A>) {
+	constructor(params: SubscriptionParamsInterface<E, A>) {
 		let { host, callbacks, connected, subscribe, unsubscribe } = params;
 
 		this.#subscribe = subscribe;
@@ -53,8 +53,8 @@ class Subscription<A> implements SubscriptionInterface {
 	}
 }
 
-function getBoundCallbacks(host: Object, callbacks: Function[]): Function[] {
-	let bounded: Function[] = [];
+function getBoundCallbacks<E extends Function>(host: Object, callbacks: E[]): E[] {
+	let bounded = [];
 	for (let callback of callbacks) {
 		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
 			callback = callback.bind(host);
