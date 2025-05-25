@@ -2,7 +2,7 @@ class Microtask {
     #queued = false;
     #callbacks;
     constructor(params) {
-        this.queue = this.queue.bind(this);
+        // this.queue = this.queue.bind(this);
         this.#callbacks = getBoundCallbacks(params);
     }
     queue() {

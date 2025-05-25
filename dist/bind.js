@@ -2,10 +2,11 @@ class Bind {
     constructor(params) {
         let { host, callbacks } = params;
         for (let callback of callbacks) {
+            console.log("maybeeee...");
             // do not bind and replace already bound functions
-            if (callback.hasOwnProperty("prototype"))
-                continue;
-            if (callback instanceof Function) {
+            if (!callback.hasOwnProperty("prototype") &&
+                callback instanceof Function) {
+                console.log("binding a function!", callback.name);
                 let { name } = callback;
                 if (!name.startsWith("#"))
                     host[name] = callback.bind(host);
