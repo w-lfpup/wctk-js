@@ -53,7 +53,10 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 	}
 }
 
-function getBoundCallbacks<E extends Function>(host: Object, callbacks: E[]): E[] {
+function getBoundCallbacks<E extends Function>(
+	host: Object,
+	callbacks: E[],
+): E[] {
 	let bounded = [];
 	for (let callback of callbacks) {
 		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
