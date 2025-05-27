@@ -28,7 +28,7 @@ class Events implements EventsInterface {
 		this.#target = target ?? host;
 		this.#callbacks = getBoundCallbacks(host, callbacks);
 
-		if (connected) this.connect();
+		if (false !== connected) this.connect();
 	}
 
 	connect() {

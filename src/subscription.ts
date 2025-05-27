@@ -26,9 +26,9 @@ class Subscription<E extends Function, A> implements SubscriptionInterface {
 
 		this.#subscribe = subscribe;
 		this.#unsubscribe = unsubscribe;
-
 		this.#callbacks = getBoundCallbacks(host, callbacks);
-		if (connected) this.connect();
+		
+		if (false !== connected) this.connect();
 	}
 
 	connect() {
