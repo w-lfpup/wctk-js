@@ -40,7 +40,7 @@ function getQueries(
 	const queries = new Map<string, Element[]>();
 	for (let selector of querySelectorAll) {
 		const queried = target.querySelectorAll(selector);
-		queries.set(selector, Array.from(queried));
+		if (queried.length) queries.set(selector, Array.from(queried));
 	}
 
 	for (let selector of querySelector) {
