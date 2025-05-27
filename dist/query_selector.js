@@ -20,7 +20,8 @@ function getQueries(params) {
     const queries = new Map();
     for (let selector of querySelectorAll) {
         const queried = target.querySelectorAll(selector);
-        queries.set(selector, Array.from(queried));
+        if (queried.length)
+            queries.set(selector, Array.from(queried));
     }
     for (let selector of querySelector) {
         if (queries.has(selector))
