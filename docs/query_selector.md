@@ -23,15 +23,16 @@ class MyElement extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#qc = new QuerySelector({
 		host: this.#wc.shadowRoot,
-		selectors: [["hello_world", "[greeting]"]],
+		querySelector: ["[greeting]"],
+		querySelectorAll: ["[greeting]"],
 	});
 
 	doSomething() {
 		// first occurance
-		let helloWorld = this.#qc.get("hello_world");
+		let greeting = this.#qc.get("[greeting]");
 
 		// NodeList
-		let allTheHelloWorlds = this.#qc.getAll("hello_world");
+		let greetings = this.#qc.getAll("[greeting]");
 
 		// update queries
 		this.#qc.query();
