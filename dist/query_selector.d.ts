@@ -1,7 +1,7 @@
 interface QuerySelectorParamsInterface {
     target: Element | ShadowRoot | Document;
-    querySelector: Array<string>;
-    querySelectorAll: Array<string>;
+    querySelector?: Array<string>;
+    querySelectorAll?: Array<string>;
 }
 interface QuerySelectorInterface {
     query(): void;
