@@ -41,7 +41,7 @@ function getQueries(
 
 	if (querySelectorAll) for (let selector of querySelectorAll) {
 		const queried = target.querySelectorAll(selector);
-		if (queried.length) queries.set(selector, Array.from(queried));
+		queries.set(selector, Array.from(queried));
 	}
 	
 	if (querySelector) for (let selector of querySelector) {
