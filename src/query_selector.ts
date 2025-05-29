@@ -1,7 +1,7 @@
 interface QuerySelectorParamsInterface {
 	target: Element | ShadowRoot | Document;
-	querySelector: Array<string>;
-	querySelectorAll: Array<string>;
+	querySelector?: Array<string>;
+	querySelectorAll?: Array<string>;
 }
 
 interface QuerySelectorInterface {
@@ -38,12 +38,13 @@ function getQueries(
 	const { target, querySelector, querySelectorAll } = params;
 
 	const queries = new Map<string, Element[]>();
-	for (let selector of querySelectorAll) {
+
+	if (querySelectorAll) for (let selector of querySelectorAll) {
 		const queried = target.querySelectorAll(selector);
 		if (queried.length) queries.set(selector, Array.from(queried));
 	}
-
-	for (let selector of querySelector) {
+	
+	if (querySelector) for (let selector of querySelector) {
 		if (queries.has(selector)) continue;
 		const queried = target.querySelector(selector);
 		if (queried) queries.set(selector, [queried]);
