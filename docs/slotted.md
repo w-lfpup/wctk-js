@@ -11,9 +11,9 @@ Provide a `target` on construction.
 ```html
 <my-element>
 	<template shadowrootmode="closed">
-        <slot name="greeting">
-            <span>AwwooOOO!</span>
-        </slot>
+		<slot name="greeting">
+			<span>AwwooOOO!</span>
+		</slot>
 	</template>
 </my-element>
 ```
@@ -28,8 +28,8 @@ class MyElement extends HTMLElement {
 	});
 
 	doSomething() {
-        let descendants = this.#slc.assignedNodes("greeting");
-        let descedantElements = this.#slc.assignedElements("greeting");
+		let descendants = this.#slc.assignedNodes("greeting");
+		let descedantElements = this.#slc.assignedElements("greeting");
 
 		let spans = this.#slc.assignedInstances("greeting", HTMLSpanElement);
 		let more_spans = this.#slc.assignedMatches("greeting", "span");
