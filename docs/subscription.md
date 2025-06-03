@@ -32,7 +32,7 @@ Add a `Subscription` controller to a web component, pass a callback, and subscri
 
 ```ts
 import { Subscription } from "wctk";
-import { datastore, subscribe, unsubscribe } from "./my-store.js";
+import { getState, subscribe, unsubscribe } from "./datastore.js";
 
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
@@ -44,7 +44,7 @@ class MyElement extends HTMLElement {
 	});
 
 	#update() {
-		let state = datastore.getState();
+		let state = getState();
 		// do something with state
 	}
 }
@@ -60,7 +60,7 @@ The `Subscription` controller should be connected manually during the component'
 
 ```ts
 import { Subscription } from "wctk";
-import { datastore, subscribe, unsubscribe } from "./my-store.js";
+import { getState, subscribe, unsubscribe } from "./datastore.js";
 
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
@@ -71,7 +71,7 @@ class MyElement extends HTMLElement {
 	});
 
 	#update() {
-		let state = datastore.getState();
+		let state = getState();
 		// do something with state
 	}
 

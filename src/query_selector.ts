@@ -39,16 +39,18 @@ function getQueries(
 
 	const queries = new Map<string, Element[]>();
 
-	if (querySelectorAll) for (let selector of querySelectorAll) {
-		const queried = target.querySelectorAll(selector);
-		queries.set(selector, Array.from(queried));
-	}
-	
-	if (querySelector) for (let selector of querySelector) {
-		if (queries.has(selector)) continue;
-		const queried = target.querySelector(selector);
-		if (queried) queries.set(selector, [queried]);
-	}
+	if (querySelectorAll)
+		for (let selector of querySelectorAll) {
+			const queried = target.querySelectorAll(selector);
+			queries.set(selector, Array.from(queried));
+		}
+
+	if (querySelector)
+		for (let selector of querySelector) {
+			if (queries.has(selector)) continue;
+			const queried = target.querySelector(selector);
+			if (queried) queries.set(selector, [queried]);
+		}
 
 	return queries;
 }
