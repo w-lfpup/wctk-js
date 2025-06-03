@@ -9,8 +9,8 @@ interface NewAble<A> {
 
 interface SlottedInterface {
 	query(): void;
-	assignedNodes<A>(slotName: string, newable: NewAble<A>): Node[] | undefined,
-	assignedElements(slotName: string, selectors: string): Element[] | undefined,
+	assignedNodes<A>(slotName: string, newable: NewAble<A>): Node[] | undefined;
+	assignedElements(slotName: string, selectors: string): Element[] | undefined;
 }
 
 class Slotted implements SlottedInterface {

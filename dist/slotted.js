@@ -1,25 +1,9 @@
 class Slotted {
     #params;
-    #boundOnSlotChange;
     #slots;
     constructor(params) {
         this.#params = params;
-        this.#boundOnSlotChange = this.#onSlotChange.bind(this);
         this.#slots = getSlotElements(this.#params.target);
-        if (this.#params.connected)
-            this.connect();
-    }
-    #onSlotChange(e) {
-        let { target } = e;
-        if (target instanceof HTMLSlotElement) {
-            this.#slots.set(target.name, target);
-        }
-    }
-    connect() {
-        this.#params.target.addEventListener("slotchange", this.#boundOnSlotChange);
-    }
-    disconnect() {
-        this.#params.target.removeEventListener("slotchange", this.#boundOnSlotChange);
     }
     query() {
         this.#slots = getSlotElements(this.#params.target);
@@ -30,22 +14,22 @@ class Slotted {
     assignedElements(slotName) {
         return this.#slots.get(slotName)?.assignedElements();
     }
-    assignedInstances(slotName, instance) {
+    assignedInstances(slotName, newable) {
         let slot = this.#slots.get(slotName);
         let instances = [];
         if (slot)
             for (const node of slot.assignedNodes()) {
-                if (node instanceof instance)
+                if (node instanceof newable)
                     instances.push(node);
             }
         return instances;
     }
-    assignedMatches(slotName, selector) {
+    assignedMatches(slotName, selectors) {
         let slot = this.#slots.get(slotName);
         let matches = [];
         if (slot)
             for (const element of slot.assignedElements()) {
-                if (element.matches(selector))
+                if (element.matches(selectors))
                     matches.push(element);
             }
         return matches;
