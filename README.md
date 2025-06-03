@@ -18,6 +18,7 @@ A handful of facades:
 - push renders to the [microtask](./docs/microtask.md) queue
 - [bind](./docs/bind.md) functions to elements
 - [query](./docs/query_selector.md) the shadow dom
+- list [slotted](./docs/query_selector.md) nodes
 
 ## Examples
 
