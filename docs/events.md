@@ -81,7 +81,7 @@ class MyElement extends HTMLElement {
 	}
 
 	#pointerOver(e: PointerEvent) {
-		// do something with keyboard events here!
+		// do something with pointerover events here!
 	}
 
 	// lifecycle method

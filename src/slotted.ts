@@ -1,6 +1,5 @@
 interface SlottedParamsInterface {
 	target: ShadowRoot;
-	connected: boolean;
 }
 
 interface NewAble<A> {
@@ -9,8 +8,10 @@ interface NewAble<A> {
 
 interface SlottedInterface {
 	query(): void;
-	assignedNodes<A>(slotName: string, newable: NewAble<A>): Node[] | undefined;
-	assignedElements(slotName: string, selectors: string): Element[] | undefined;
+	assignedNodes(slotName: string): Node[] | undefined;
+	assignedElements(slotName: string): Element[] | undefined;
+	assignedNodes<A>(slotName: string, newable: NewAble<A>): A[] | undefined;
+	assignedMatches(slotName: string, selectors: string): Element[] | undefined;
 }
 
 class Slotted implements SlottedInterface {
