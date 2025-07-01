@@ -4,7 +4,7 @@ customElements.define("text-input", TextInput);
 
 const results = document.querySelector("[results]");
 
-document.addEventListener("submit", function (e) {
+document.addEventListener("submit", function (e: SubmitEvent) {
 	if (!(e.target instanceof HTMLFormElement)) return;
 
 	e.preventDefault();
@@ -12,7 +12,7 @@ document.addEventListener("submit", function (e) {
 	let formdata: FormData = new FormData(e.target);
 	let data: Map<string, FormDataEntryValue> = new Map();
 
-	// TODO: remove when FormData::entries() is included in DOM api
+	// TODO: remove when FormData::entries() is included in DOM types
 	// @ts-expect-error
 	for (let [name, value] of formdata.entries()) {
 		data.set(name, value);

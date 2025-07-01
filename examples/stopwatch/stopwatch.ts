@@ -1,7 +1,7 @@
 import { Bind, Wc, Microtask } from "wctk";
 
 interface State {
-	receipt: number | void ;
+	receipt: number | void;
 	count: number;
 	prevTimestamp: DOMHighResTimeStamp;
 	el: HTMLSpanElement;
@@ -43,7 +43,8 @@ export class Stopwatch extends HTMLElement {
 
 	pause() {
 		let state = this.#state;
-		if (state && state.receipt) state.receipt = cancelAnimationFrame(state.receipt);
+		if (state && state.receipt)
+			state.receipt = cancelAnimationFrame(state.receipt);
 	}
 }
 

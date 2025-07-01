@@ -43,4 +43,3 @@ function getBoundCallbacks(params: MicrotaskParamsInterface): Function[] {
 
 	return boundCallbacks;
 }
-

@@ -7,7 +7,7 @@ document.addEventListener("submit", function (e) {
     e.preventDefault();
     let formdata = new FormData(e.target);
     let data = new Map();
-    // TODO: remove when FormData::entries() is included in DOM api
+    // TODO: remove when FormData::entries() is included in DOM types
     // @ts-expect-error
     for (let [name, value] of formdata.entries()) {
         data.set(name, value);

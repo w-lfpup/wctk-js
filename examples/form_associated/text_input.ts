@@ -17,13 +17,12 @@ export class TextInput extends HTMLElement {
 
 	#changeHandler(e: Event) {
 		let { target } = e;
-		if (target instanceof HTMLInputElement)
-			this.#wc.setFormValue(target.value);
+		if (target instanceof HTMLInputElement) this.#wc.setFormValue(target.value);
 	}
 
 	// lifecycle method
 	formStateRestoreCallback(state: string) {
-		let input = this.#wc.shadowRoot.querySelector("input")
+		let input = this.#wc.shadowRoot.querySelector("input");
 		if (input) input.value = state;
 	}
 }

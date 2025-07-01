@@ -14,7 +14,9 @@ export interface SubscriptionParamsInterface<E extends Function, A> {
 	unsubscribe: Unsubscribe<A>;
 }
 
-export class Subscription<E extends Function, A> implements SubscriptionInterface {
+export class Subscription<E extends Function, A>
+	implements SubscriptionInterface
+{
 	#connected: boolean = false;
 	#callbacks: E[];
 	#affects?: A[];
