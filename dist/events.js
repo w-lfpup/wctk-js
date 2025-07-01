@@ -1,4 +1,4 @@
-class Events {
+export class Events {
     #connected = false;
     #callbacks = [];
     #target;
@@ -36,4 +36,3 @@ function getBoundCallbacks(host, callbacks) {
     }
     return events;
 }
-export { Events };

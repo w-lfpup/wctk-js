@@ -1,8 +1,7 @@
-interface BindParamsInterface {
+export interface BindParamsInterface {
     host: Object;
     callbacks: Function[];
 }
-declare class Bind {
+export declare class Bind {
     constructor(params: BindParamsInterface);
 }
-export { Bind };

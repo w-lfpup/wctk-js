@@ -1,23 +1,23 @@
-type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
+export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
 
-interface EventsInterface {
+export interface EventsInterface {
 	connect(): void;
 	disconnect(): void;
 }
 
-interface EventsElementInterface {
+export interface EventsElementInterface {
 	addEventListener: Node["addEventListener"];
 	removeEventListener: Node["removeEventListener"];
 }
 
-interface EventParamsInterface {
+export interface EventParamsInterface {
 	host: EventsElementInterface;
 	connected?: boolean;
 	target?: EventsElementInterface;
 	callbacks: Callbacks;
 }
 
-class Events implements EventsInterface {
+export class Events implements EventsInterface {
 	#connected: boolean = false;
 	#callbacks: Callbacks = [];
 	#target: EventsElementInterface;
@@ -62,12 +62,3 @@ function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
 
 	return events;
 }
-
-export type {
-	Callbacks,
-	EventsInterface,
-	EventsElementInterface,
-	EventParamsInterface,
-};
-
-export { Events };

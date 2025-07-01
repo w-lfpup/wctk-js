@@ -1,4 +1,4 @@
-class Subscription {
+export class Subscription {
     #connected = false;
     #callbacks;
     #affects;
@@ -42,4 +42,3 @@ function getBoundCallbacks(host, callbacks) {
     }
     return bounded;
 }
-export { Subscription };

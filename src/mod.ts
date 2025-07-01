@@ -4,7 +4,6 @@ export type {
 	EventParamsInterface,
 } from "./events.ts";
 export type { MicrotaskInterface } from "./microtask.ts";
-export type { SlottedParamsInterface, SlottedInterface } from "./slotted.ts";
 export type {
 	Subscribe,
 	Unsubscribe,
@@ -20,7 +19,6 @@ export type { WcInterface, WcParamsInterface } from "./wc.ts";
 export { Bind } from "./bind.js";
 export { Events } from "./events.js";
 export { Microtask } from "./microtask.js";
-export { Slotted } from "./slotted.js";
 export { Subscription } from "./subscription.js";
 export { QuerySelector } from "./query_selector.js";
 export { Wc } from "./wc.js";

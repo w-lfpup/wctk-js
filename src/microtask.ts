@@ -1,13 +1,13 @@
-interface MicrotaskParamsInterface {
+export interface MicrotaskParamsInterface {
 	host: Object;
 	callbacks: Function[];
 }
 
-interface MicrotaskInterface {
+export interface MicrotaskInterface {
 	queue(): void;
 }
 
-class Microtask implements MicrotaskInterface {
+export class Microtask implements MicrotaskInterface {
 	#queued = false;
 	#callbacks: Function[];
 
@@ -44,6 +44,3 @@ function getBoundCallbacks(params: MicrotaskParamsInterface): Function[] {
 	return boundCallbacks;
 }
 
-export type { MicrotaskInterface };
-
-export { Microtask };

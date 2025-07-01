@@ -1,0 +1,10 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"declaration": false,
+		"paths": {
+            "wctk": ["../dist/mod.d.ts"],
+			"wctk/*": ["../dist/"]
+		}
+	}
+}
