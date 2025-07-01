@@ -1,4 +1,4 @@
-class Bind {
+export class Bind {
     constructor(params) {
         let { host, callbacks } = params;
         for (let callback of callbacks) {
@@ -12,4 +12,3 @@ class Bind {
         }
     }
 }
-export { Bind };

@@ -1,14 +1,12 @@
-interface MicrotaskParamsInterface {
+export interface MicrotaskParamsInterface {
     host: Object;
     callbacks: Function[];
 }
-interface MicrotaskInterface {
+export interface MicrotaskInterface {
     queue(): void;
 }
-declare class Microtask implements MicrotaskInterface {
+export declare class Microtask implements MicrotaskInterface {
     #private;
     constructor(params: MicrotaskParamsInterface);
     queue(): void;
 }
-export type { MicrotaskInterface };
-export { Microtask };

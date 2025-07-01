@@ -1,18 +1,14 @@
-import "./text_input.js";
-
+import { TextInput } from "./text_input.js";
+customElements.define("text-input", TextInput);
 const results = document.querySelector("[results]");
-
 document.addEventListener("submit", function (e) {
-	if (!(e.target instanceof HTMLFormElement)) return;
-
-	e.preventDefault();
-
-	let formdata = new FormData(e.target);
-
-	let data = {};
-	for (let [name, value] of formdata.entries()) {
-		data[name] = value;
-	}
-
-	results.textContent = JSON.stringify(data, undefined, " ");
+    if (!(e.target instanceof HTMLFormElement))
+        return;
+    e.preventDefault();
+    let formdata = new FormData(e.target);
+    if (results)
+        results.textContent = JSON.stringify(
+        // TODO: remove expected error when FormData::entries() is included in typescript
+        // @ts-expect-error
+        Object.fromEntries(formdata), undefined, " ");
 });

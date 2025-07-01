@@ -1,9 +1,9 @@
-interface BindParamsInterface {
+export interface BindParamsInterface {
 	host: Object;
 	callbacks: Function[];
 }
 
-class Bind {
+export class Bind {
 	constructor(params: BindParamsInterface) {
 		let { host, callbacks } = params;
 
@@ -20,5 +20,3 @@ class Bind {
 		}
 	}
 }
-
-export { Bind };

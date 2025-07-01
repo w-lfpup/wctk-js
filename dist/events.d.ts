@@ -1,23 +1,21 @@
-type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
-interface EventsInterface {
+export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
+export interface EventsInterface {
     connect(): void;
     disconnect(): void;
 }
-interface EventsElementInterface {
+export interface EventsElementInterface {
     addEventListener: Node["addEventListener"];
     removeEventListener: Node["removeEventListener"];
 }
-interface EventParamsInterface {
+export interface EventParamsInterface {
     host: EventsElementInterface;
     connected?: boolean;
     target?: EventsElementInterface;
     callbacks: Callbacks;
 }
-declare class Events implements EventsInterface {
+export declare class Events implements EventsInterface {
     #private;
     constructor(params: EventParamsInterface);
     connect(): void;
     disconnect(): void;
 }
-export type { Callbacks, EventsInterface, EventsElementInterface, EventParamsInterface, };
-export { Events };

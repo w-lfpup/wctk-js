@@ -1,4 +1,4 @@
-class Microtask {
+export class Microtask {
     #queued = false;
     #callbacks;
     constructor(params) {
@@ -28,4 +28,3 @@ function getBoundCallbacks(params) {
     }
     return boundCallbacks;
 }
-export { Microtask };

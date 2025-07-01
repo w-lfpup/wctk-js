@@ -1,4 +1,5 @@
 dist/
 *.html
+*.js
 
 package-lock.json

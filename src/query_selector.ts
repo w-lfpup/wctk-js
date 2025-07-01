@@ -1,16 +1,16 @@
-interface QuerySelectorParamsInterface {
+export interface QuerySelectorParamsInterface {
 	target: Element | ShadowRoot | Document;
 	querySelector?: Array<string>;
 	querySelectorAll?: Array<string>;
 }
 
-interface QuerySelectorInterface {
+export interface QuerySelectorInterface {
 	query(): void;
 	get(name: string): Element | undefined;
 	getAll(name: string): Element[] | undefined;
 }
 
-class QuerySelector implements QuerySelectorInterface {
+export class QuerySelector implements QuerySelectorInterface {
 	#params: QuerySelectorParamsInterface;
 	#queries: Map<string, Element[]>;
 
@@ -54,7 +54,3 @@ function getQueries(
 
 	return queries;
 }
-
-export type { QuerySelectorInterface, QuerySelectorParamsInterface };
-
-export { QuerySelector };

@@ -6,7 +6,7 @@ Pass custom element functions to event listeners.
 
 ### Params
 
-An Events `params` object has three properties:
+An Events `params` object has four properties:
 
 ```ts
 interface EventParams {
@@ -17,7 +17,7 @@ interface EventParams {
 }
 ```
 
-Two required properties instruct the Events controller to binds a set of `callbacks` to a `host`.
+Two required properties instruct the Events controller to bind a set of `callbacks` to a `host`.
 
 Afterwards, the Events controller adds the callbacks as event listeners on a `target` Node.
 
@@ -27,7 +27,7 @@ If the `target` property is undefined, the `host` property is used as a fallback
 
 ### Controller
 
-Below is an example of the `Events` controller.
+Here is an example of using the `Events` controller.
 
 ```ts
 import { Events, Wc } from "wctk";
@@ -40,7 +40,7 @@ class MyElement extends HTMLElement {
 		connected: true,
 		callbacks: [
 			["click", this.#onClick],
-			["pointerover", this.#onPointerOver],
+			["keydown", this.#onKeyDown],
 		],
 	});
 
@@ -48,7 +48,7 @@ class MyElement extends HTMLElement {
 		// do something with click events here!
 	}
 
-	#pointerOver(e: PointerEvent) {
+	#onKeyDown(e: KeyEvent) {
 		// do something with keyboard events here!
 	}
 }
@@ -81,7 +81,7 @@ class MyElement extends HTMLElement {
 	}
 
 	#pointerOver(e: PointerEvent) {
-		// do something with keyboard events here!
+		// do something with pointerover events here!
 	}
 
 	// lifecycle method

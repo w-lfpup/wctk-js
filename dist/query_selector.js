@@ -1,4 +1,4 @@
-class QuerySelector {
+export class QuerySelector {
     #params;
     #queries;
     constructor(params) {
@@ -33,4 +33,3 @@ function getQueries(params) {
         }
     return queries;
 }
-export { QuerySelector };
