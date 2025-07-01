@@ -10,13 +10,13 @@ document.addEventListener("submit", function (e: SubmitEvent) {
 	e.preventDefault();
 
 	let formdata: FormData = new FormData(e.target);
-	let data: Map<string, FormDataEntryValue> = new Map();
 
-	// TODO: remove when FormData::entries() is included in DOM types
-	// @ts-expect-error
-	for (let [name, value] of formdata.entries()) {
-		data.set(name, value);
-	}
-
-	if (results) results.textContent = JSON.stringify(data, undefined, " ");
+	if (results)
+		results.textContent = JSON.stringify(
+			// TODO: remove expected error when FormData::entries() is included in typescript
+			// @ts-expect-error
+			Object.fromEntries(formdata),
+			undefined,
+			" ",
+		);
 });

@@ -4,7 +4,8 @@ customElements.define("stopwatch-wc", Stopwatch);
 
 const stopwatch = document.querySelector<Stopwatch>("stopwatch-wc");
 
-document.addEventListener("click", function (e) {
+document.addEventListener("click", function (e: Event) {
+	console.log(stopwatch);
 	if (stopwatch && e.target instanceof HTMLButtonElement) {
 		e.target.hasAttribute("start") ? stopwatch.start() : stopwatch.pause();
 	}

@@ -39,7 +39,7 @@ function getStateFromShadowDOM(shadowRoot) {
         return {
             el,
             count: parseInt(el.textContent ?? "0"),
-            receipt: -1,
+            receipt: 0,
             prevTimestamp: performance.now(),
         };
     }
