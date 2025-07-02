@@ -23,12 +23,12 @@ export class Stopwatch extends HTMLElement {
 	}
 
 	update(timestamp: DOMHighResTimeStamp) {
-		if (this.#state) {
-			this.#state.receipt = requestAnimationFrame(this.update);
+		if (!this.#state) return;
 
-			this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
-			this.#state.prevTimestamp = timestamp;
-		}
+		this.#state.receipt = requestAnimationFrame(this.update);
+
+		this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
+		this.#state.prevTimestamp = timestamp;
 
 		// push render to microtask queue
 		this.#rc.queue();
@@ -42,9 +42,8 @@ export class Stopwatch extends HTMLElement {
 	}
 
 	pause() {
-		let state = this.#state;
-		if (state && state.receipt)
-			state.receipt = cancelAnimationFrame(state.receipt);
+		if (this.#state && this.#state.receipt)
+			this.#state.receipt = cancelAnimationFrame(this.#state.receipt);
 	}
 }
 
