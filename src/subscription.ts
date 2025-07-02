@@ -17,7 +17,6 @@ export interface SubscriptionParamsInterface<E extends Function, A> {
 export class Subscription<E extends Function, A>
 	implements SubscriptionInterface
 {
-	#connected: boolean = false;
 	#callbacks: E[];
 	#affects?: A[];
 	#subscribe: Subscribe<E, A>;
@@ -34,8 +33,7 @@ export class Subscription<E extends Function, A>
 	}
 
 	connect() {
-		if (this.#connected) return;
-		this.#connected = true;
+		if (this.#affects) return;
 
 		this.#affects = [];
 		for (let callback of this.#callbacks) {
@@ -44,14 +42,10 @@ export class Subscription<E extends Function, A>
 	}
 
 	disconnect() {
-		if (!this.#connected) return;
-		this.#connected = false;
-
-		if (this.#affects) {
+		if (this.#affects)
 			for (let callback of this.#affects) {
 				this.#unsubscribe(callback);
 			}
-		}
 	}
 }
 
