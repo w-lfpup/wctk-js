@@ -22,7 +22,7 @@ export class Stopwatch extends HTMLElement {
         this.#rc.queue();
     }
     start() {
-        if (!this.#state || this.#state.receipt)
+        if (!this.#state || this.#state?.receipt)
             return;
         this.#state.receipt = requestAnimationFrame(this.update);
         this.#state.prevTimestamp = performance.now();

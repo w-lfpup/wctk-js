@@ -2,6 +2,26 @@
 
 The web component tool kit.
 
+## About
+
+`Wctk-js` is a concise way to create web components with:
+
+- No decorators
+- No (unncessary) inheritance
+- No extra dependencies
+
+`Wctk-js` provides support for:
+
+- Reactivity
+- SSR
+- Events
+- Forms
+- Subscriptions
+
+All features are optional and compositional.
+
+`Wctk-js` supports `#private` functions as callbacks for event listerners and data stores. This fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+
 ## Install
 
 ```bash
@@ -28,26 +48,6 @@ The following examples demonstrate several common SSR use cases:
 - a [counter](https://w-lfpup.github.io/wctk-js/examples/counter/) with initial state in the DOM ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/counter/)).
 - a [stopwatch](https://w-lfpup.github.io/wctk-js/examples/stopwatch/) with initial state in the Shadow DOM ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/stopwatch/)).
 - a [form associated](https://w-lfpup.github.io/wctk-js/examples/form_associated/) element ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/form_associated/)).
-
-## About
-
-`Wctk-js` is a concise way to create web components with:
-
-- No decorators
-- No (unncessary) inheritance
-- No extra dependencies
-
-`Wctk-js` provides support for:
-
-- Reactivity
-- SSR
-- Events
-- Forms
-- Subscriptions
-
-All features are optional and compositional.
-
-`Wctk-js` supports `#private` functions as callbacks for event listerners and data stores. This fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## License
 

@@ -16,7 +16,7 @@ export class Stopwatch extends HTMLElement {
 	#rc = new Microtask({ host: this, callbacks: [this.#render] });
 	#bc = new Bind({ host: this, callbacks: [this.update] });
 
-	#state: State | undefined = getStateFromShadowDOM(this.#wc.shadowRoot);
+	#state?: State = getStateFromShadowDOM(this.#wc.shadowRoot);
 
 	#render() {
 		if (this.#state) this.#state.el.textContent = this.#state.count.toFixed(2);
@@ -35,7 +35,7 @@ export class Stopwatch extends HTMLElement {
 	}
 
 	start() {
-		if (!this.#state || this.#state.receipt) return;
+		if (!this.#state || this.#state?.receipt) return;
 
 		this.#state.receipt = requestAnimationFrame(this.update);
 		this.#state.prevTimestamp = performance.now();
