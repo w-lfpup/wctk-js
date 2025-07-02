@@ -1,5 +1,4 @@
 export class Subscription {
-    #connected = false;
     #callbacks;
     #affects;
     #subscribe;
@@ -13,23 +12,18 @@ export class Subscription {
             this.connect();
     }
     connect() {
-        if (this.#connected)
+        if (this.#affects)
             return;
-        this.#connected = true;
         this.#affects = [];
         for (let callback of this.#callbacks) {
             this.#affects.push(this.#subscribe(callback));
         }
     }
     disconnect() {
-        if (!this.#connected)
-            return;
-        this.#connected = false;
-        if (this.#affects) {
+        if (this.#affects)
             for (let callback of this.#affects) {
                 this.#unsubscribe(callback);
             }
-        }
     }
 }
 function getBoundCallbacks(host, callbacks) {
