@@ -1,5 +1,5 @@
 export type Subscribe<E, A> = (cb: E) => A;
-export type Unsubscribe<A> = (affect?: A) => void;
+export type Unsubscribe<A> = (affect: A) => void;
 
 export interface SubscriptionInterface {
 	connect(): void;
