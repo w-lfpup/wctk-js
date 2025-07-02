@@ -21,8 +21,10 @@ class Counter extends HTMLElement {
 	#state?: State = getStateFromDOM(this.#wc.shadowRoot);
 
 	#clickHandler(e: Event) {
+		if (!this.#state) return;
+
 		let increment = getIncrement(e);
-		if (this.#state && increment) {
+		if (increment) {
 			this.#state.count += increment;
 			this.#state.el.textContent = this.#state.count.toString();
 		}

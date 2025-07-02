@@ -13,11 +13,11 @@ export class Stopwatch extends HTMLElement {
             this.#state.el.textContent = this.#state.count.toFixed(2);
     }
     update(timestamp) {
-        if (this.#state) {
-            this.#state.receipt = requestAnimationFrame(this.update);
-            this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
-            this.#state.prevTimestamp = timestamp;
-        }
+        if (!this.#state)
+            return;
+        this.#state.receipt = requestAnimationFrame(this.update);
+        this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
+        this.#state.prevTimestamp = timestamp;
         // push render to microtask queue
         this.#rc.queue();
     }
@@ -28,9 +28,8 @@ export class Stopwatch extends HTMLElement {
         this.#state.prevTimestamp = performance.now();
     }
     pause() {
-        let state = this.#state;
-        if (state && state.receipt)
-            state.receipt = cancelAnimationFrame(state.receipt);
+        if (this.#state && this.#state.receipt)
+            this.#state.receipt = cancelAnimationFrame(this.#state.receipt);
     }
 }
 function getStateFromShadowDOM(shadowRoot) {
