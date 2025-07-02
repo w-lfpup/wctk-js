@@ -18,7 +18,7 @@ class Counter extends HTMLElement {
 		callbacks: [["click", this.#clickHandler]],
 	});
 
-	#state: State | undefined = getStateFromDOM(this.#wc.shadowRoot);
+	#state?: State = getStateFromDOM(this.#wc.shadowRoot);
 
 	#clickHandler(e: Event) {
 		let increment = getIncrement(e);
