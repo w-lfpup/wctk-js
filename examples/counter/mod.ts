@@ -13,6 +13,7 @@ class Counter extends HTMLElement {
 
 	#ev = new Events({
 		host: this,
+		target: this.#wc.shadowRoot,
 		connected: true,
 		callbacks: [["click", this.#clickHandler]],
 	});
