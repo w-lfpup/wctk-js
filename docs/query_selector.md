@@ -22,7 +22,7 @@ import { QuerySelector } from "wctk";
 class MyElement extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#qc = new QuerySelector({
-		target: this.#wc.shadowRoot,
+		parent: this.#wc.shadowRoot,
 		querySelector: ["[greeting]"],
 		querySelectorAll: ["[greeting]"],
 	});
