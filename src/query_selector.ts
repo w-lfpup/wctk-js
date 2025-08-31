@@ -1,5 +1,5 @@
 export interface QuerySelectorParamsInterface {
-	target: Element | ShadowRoot | Document;
+	parent: ParentNode;
 	querySelector?: Array<string>;
 	querySelectorAll?: Array<string>;
 }
@@ -35,20 +35,20 @@ export class QuerySelector implements QuerySelectorInterface {
 function getQueries(
 	params: QuerySelectorParamsInterface,
 ): Map<string, Element[]> {
-	const { target, querySelector, querySelectorAll } = params;
+	const { parent, querySelector, querySelectorAll } = params;
 
 	const queries = new Map<string, Element[]>();
 
 	if (querySelectorAll)
 		for (let selector of querySelectorAll) {
-			const queried = target.querySelectorAll(selector);
+			const queried = parent.querySelectorAll(selector);
 			queries.set(selector, Array.from(queried));
 		}
 
 	if (querySelector)
 		for (let selector of querySelector) {
 			if (queries.has(selector)) continue;
-			const queried = target.querySelector(selector);
+			const queried = parent.querySelector(selector);
 			if (queried) queries.set(selector, [queried]);
 		}
 

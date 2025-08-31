@@ -33,7 +33,6 @@ class Counter extends HTMLElement {
 
 function getStateFromDOM(shadowRoot: ShadowRoot) {
 	let slot = shadowRoot.querySelector("slot");
-
 	if (slot)
 		for (let el of slot.assignedNodes()) {
 			if (el instanceof HTMLSpanElement) {

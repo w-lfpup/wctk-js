@@ -4,8 +4,8 @@
 	"main": "./dist/mod.js",
 	"scripts": {
 		"build": "npm run remove_dist && npm run build:dev",
-		"build:examples": "npx tsc --project ./examples",
 		"build:dev": "npx tsc --project ./src",
+		"build:examples": "npx tsc --project ./examples",
 		"remove_dist": "rm -rf ./dist",
 		"format": "prettier --write ./"
 	},

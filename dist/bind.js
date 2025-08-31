@@ -3,8 +3,8 @@ export class Bind {
         let { host, callbacks } = params;
         for (let callback of callbacks) {
             // do not bind and replace already bound functions
-            if (!callback.hasOwnProperty("prototype") &&
-                callback instanceof Function) {
+            if (callback instanceof Function &&
+                !callback.hasOwnProperty("prototype")) {
                 let { name } = callback;
                 if (!name.startsWith("#"))
                     host[name] = callback.bind(host);

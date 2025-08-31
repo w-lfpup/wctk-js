@@ -10,8 +10,8 @@ export class Bind {
 		for (let callback of callbacks) {
 			// do not bind and replace already bound functions
 			if (
-				!callback.hasOwnProperty("prototype") &&
-				callback instanceof Function
+				callback instanceof Function &&
+				!callback.hasOwnProperty("prototype")
 			) {
 				let { name } = callback;
 				if (!name.startsWith("#"))

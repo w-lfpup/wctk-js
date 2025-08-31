@@ -4,40 +4,24 @@ The web component tool kit.
 
 ## About
 
-`Wctk-js` is a concise way to create web components with:
+A handful of bare metal controllers:
 
-- No decorators
-- No (unncessary) inheritance
-- No extra dependencies
+- create [shadow dom](./docs/wc.md) and manage form values
+- listen to [events](./docs/events.md)
+- [subscribe](./docs/subscription.md) to external data stores
+- render on the [microtask](./docs/microtask.md) queue
+- [bind](./docs/bind.md) functions to elements
+- [query](./docs/query_selector.md) the shadow dom
 
-`Wctk-js` provides support for:
+All features are optional and compositional and built from the ground up to support SSR.
 
-- Reactivity
-- SSR
-- Events
-- Forms
-- Subscriptions
-
-All features are optional and compositional.
-
-`Wctk-js` supports `#private` functions as callbacks and fully encapsulates a web component API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+`Wctk-js` even supports `#private` functions as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## Install
 
 ```bash
 npm install --save-dev https://github.com/w-lfpup/wctk-js/
 ```
-
-## Controllers
-
-A handful of facades:
-
-- create [shadow dom](./docs/wc.md) and manage form values
-- listen to [events](./docs/events.md)
-- [subscribe](./docs/subscription.md) to external data stores
-- push renders to the [microtask](./docs/microtask.md) queue
-- [bind](./docs/bind.md) functions to elements
-- [query](./docs/query_selector.md) the shadow dom
 
 ## Examples
 
@@ -51,4 +35,4 @@ The following examples demonstrate several common SSR use cases:
 
 ## License
 
-`Wctk` is released under the BSD-3 Clause License.
+`Wctk-js` is released under the BSD-3 Clause License.

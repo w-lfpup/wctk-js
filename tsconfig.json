@@ -3,7 +3,7 @@
 		"lib": ["DOM", "ESNext"],
 		"declaration": true,
 		"strict": true,
-		"module": "nodenext",
+		"module": "esnext",
 		"target": "esnext"
 	}
 }

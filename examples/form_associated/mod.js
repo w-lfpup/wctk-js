@@ -8,7 +8,6 @@ document.addEventListener("submit", function (e) {
     let formdata = new FormData(e.target);
     if (results)
         results.textContent = JSON.stringify(
-        // TODO: remove expected error when FormData::entries() is included in typescript
         // @ts-expect-error
         Object.fromEntries(formdata), undefined, " ");
 });

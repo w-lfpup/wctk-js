@@ -16,18 +16,18 @@ export class QuerySelector {
     }
 }
 function getQueries(params) {
-    const { target, querySelector, querySelectorAll } = params;
+    const { parent, querySelector, querySelectorAll } = params;
     const queries = new Map();
     if (querySelectorAll)
         for (let selector of querySelectorAll) {
-            const queried = target.querySelectorAll(selector);
+            const queried = parent.querySelectorAll(selector);
             queries.set(selector, Array.from(queried));
         }
     if (querySelector)
         for (let selector of querySelector) {
             if (queries.has(selector))
                 continue;
-            const queried = target.querySelector(selector);
+            const queried = parent.querySelector(selector);
             if (queried)
                 queries.set(selector, [queried]);
         }

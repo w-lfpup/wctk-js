@@ -1,16 +1,16 @@
-type FormDataTypes = File | string | FormData;
-interface WcElementInterface {
+export interface WcElementInterface {
     attachInternals: HTMLElement["attachInternals"];
     attachShadow: Element["attachShadow"];
 }
-interface WcParamsInterface {
+type FormDataArguments = Parameters<ElementInternals["setFormValue"]>;
+export interface WcParamsInterface {
     host: WcElementInterface;
     adoptedStyleSheets?: CSSStyleSheet[];
     shadowRootInit?: ShadowRootInit;
-    formValue?: FormDataTypes;
-    formState?: FormDataTypes;
+    formValue?: FormDataArguments[0];
+    formState?: FormDataArguments[1];
 }
-interface WcInterface {
+export interface WcInterface {
     readonly declarative: boolean;
     readonly shadowRoot: ShadowRoot;
     adoptedStyleSheets: DocumentOrShadowRoot["adoptedStyleSheets"];
@@ -18,7 +18,7 @@ interface WcInterface {
     setValidity: ElementInternals["setValidity"];
     reportValidity: ElementInternals["reportValidity"];
 }
-declare class Wc implements WcInterface {
+export declare class Wc implements WcInterface {
     #private;
     constructor(params: WcParamsInterface);
     get declarative(): boolean;
@@ -27,8 +27,7 @@ declare class Wc implements WcInterface {
     set adoptedStyleSheets(stylesheets: CSSStyleSheet[]);
     checkValidity(): boolean;
     reportValidity(): boolean;
-    setFormValue(value: FormDataTypes, state?: FormDataTypes): void;
+    setFormValue(value: FormDataArguments[0], state?: FormDataArguments[1]): void;
     setValidity(flags?: ValidityStateFlags, message?: string, anchor?: HTMLElement): void;
 }
-export type { WcInterface, WcElementInterface, WcParamsInterface };
-export { Wc };
+export {};

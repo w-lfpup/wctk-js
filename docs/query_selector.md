@@ -6,8 +6,6 @@ Create a map of selector queries.
 
 Add a `QuerySelector` controller to a web component.
 
-Add a list of callbacks on instantiation.
-
 ```html
 <my-element>
 	<template shadowrootmode="closed">
@@ -16,13 +14,15 @@ Add a list of callbacks on instantiation.
 </my-element>
 ```
 
+Add a list of selectors on instantiation.
+
 ```ts
 import { QuerySelector } from "wctk";
 
 class MyElement extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#qc = new QuerySelector({
-		target: this.#wc.shadowRoot,
+		parent: this.#wc.shadowRoot,
 		querySelector: ["[greeting]"],
 		querySelectorAll: ["[greeting]"],
 	});

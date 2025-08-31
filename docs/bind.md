@@ -8,7 +8,7 @@ This is mostly a utility to avoid using the constructor.
 
 Add a `Bind` controller to a web component.
 
-Add a list of callbacks on instantiation.
+Add a list of methods on instantiation. The methods cannot be `#private`.
 
 ```ts
 import { Bind } from "wctk";
