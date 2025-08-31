@@ -6,7 +6,7 @@ Create a map of selector queries.
 
 Add a `QuerySelector` controller to a web component.
 
-Add a list of callbacks on instantiation.
+Add a list of selectors on instantiation.
 
 ```html
 <my-element>

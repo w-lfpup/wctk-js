@@ -13,7 +13,6 @@ class Counter extends HTMLElement {
 
 	#ev = new Events({
 		host: this,
-		target: this.#wc.shadowRoot,
 		connected: true,
 		callbacks: [["click", this.#clickHandler]],
 	});
@@ -33,7 +32,6 @@ class Counter extends HTMLElement {
 
 function getStateFromDOM(shadowRoot: ShadowRoot) {
 	let slot = shadowRoot.querySelector("slot");
-
 	if (slot)
 		for (let el of slot.assignedNodes()) {
 			if (el instanceof HTMLSpanElement) {

@@ -32,4 +32,4 @@ class MyElement extends HTMLElement {
 }
 ```
 
-The `Microtask.queue()` method can be called multiple times but the provided callback will only be called _once_ per microtask queue.
+The `Microtask.queue()` method can be called multiple times per event loop but the provided callback will only be called _once_ per microtask queue.

@@ -1,10 +1,10 @@
 # Wctk-JS
 
-The bare metal web component tool kit.
+The web component tool kit.
 
 ## About
 
-A handful of controllers / facades:
+A handful of bare metal controllers:
 
 - create [shadow dom](./docs/wc.md) and manage form values
 - listen to [events](./docs/events.md)
@@ -15,7 +15,7 @@ A handful of controllers / facades:
 
 All features are optional and compositional and built from the ground up to support SSR.
 
-`Wctk-js` even supports `#private` function callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+`Wctk-js` even supports `#private` functions as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## Install
 
