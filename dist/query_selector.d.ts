@@ -1,5 +1,5 @@
 export interface QuerySelectorParamsInterface {
-    target: Element | ShadowRoot | Document;
+    parent: ParentNode;
     querySelector?: Array<string>;
     querySelectorAll?: Array<string>;
 }

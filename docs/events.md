@@ -1,6 +1,6 @@
 # Events Controller
 
-Pass custom element functions to event listeners.
+Add element functions as event listener callbacks.
 
 ## How to use
 
@@ -19,9 +19,9 @@ interface EventParams {
 
 Two required properties instruct the Events controller to bind a set of `callbacks` to a `host`.
 
-Afterwards, the Events controller adds the callbacks as event listeners on a `target` Node.
+Afterwards, the Events controller adds the callbacks as event listeners on a `target` node.
 
-The `target` Node could be a shadowRoot, a document, or the custom element itself.
+The `target` node could be a shadowRoot, a document, or the custom element itself.
 
 If the `target` property is undefined, the `host` property is used as a fallback.
 

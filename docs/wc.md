@@ -6,6 +6,8 @@ Build a web component.
 
 Add a `Wc` controller to a custom element.
 
+The `Wc` controller can setup a web component in one line.
+
 ```ts
 import { Wc } from "wctk";
 
@@ -14,9 +16,7 @@ class MyElement extends HTMLElement {
 }
 ```
 
-The `Wc` controller directly directly mirrors bare metal browser apis.
-
-It is a facade for a few core web componet APIs.
+But the `Wc` controller is also a facade for a few core web componet APIs including stylesheets and form values.
 
 ```ts
 class MyElement extends HTMLElement {

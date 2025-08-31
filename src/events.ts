@@ -5,22 +5,22 @@ export interface EventsInterface {
 	disconnect(): void;
 }
 
-export interface EventsElementInterface {
-	addEventListener: Node["addEventListener"];
-	removeEventListener: Node["removeEventListener"];
+export interface EventElementInterface {
+	addEventListener: EventTarget["addEventListener"];
+	removeEventListener: EventTarget["removeEventListener"];
 }
 
 export interface EventParamsInterface {
-	host: EventsElementInterface;
+	host: EventElementInterface;
 	connected?: boolean;
-	target?: EventsElementInterface;
+	target?: EventElementInterface;
 	callbacks: Callbacks;
 }
 
 export class Events implements EventsInterface {
 	#connected: boolean = false;
 	#callbacks: Callbacks = [];
-	#target: EventsElementInterface;
+	#target: EventElementInterface;
 
 	constructor(params: EventParamsInterface) {
 		const { host, target, callbacks, connected } = params;
@@ -53,7 +53,7 @@ export class Events implements EventsInterface {
 function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
 	let events: Callbacks = [];
 	for (let [name, callback] of callbacks) {
-		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+		if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
 			callback = callback.bind(host);
 		}
 

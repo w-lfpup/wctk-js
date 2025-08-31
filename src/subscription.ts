@@ -55,7 +55,7 @@ function getBoundCallbacks<E extends Function>(
 ): E[] {
 	let bounded = [];
 	for (let callback of callbacks) {
-		if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+		if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
 			callback = callback.bind(host);
 		}
 

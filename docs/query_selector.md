@@ -6,8 +6,6 @@ Create a map of selector queries.
 
 Add a `QuerySelector` controller to a web component.
 
-Add a list of selectors on instantiation.
-
 ```html
 <my-element>
 	<template shadowrootmode="closed">
@@ -15,6 +13,8 @@ Add a list of selectors on instantiation.
 	</template>
 </my-element>
 ```
+
+Add a list of selectors on instantiation.
 
 ```ts
 import { QuerySelector } from "wctk";

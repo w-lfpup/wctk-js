@@ -3,14 +3,14 @@ export interface EventsInterface {
     connect(): void;
     disconnect(): void;
 }
-export interface EventsElementInterface {
-    addEventListener: Node["addEventListener"];
-    removeEventListener: Node["removeEventListener"];
+export interface EventElementInterface {
+    addEventListener: EventTarget["addEventListener"];
+    removeEventListener: EventTarget["removeEventListener"];
 }
 export interface EventParamsInterface {
-    host: EventsElementInterface;
+    host: EventElementInterface;
     connected?: boolean;
-    target?: EventsElementInterface;
+    target?: EventElementInterface;
     callbacks: Callbacks;
 }
 export declare class Events implements EventsInterface {

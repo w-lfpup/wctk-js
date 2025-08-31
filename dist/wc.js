@@ -1,7 +1,7 @@
 const shadowRootInitFallback = {
     mode: "closed",
 };
-class Wc {
+export class Wc {
     #declarative = true;
     #internals;
     #shadowRoot;
@@ -44,4 +44,3 @@ class Wc {
         this.#internals.setValidity(flags, message, anchor);
     }
 }
-export { Wc };

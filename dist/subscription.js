@@ -29,7 +29,7 @@ export class Subscription {
 function getBoundCallbacks(host, callbacks) {
     let bounded = [];
     for (let callback of callbacks) {
-        if (!callback.hasOwnProperty("prototype") && callback instanceof Function) {
+        if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
             callback = callback.bind(host);
         }
         bounded.push(callback);

@@ -1,20 +1,19 @@
-// needed because typescript itself does not create a similar type
-type FormDataTypes = File | string | FormData;
-
-interface WcElementInterface {
+export interface WcElementInterface {
 	attachInternals: HTMLElement["attachInternals"];
 	attachShadow: Element["attachShadow"];
 }
 
-interface WcParamsInterface {
+type FormDataArguments = Parameters<ElementInternals["setFormValue"]>;
+
+export interface WcParamsInterface {
 	host: WcElementInterface;
 	adoptedStyleSheets?: CSSStyleSheet[];
 	shadowRootInit?: ShadowRootInit;
-	formValue?: FormDataTypes;
-	formState?: FormDataTypes;
+	formValue?: FormDataArguments[0];
+	formState?: FormDataArguments[1];
 }
 
-interface WcInterface {
+export interface WcInterface {
 	readonly declarative: boolean;
 	readonly shadowRoot: ShadowRoot;
 	adoptedStyleSheets: DocumentOrShadowRoot["adoptedStyleSheets"];
@@ -27,7 +26,7 @@ const shadowRootInitFallback: ShadowRootInit = {
 	mode: "closed",
 };
 
-class Wc implements WcInterface {
+export class Wc implements WcInterface {
 	#declarative: boolean = true;
 	#internals: ElementInternals;
 	#shadowRoot: ShadowRoot;
@@ -72,7 +71,7 @@ class Wc implements WcInterface {
 		return this.#internals.reportValidity();
 	}
 
-	setFormValue(value: FormDataTypes, state?: FormDataTypes) {
+	setFormValue(value: FormDataArguments[0], state?: FormDataArguments[1]) {
 		this.#internals.setFormValue(value, state);
 	}
 
@@ -84,7 +83,3 @@ class Wc implements WcInterface {
 		this.#internals.setValidity(flags, message, anchor);
 	}
 }
-
-export type { WcInterface, WcElementInterface, WcParamsInterface };
-
-export { Wc };

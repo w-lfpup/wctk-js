@@ -35,4 +35,4 @@ The following examples demonstrate several common SSR use cases:
 
 ## License
 
-`Wctk` is released under the BSD-3 Clause License.
+`Wctk-js` is released under the BSD-3 Clause License.
