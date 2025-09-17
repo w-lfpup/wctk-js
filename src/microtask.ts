@@ -1,6 +1,6 @@
 export interface MicrotaskParamsInterface {
 	host: Object;
-	callbacks: Function[];
+	callback: Function;
 }
 
 export interface MicrotaskInterface {
@@ -9,11 +9,17 @@ export interface MicrotaskInterface {
 
 export class Microtask implements MicrotaskInterface {
 	#queued = false;
-	#callbacks: Function[];
+	#callback: Function;
 
 	constructor(params: MicrotaskParamsInterface) {
+		let { host, callback } = params;
+
 		this.queue = this.queue.bind(this);
-		this.#callbacks = getBoundCallbacks(params);
+		this.#callback = callback;
+
+		if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
+			this.#callback = callback.bind(host);
+		}
 	}
 
 	queue() {
@@ -22,24 +28,7 @@ export class Microtask implements MicrotaskInterface {
 
 		queueMicrotask(() => {
 			this.#queued = false;
-			for (let callback of this.#callbacks) {
-				callback();
-			}
+			this.#callback();
 		});
 	}
-}
-
-function getBoundCallbacks(params: MicrotaskParamsInterface): Function[] {
-	let { host, callbacks } = params;
-
-	let boundCallbacks: Function[] = [];
-	for (let callback of callbacks) {
-		if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
-			callback = callback.bind(host);
-		}
-
-		boundCallbacks.push(callback);
-	}
-
-	return boundCallbacks;
 }

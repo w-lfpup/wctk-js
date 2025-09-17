@@ -1,6 +1,6 @@
 export interface MicrotaskParamsInterface {
     host: Object;
-    callbacks: Function[];
+    callback: Function;
 }
 export interface MicrotaskInterface {
     queue(): void;
