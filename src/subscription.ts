@@ -14,9 +14,7 @@ export interface SubscriptionParamsInterface<E, A> {
 	unsubscribe: Unsubscribe<A>;
 }
 
-export class Subscription<E, A>
-	implements SubscriptionInterface
-{
+export class Subscription<E, A> implements SubscriptionInterface {
 	#callback: E;
 	#affect?: A;
 	#subscribe: Subscribe<E, A>;
@@ -37,12 +35,10 @@ export class Subscription<E, A>
 	}
 
 	connect() {
-		if (!this.#affect)
-			this.#affect = this.#subscribe(this.#callback);
+		if (!this.#affect) this.#affect = this.#subscribe(this.#callback);
 	}
 
 	disconnect() {
-		if (this.#affect)
-			this.#unsubscribe(this.#affect);
+		if (this.#affect) this.#unsubscribe(this.#affect);
 	}
 }
