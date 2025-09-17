@@ -1,6 +1,6 @@
 # QuerySelector Controller
 
-Create a map of selector queries.
+Create a lazy map of selector queries.
 
 ## How to use
 
@@ -14,7 +14,7 @@ Add a `QuerySelector` controller to a web component.
 </my-element>
 ```
 
-Add a list of selectors on instantiation.
+Every query is cached. Call `<QuerySelector>.deleteAll()` to reset the cache (helpful after a new render) 
 
 ```ts
 import { QuerySelector } from "wctk";
@@ -23,19 +23,17 @@ class MyElement extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#qc = new QuerySelector({
 		parent: this.#wc.shadowRoot,
-		querySelector: ["[greeting]"],
-		querySelectorAll: ["[greeting]"],
 	});
 
 	doSomething() {
-		// first occurance
-		let greeting = this.#qc.get("[greeting]");
+		// first Element occurance
+		let greeting = this.#qc.querySelector("[greeting]");
 
-		// NodeList
-		let greetings = this.#qc.getAll("[greeting]");
+		// Element[]
+		let greetings = this.#qc.querySelectorAll("[greeting]");
 
-		// update queries
-		this.#qc.query();
+		// create new cache
+		this.#qc.deleteAll();
 	}
 }
 ```

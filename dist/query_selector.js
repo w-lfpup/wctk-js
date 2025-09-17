@@ -1,35 +1,25 @@
 export class QuerySelector {
+    #queries = new Map();
     #params;
-    #queries;
     constructor(params) {
         this.#params = params;
-        this.#queries = getQueries(params);
     }
-    query() {
-        this.#queries = getQueries(this.#params);
+    querySelector(selector) {
+        return getQuery(this.#params, this.#queries, selector)[0];
     }
-    get(name) {
-        return this.#queries.get(name)?.[0];
+    querySelectorAll(selector) {
+        return getQuery(this.#params, this.#queries, selector);
     }
-    getAll(name) {
-        return this.#queries.get(name);
+    deleteAll() {
+        this.#queries = new Map();
     }
 }
-function getQueries(params) {
-    const { parent, querySelector, querySelectorAll } = params;
-    const queries = new Map();
-    if (querySelectorAll)
-        for (let selector of querySelectorAll) {
-            const queried = parent.querySelectorAll(selector);
-            queries.set(selector, Array.from(queried));
-        }
-    if (querySelector)
-        for (let selector of querySelector) {
-            if (queries.has(selector))
-                continue;
-            const queried = parent.querySelector(selector);
-            if (queried)
-                queries.set(selector, [queried]);
-        }
-    return queries;
+function getQuery(params, queries, selector) {
+    const { parent } = params;
+    let results = queries.get(selector);
+    if (!results) {
+        results = Array.from(parent.querySelectorAll(selector));
+        queries.set(selector, results);
+    }
+    return results;
 }
