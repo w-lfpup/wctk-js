@@ -1,6 +1,6 @@
 # QuerySelector Controller
 
-Create a lazy map of selector queries.
+Lazily map selector queries.
 
 ## How to use
 
@@ -14,7 +14,7 @@ Add a `QuerySelector` controller to a web component.
 </my-element>
 ```
 
-Every query is cached. Call `<QuerySelector>.deleteAll()` to reset the cache (helpful after a new render)
+Every query is cached. Call `<QuerySelector>.deleteAll()` to reset the cache (helpful after a new render).
 
 ```ts
 import { QuerySelector } from "wctk";

@@ -51,14 +51,14 @@ export class Events implements EventsInterface {
 }
 
 function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
-	let events: Callbacks = [];
+	let boundCallbacks: Callbacks = [];
 	for (let [name, callback] of callbacks) {
 		if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
 			callback = callback.bind(host);
 		}
 
-		events.push([name, callback]);
+		boundCallbacks.push([name, callback]);
 	}
 
-	return events;
+	return boundCallbacks;
 }

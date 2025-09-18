@@ -2,7 +2,7 @@
 
 Bind functions to objects.
 
-This utility is mainly designed to avoid the constructor.
+This utility is mainly designed to avoid using the constructor.
 
 ## How to use
 

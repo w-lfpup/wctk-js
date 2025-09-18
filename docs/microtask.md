@@ -1,6 +1,6 @@
 # Microtask Controller
 
-Add functions to the `microtask queue`.
+Add callbacks to the `microtask queue`.
 
 ## How to use
 
