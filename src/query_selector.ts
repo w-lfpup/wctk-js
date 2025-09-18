@@ -1,56 +1,46 @@
 export interface QuerySelectorParamsInterface {
 	parent: ParentNode;
-	querySelector?: Array<string>;
-	querySelectorAll?: Array<string>;
 }
 
 export interface QuerySelectorInterface {
-	query(): void;
-	get(name: string): Element | undefined;
-	getAll(name: string): Element[] | undefined;
+	querySelector(name: string): Element | undefined;
+	querySelectorAll(name: string): Element[] | undefined;
+	deleteAll(): void;
 }
 
 export class QuerySelector implements QuerySelectorInterface {
+	#queries: Map<string, Element[]> = new Map();
 	#params: QuerySelectorParamsInterface;
-	#queries: Map<string, Element[]>;
 
 	constructor(params: QuerySelectorParamsInterface) {
 		this.#params = params;
-		this.#queries = getQueries(params);
 	}
 
-	query() {
-		this.#queries = getQueries(this.#params);
+	querySelector(selector: string): Element | undefined {
+		return getQuery(this.#params, this.#queries, selector)[0];
 	}
 
-	get(name: string): Element | undefined {
-		return this.#queries.get(name)?.[0];
+	querySelectorAll(selector: string): Element[] {
+		return getQuery(this.#params, this.#queries, selector);
 	}
 
-	getAll(name: string): Element[] | undefined {
-		return this.#queries.get(name);
+	deleteAll() {
+		this.#queries = new Map();
 	}
 }
 
-function getQueries(
+function getQuery(
 	params: QuerySelectorParamsInterface,
-): Map<string, Element[]> {
-	const { parent, querySelector, querySelectorAll } = params;
+	queries: Map<string, Element[]>,
+	selector: string,
+): Element[] {
+	const { parent } = params;
 
-	const queries = new Map<string, Element[]>();
+	let results = queries.get(selector);
+	if (!results) {
+		results = Array.from(parent.querySelectorAll(selector));
+		queries.set(selector, results);
+	}
 
-	if (querySelectorAll)
-		for (let selector of querySelectorAll) {
-			const queried = parent.querySelectorAll(selector);
-			queries.set(selector, Array.from(queried));
-		}
-
-	if (querySelector)
-		for (let selector of querySelector) {
-			if (queries.has(selector)) continue;
-			const queried = parent.querySelector(selector);
-			if (queried) queries.set(selector, [queried]);
-		}
-
-	return queries;
+	return results;
 }

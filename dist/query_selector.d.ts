@@ -1,17 +1,15 @@
 export interface QuerySelectorParamsInterface {
     parent: ParentNode;
-    querySelector?: Array<string>;
-    querySelectorAll?: Array<string>;
 }
 export interface QuerySelectorInterface {
-    query(): void;
-    get(name: string): Element | undefined;
-    getAll(name: string): Element[] | undefined;
+    querySelector(name: string): Element | undefined;
+    querySelectorAll(name: string): Element[] | undefined;
+    deleteAll(): void;
 }
 export declare class QuerySelector implements QuerySelectorInterface {
     #private;
     constructor(params: QuerySelectorParamsInterface);
-    query(): void;
-    get(name: string): Element | undefined;
-    getAll(name: string): Element[] | undefined;
+    querySelector(selector: string): Element | undefined;
+    querySelectorAll(selector: string): Element[];
+    deleteAll(): void;
 }

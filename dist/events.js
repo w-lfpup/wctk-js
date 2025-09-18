@@ -27,12 +27,12 @@ export class Events {
     }
 }
 function getBoundCallbacks(host, callbacks) {
-    let events = [];
+    let boundCallbacks = [];
     for (let [name, callback] of callbacks) {
         if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
             callback = callback.bind(host);
         }
-        events.push([name, callback]);
+        boundCallbacks.push([name, callback]);
     }
-    return events;
+    return boundCallbacks;
 }

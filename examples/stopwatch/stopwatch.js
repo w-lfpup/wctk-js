@@ -5,7 +5,7 @@ import { Bind, Wc, Microtask } from "wctk";
 */
 export class Stopwatch extends HTMLElement {
     #wc = new Wc({ host: this });
-    #rc = new Microtask({ host: this, callbacks: [this.#render] });
+    #rc = new Microtask({ host: this, callback: this.#render });
     #bc = new Bind({ host: this, callbacks: [this.update] });
     #state = getStateFromShadowDOM(this.#wc.shadowRoot);
     #render() {

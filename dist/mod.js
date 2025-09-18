@@ -1,6 +1,6 @@
-export { Bind } from "./bind.js";
-export { Events } from "./events.js";
-export { Microtask } from "./microtask.js";
-export { Subscription } from "./subscription.js";
-export { QuerySelector } from "./query_selector.js";
-export { Wc } from "./wc.js";
+export * from "./bind.js";
+export * from "./events.js";
+export * from "./microtask.js";
+export * from "./subscription.js";
+export * from "./query_selector.js";
+export * from "./wc.js";

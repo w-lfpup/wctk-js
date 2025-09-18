@@ -1,30 +1,22 @@
 export class Microtask {
     #queued = false;
-    #callbacks;
+    #callback;
     constructor(params) {
+        let { host, callback } = params;
         this.queue = this.queue.bind(this);
-        this.#callbacks = getBoundCallbacks(params);
+        this.#callback = callback;
+        if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
+            this.#callback = callback.bind(host);
+        }
     }
     queue() {
         if (this.#queued)
             return;
         this.#queued = true;
+        // could this be a bound function? less function creation
         queueMicrotask(() => {
             this.#queued = false;
-            for (let callback of this.#callbacks) {
-                callback();
-            }
+            this.#callback();
         });
     }
-}
-function getBoundCallbacks(params) {
-    let { host, callbacks } = params;
-    let boundCallbacks = [];
-    for (let callback of callbacks) {
-        if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
-            callback = callback.bind(host);
-        }
-        boundCallbacks.push(callback);
-    }
-    return boundCallbacks;
 }
