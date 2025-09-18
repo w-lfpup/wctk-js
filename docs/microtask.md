@@ -21,13 +21,13 @@ class MyElement extends HTMLElement {
 		callback: this.#render,
 	});
 
+	#render() {
+		// update DOM here!
+	}
+
 	// lifecycle method
 	attributeChangedCallback() {
 		this.#rc.queue();
-	}
-
-	#render() {
-		// update DOM here!
 	}
 }
 ```

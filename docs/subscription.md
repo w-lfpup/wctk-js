@@ -62,7 +62,7 @@ class MyElement extends HTMLElement {
 
 ### Life cycle methods
 
-In the example below, the `connected` property is set to true and the component is immediately subscribed to the store on instantiation.
+In the example below, the `connected` property is set to true and the component is immediately subscribed on instantiation.
 
 ```ts
 import { Subscription } from "wctk";

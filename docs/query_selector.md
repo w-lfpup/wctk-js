@@ -25,8 +25,8 @@ class MyElement extends HTMLElement {
 		parent: this.#wc.shadowRoot,
 	});
 
-	doSomething() {
-		// first Element occurance
+	showcaseApi() {
+		// first Element or undefined
 		let greeting = this.#qc.querySelector("[greeting]");
 
 		// Element[]
