@@ -37,7 +37,7 @@ import { getState, subscribe, unsubscribe } from "./datastore.js";
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
 		host: this,
-		callbacks: [this.#update],
+		callback: this.#update,
 		connected: true,
 		subscribe,
 		unsubscribe,

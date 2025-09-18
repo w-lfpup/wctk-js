@@ -6,7 +6,7 @@ Build a web component.
 
 Add a `Wc` controller to a custom element.
 
-The `Wc` controller can setup a web component in one line.
+One line is all it takes.
 
 ```ts
 import { Wc } from "wctk";
@@ -16,7 +16,9 @@ class MyElement extends HTMLElement {
 }
 ```
 
-But the `Wc` controller is also a facade for a few core web componet APIs including stylesheets and form values.
+## Adopted stylesheets and form values
+
+The `Wc` controller is also a facade for a few core web componet APIs including stylesheets and form values.
 
 ```ts
 class MyElement extends HTMLElement {
@@ -29,24 +31,24 @@ class MyElement extends HTMLElement {
 		formState: ":3",
 	});
 
-	constructor() {
+	showcaseApi() {
 		// true if declarative shadow dom is present
 		this.#wc.delcarative;
+
+		// https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot
+		this.#wc.shadowRoot;
 
 		// https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/adoptedStyleSheets
 		this.#wc.adopedStylesheets;
 
-		// https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot
-		this.#wc.shadowRoot;
+		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue
+		this.#wc.setFormValue(value, state);
 
 		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/checkValidity
 		this.#wc.checkValidity();
 
 		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/reportValidity
 		this.#wc.reportValidity();
-
-		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue
-		this.#wc.setFormValue(value, state);
 
 		// https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setValidity
 		this.#wc.setValidity(flags, message);

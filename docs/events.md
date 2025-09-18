@@ -93,3 +93,7 @@ class MyElement extends HTMLElement {
 	}
 }
 ```
+
+### More complex interactions
+
+If your component requires more complex interactions, consider [superaction](https://github.com/w-lfpup/superaction-js/)

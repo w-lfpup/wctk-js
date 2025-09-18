@@ -1,21 +1,21 @@
 # Wctk-JS
 
-The web component tool kit.
+A web component tool kit.
 
 ## About
-
-A handful of bare metal controllers:
-
-- create [shadow dom](./docs/wc.md) and manage form values
-- listen to [events](./docs/events.md)
-- [subscribe](./docs/subscription.md) to external data stores
-- render on the [microtask](./docs/microtask.md) queue
-- [bind](./docs/bind.md) functions to elements
-- [query](./docs/query_selector.md) the shadow dom
 
 All features are optional and compositional and built from the ground up to support SSR.
 
 `Wctk-js` even supports `#private` functions as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+
+A handful of controllers help developers:
+
+- create [shadow dom](./docs/wc.md) and manage form values
+- listen to [events](./docs/events.md)
+- render on the [microtask](./docs/microtask.md) queue
+- [query](./docs/query_selector.md) the shadow dom
+- [subscribe](./docs/subscription.md) to external data stores
+- [bind](./docs/bind.md) functions to elements
 
 ## Install
 

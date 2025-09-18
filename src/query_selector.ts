@@ -3,9 +3,9 @@ export interface QuerySelectorParamsInterface {
 }
 
 export interface QuerySelectorInterface {
-	deleteAll(): void;
 	querySelector(name: string): Element | undefined;
 	querySelectorAll(name: string): Element[] | undefined;
+	deleteAll(): void;
 }
 
 export class QuerySelector implements QuerySelectorInterface {
