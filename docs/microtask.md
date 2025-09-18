@@ -8,7 +8,7 @@ Add a `Microtask` controller to a web component. Provide a callback.
 
 Call `Microtask.queue()` to push the callback to the microtask queue.
 
-In the example below, a Microtask controller queues a render when the `width` attribute changes.
+In the example below, a `Microtask` controller queues a render when the `width` attribute changes.
 
 ```ts
 import { Microtask } from "wctk";

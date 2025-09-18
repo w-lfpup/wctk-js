@@ -3,6 +3,7 @@
 	"type": "module",
 	"main": "./dist/mod.js",
 	"scripts": {
+		"prepare": "npm run build",
 		"build": "npm run remove_dist && npm run build:dev",
 		"build:dev": "npx tsc --project ./src",
 		"build:examples": "npx tsc --project ./examples",
