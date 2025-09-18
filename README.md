@@ -4,9 +4,7 @@ A web component tool kit.
 
 ## About
 
-All features are optional and compositional and built from the ground up to support SSR.
-
-`Wctk-js` even supports `#private` functions as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+All features are entirely optional and compositional and built from the ground up to support SSR. There are no base classes or decorators.
 
 A handful of controllers help developers:
 
@@ -16,6 +14,8 @@ A handful of controllers help developers:
 - [query](./docs/query_selector.md) the shadow dom
 - [subscribe](./docs/subscription.md) to external data stores
 - [bind](./docs/bind.md) functions to elements
+
+`Wctk-js` even supports `#private` functions as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## Install
 
