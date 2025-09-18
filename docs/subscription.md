@@ -38,7 +38,6 @@ class MyElement extends HTMLElement {
 	#sc = new Subscription({
 		host: this,
 		callback: this.#update,
-		connected: true,
 		subscribe,
 		unsubscribe,
 	});
@@ -47,26 +46,6 @@ class MyElement extends HTMLElement {
 		let state = getState();
 		// do something with state
 	}
-}
-```
-
-### Life cycle methods
-
-In the example below the `connected` property is not included and has a fallback value of `false`.
-
-The `Subscription` controller should be called on the component's `connect` and `disconnect` lifecycle methods:
-
-```ts
-import { Subscription } from "wctk";
-import { getState, subscribe, unsubscribe } from "./datastore.js";
-
-class MyElement extends HTMLElement {
-	#sc = new Subscription({
-		host: this,
-		callback: this.#update,
-		subscribe,
-		unsubscribe,
-	});
 
 	// lifecycle method
 	connectedCallback() {
@@ -78,6 +57,25 @@ class MyElement extends HTMLElement {
 	disconnectedCallback() {
 		this.#sc.disconnect();
 	}
+}
+```
+
+### Life cycle methods
+
+In the example below, the `connected` property is set to true and the component is immediately subscribed to the store on instantiation.
+
+```ts
+import { Subscription } from "wctk";
+import { getState, subscribe, unsubscribe } from "./datastore.js";
+
+class MyElement extends HTMLElement {
+	#sc = new Subscription({
+		host: this,
+		callback: this.#update,
+		connected: true,
+		subscribe,
+		unsubscribe,
+	});
 
 	#update() {
 		let state = getState();
