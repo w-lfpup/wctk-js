@@ -6,18 +6,19 @@ A web component tool kit.
 
 A half-dozen controllers help developers:
 
-- create [shadow dom](./docs/wc.md) and manage form values
-- listen to [events](./docs/events.md)
-- render on the [microtask](./docs/microtask.md) queue
-- [query](./docs/query_selector.md) the shadow dom
+- create [shadow dom](./docs/wc.md)
+- render on the [microtask queue](./docs/microtask.md)
+- listen for [events](./docs/events.md)
 - [subscribe](./docs/subscription.md) to external data stores
+- manage [form values](./docs/wc.md#adopted-stylesheets-and-form-values)
+- [query](./docs/query_selector.md) the shadow dom
 - [bind](./docs/bind.md) functions to elements
 
-All features are optional, compositional, and built from the ground up to support SSR.
+All features are compositional and built to support [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) SSR.
 
 There are no base classes or decorators.
 
-`Wctk-js` even supports `#private` functions as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+`Wctk-js` even supports `#private` methods as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
 
 ## Install
 
