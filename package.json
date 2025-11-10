@@ -4,8 +4,7 @@
 	"main": "./dist/mod.js",
 	"scripts": {
 		"prepare": "npm run build",
-		"build": "npm run build:dev",
-		"build:dev": "npx tsc --project ./src",
+		"build": "npx tsc --project ./src",
 		"build:examples": "npx tsc --project ./examples",
 		"format": "prettier --write ./"
 	},
