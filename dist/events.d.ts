@@ -4,8 +4,8 @@ export interface EventsInterface {
     disconnect(): void;
 }
 export interface EventElementInterface {
-    addEventListener: GlobalEventHandlers["addEventListener"];
-    removeEventListener: GlobalEventHandlers["removeEventListener"];
+    addEventListener: EventTarget["addEventListener"];
+    removeEventListener: EventTarget["removeEventListener"];
 }
 export interface EventParamsInterface {
     host: EventElementInterface;
