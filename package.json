@@ -2,7 +2,9 @@
 	"name": "@w-lfpup/wctk",
 	"type": "module",
 	"main": "dist/mod.js",
-	"description": "A bare-metal web component tool kit",
+	"description": "A bare-metal web component toolkit",
+	"version": "0.1.0",
+	"license": "BSD-3-Clause",
 	"scripts": {
 		"prepare": "npm run build",
 		"build": "npx tsc --project ./src",
@@ -16,7 +18,5 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/w-lfpup/wctk-js.git"
-	},
-	"version": "0.1.0",
-	"license": "BSD-3-Clause"
+	}
 }
