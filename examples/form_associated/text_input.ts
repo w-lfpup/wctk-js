@@ -16,7 +16,8 @@ export class TextInput extends HTMLElement {
 
 	#changeHandler(e: Event) {
 		let { target } = e;
-		if (target instanceof HTMLInputElement) this.#wc.setFormValue(target.value);
+		if (target instanceof HTMLInputElement)
+			this.#wc.setFormValue(target.value);
 	}
 
 	// lifecycle method

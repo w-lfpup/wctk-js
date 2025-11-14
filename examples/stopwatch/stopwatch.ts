@@ -19,7 +19,8 @@ export class Stopwatch extends HTMLElement {
 	#state?: State = getStateFromShadowDOM(this.#wc.shadowRoot);
 
 	#render() {
-		if (this.#state) this.#state.el.textContent = this.#state.count.toFixed(2);
+		if (this.#state)
+			this.#state.el.textContent = this.#state.count.toFixed(2);
 	}
 
 	update(timestamp: DOMHighResTimeStamp) {

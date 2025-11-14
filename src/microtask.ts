@@ -16,7 +16,10 @@ export class Microtask implements MicrotaskInterface {
 
 		this.queue = this.queue.bind(this);
 		this.#callback = callback;
-		if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
+		if (
+			callback instanceof Function &&
+			!callback.hasOwnProperty("prototype")
+		) {
 			this.#callback = callback.bind(host);
 		}
 	}
