@@ -2,7 +2,7 @@
 	"name": "@w-lfpup/wctk",
 	"type": "module",
 	"main": "dist/mod.js",
-	"description": "",
+	"description": "A bare-metal web component tool kit",
 	"scripts": {
 		"prepare": "npm run build",
 		"build": "npx tsc --project ./src",
