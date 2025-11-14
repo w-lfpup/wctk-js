@@ -13,6 +13,10 @@
 		"prettier": "^3.3.0",
 		"typescript": "^5.4.5"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w-lfpup/wctk-js.git"
+	},
 	"version": "0.1.0",
 	"license": "BSD-3-Clause"
 }

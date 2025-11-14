@@ -22,6 +22,14 @@ There are no base classes or decorators.
 
 ## Install
 
+Install with npm.
+
+```bash
+npm install --save-dev @w-lfpup/wctk
+```
+
+Or install directly from github.
+
 ```bash
 npm install --save-dev https://github.com/w-lfpup/wctk-js/
 ```
