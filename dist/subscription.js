@@ -8,7 +8,8 @@ export class Subscription {
         this.#subscribe = subscribe;
         this.#unsubscribe = unsubscribe;
         this.#callback = callback;
-        if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
+        if (callback instanceof Function &&
+            !callback.hasOwnProperty("prototype")) {
             this.#callback = callback.bind(host);
         }
         if (connected)
