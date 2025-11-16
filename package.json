@@ -3,10 +3,10 @@
 	"type": "module",
 	"main": "dist/mod.js",
 	"description": "A bare-metal web component toolkit",
-	"version": "0.1.0",
 	"license": "BSD-3-Clause",
+	"version": "0.1.0",
 	"scripts": {
-		"prepare": "npm run build",
+		"prepare": "npm run build && npm run build:examples",
 		"build": "npx tsc --project ./src",
 		"build:examples": "npx tsc --project ./examples",
 		"format": "prettier --write ./"
