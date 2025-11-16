@@ -1,9 +1,12 @@
 {
-	"name": "wctk",
+	"name": "@w-lfpup/wctk",
 	"type": "module",
-	"main": "./dist/mod.js",
+	"main": "dist/mod.js",
+	"description": "A bare-metal web component toolkit",
+	"license": "BSD-3-Clause",
+	"version": "0.1.0",
 	"scripts": {
-		"prepare": "npm run build",
+		"prepare": "npm run build && npm run build:examples",
 		"build": "npx tsc --project ./src",
 		"build:examples": "npx tsc --project ./examples",
 		"format": "prettier --write ./"
@@ -12,8 +15,8 @@
 		"prettier": "^3.3.0",
 		"typescript": "^5.4.5"
 	},
-	"author": "wolfpup",
-	"version": "0.1.0",
-	"description": "",
-	"license": "BSD-3-Clause"
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w-lfpup/wctk-js.git"
+	}
 }

@@ -39,7 +39,9 @@ export class Wc implements WcInterface {
 		let { shadowRoot } = this.#internals;
 		if (!shadowRoot) {
 			this.#declarative = false;
-			shadowRoot = host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
+			shadowRoot = host.attachShadow(
+				shadowRootInit ?? shadowRootInitFallback,
+			);
 		}
 		this.#shadowRoot = shadowRoot;
 

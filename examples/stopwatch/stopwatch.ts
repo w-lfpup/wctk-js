@@ -14,18 +14,19 @@ interface State {
 export class Stopwatch extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#rc = new Microtask({ host: this, callback: this.#render });
-	#bc = new Bind({ host: this, callbacks: [this.update] });
 
+	#boundUpdate = this.#update.bind(this);
 	#state?: State = getStateFromShadowDOM(this.#wc.shadowRoot);
 
 	#render() {
-		if (this.#state) this.#state.el.textContent = this.#state.count.toFixed(2);
+		if (this.#state)
+			this.#state.el.textContent = this.#state.count.toFixed(2);
 	}
 
-	update(timestamp: DOMHighResTimeStamp) {
+	#update(timestamp: DOMHighResTimeStamp) {
 		if (!this.#state) return;
 
-		this.#state.receipt = requestAnimationFrame(this.update);
+		this.#state.receipt = requestAnimationFrame(this.#boundUpdate);
 
 		this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
 		this.#state.prevTimestamp = timestamp;
@@ -37,7 +38,7 @@ export class Stopwatch extends HTMLElement {
 	start() {
 		if (!this.#state || this.#state?.receipt) return;
 
-		this.#state.receipt = requestAnimationFrame(this.update);
+		this.#state.receipt = requestAnimationFrame(this.#boundUpdate);
 		this.#state.prevTimestamp = performance.now();
 	}
 

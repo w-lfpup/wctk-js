@@ -5,7 +5,8 @@ export class Microtask {
         let { host, callback } = params;
         this.queue = this.queue.bind(this);
         this.#callback = callback;
-        if (callback instanceof Function && !callback.hasOwnProperty("prototype")) {
+        if (callback instanceof Function &&
+            !callback.hasOwnProperty("prototype")) {
             this.#callback = callback.bind(host);
         }
     }

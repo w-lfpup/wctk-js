@@ -14,9 +14,10 @@ export class TextInput extends HTMLElement {
 		callbacks: [["change", this.#changeHandler]],
 	});
 
-	#changeHandler(e: Event) {
-		let { target } = e;
-		if (target instanceof HTMLInputElement) this.#wc.setFormValue(target.value);
+	#changeHandler(event: Event) {
+		let { target } = event;
+		if (target instanceof HTMLInputElement)
+			this.#wc.setFormValue(target.value);
 	}
 
 	// lifecycle method
