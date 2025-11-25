@@ -1,4 +1,12 @@
-export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
+interface TypedEvent<T extends Event> {
+	(event: T): void
+}
+
+type EventMap = {
+	[K in keyof GlobalEventHandlersEventMap]: TypedEvent<GlobalEventHandlersEventMap[K]>
+};
+
+export type Callbacks<K extends keyof GlobalEventHandlersEventMap = keyof GlobalEventHandlersEventMap> = Array<[K, EventMap[K]]>;
 
 export interface EventsInterface {
 	connect(): void;
