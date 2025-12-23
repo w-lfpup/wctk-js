@@ -3,8 +3,6 @@ interface EventElementInterface {
 	removeEventListener: Element["removeEventListener"];
 }
 
-type EventHandlers = GlobalEventHandlersEventMap & DocumentEventMap;
-
 interface GenericEventListener<E> {
 	(evt: E): void;
 }
@@ -16,6 +14,8 @@ interface GenericEventListenerObject<E> {
 type GenericCallbacks<E> =
 	| GenericEventListener<E>
 	| GenericEventListenerObject<E>;
+
+type EventHandlers = GlobalEventHandlersEventMap & DocumentEventMap;
 
 type EventMap = Partial<{
 	[Property in keyof EventHandlers]: GenericCallbacks<
