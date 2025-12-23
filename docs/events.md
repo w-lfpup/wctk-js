@@ -36,7 +36,7 @@ import { Events, Wc } from "wctk";
 
 class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
-	
+
 	#ec = new Events({
 		host: this,
 		target: this.#wc.shadowRoot,
