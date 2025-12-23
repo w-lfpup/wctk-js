@@ -8,12 +8,11 @@ class Counter extends HTMLElement {
         host: this,
         target: this.#wc.shadowRoot,
         connected: true,
-        // callbacks: [["click", this.#clickHandler2]],
         callbacks: {
-            "click": this.#onClick,
-            "keydown": this.#onKeyDown,
+            click: this.#onClick,
+            keydown: this.#onKeyDown,
             "my-event": (e) => { },
-        }
+        },
     });
     #state = getStateFromDOM(this.#wc.shadowRoot);
     #onClick(e) {

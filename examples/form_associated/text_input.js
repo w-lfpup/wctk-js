@@ -10,7 +10,7 @@ export class TextInput extends HTMLElement {
         target: this.#wc.shadowRoot,
         connected: true,
         callbacks: {
-            "change": this.#changeHandler,
+            change: this.#changeHandler,
         },
     });
     #changeHandler(event) {

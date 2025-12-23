@@ -1,12 +1,8 @@
-export interface EventsInterface {
-    connect(): void;
-    disconnect(): void;
-}
-export interface EventElementInterface {
+interface EventElementInterface {
     addEventListener: Element["addEventListener"];
     removeEventListener: Element["removeEventListener"];
 }
-type handlers = GlobalEventHandlersEventMap & WindowEventHandlersEventMap & DocumentEventMap;
+type EventHandlers = GlobalEventHandlersEventMap & DocumentEventMap;
 interface GenericEventListener<E> {
     (evt: E): void;
 }
@@ -15,14 +11,17 @@ interface GenericEventListenerObject<E> {
 }
 type GenericCallbacks<E> = GenericEventListener<E> | GenericEventListenerObject<E>;
 type EventMap = Partial<{
-    [Property in keyof handlers]: GenericCallbacks<handlers[Property]>;
+    [Property in keyof EventHandlers]: GenericCallbacks<EventHandlers[Property]>;
 }>;
-export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
 export interface EventParamsInterface {
-    host: EventElementInterface;
-    connected?: boolean;
-    target?: EventElementInterface;
     callbacks: EventMap;
+    connected?: boolean;
+    host: EventElementInterface;
+    target?: EventElementInterface;
+}
+export interface EventsInterface {
+    connect(): void;
+    disconnect(): void;
 }
 export declare class Events implements EventsInterface {
     #private;

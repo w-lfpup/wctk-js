@@ -33,7 +33,10 @@ function getBoundCallbacks(host, callbacks) {
             !callback.hasOwnProperty("prototype")) {
             callback = callback.bind(host);
         }
-        boundCallbacks.push([name, callback]);
+        boundCallbacks.push([
+            name,
+            callback,
+        ]);
     }
     return boundCallbacks;
 }
