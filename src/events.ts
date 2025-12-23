@@ -1,9 +1,3 @@
-interface TypedEvent<T extends Event> {
-	(event: T): void
-}
-
-// export type Callbacks<K extends keyof GlobalEventHandlersEventMap = keyof GlobalEventHandlersEventMap> = Array<[K, EventMap[K]]>;
-
 export interface EventsInterface {
 	connect(): void;
 	disconnect(): void;
@@ -14,29 +8,32 @@ export interface EventElementInterface {
 	removeEventListener: Element["removeEventListener"];
 }
 
-type handlers = GlobalEventHandlersEventMap & WindowEventHandlersEventMap & DocumentEventMap;
+type handlers = GlobalEventHandlersEventMap &
+	WindowEventHandlersEventMap &
+	DocumentEventMap;
 
-interface TypedCallback<E> {
+interface GenericEventListener<E> {
 	(evt: E): void;
 }
 
-interface TypedEventListenerCallback<E> {
-    handleEvent(object: E): void;
+interface GenericEventListenerObject<E> {
+	handleEvent(object: E): void;
 }
 
-type TypedEventListeners<E> = TypedCallback<E> | TypedEventListenerCallback<E>;
+type GenericCallbacks<E> =
+	| GenericEventListener<E>
+	| GenericEventListenerObject<E>;
 
 type EventMap = Partial<{
-	[Property in keyof handlers]: TypedEventListeners<handlers[Property]>; 
+	[Property in keyof handlers]: GenericCallbacks<handlers[Property]>;
 }>;
 
-export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>
+export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
 
 export interface EventParamsInterface {
 	host: EventElementInterface;
 	connected?: boolean;
 	target?: EventElementInterface;
-	// callbacks: Callbacks2;
 	callbacks: EventMap;
 }
 
@@ -83,7 +80,10 @@ function getBoundCallbacks(host: Object, callbacks: EventMap): Callbacks {
 			callback = callback.bind(host);
 		}
 
-		boundCallbacks.push([name, callback as EventListenerOrEventListenerObject]);
+		boundCallbacks.push([
+			name,
+			callback as EventListenerOrEventListenerObject,
+		]);
 	}
 
 	return boundCallbacks;

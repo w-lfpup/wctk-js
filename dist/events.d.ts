@@ -7,15 +7,15 @@ export interface EventElementInterface {
     removeEventListener: Element["removeEventListener"];
 }
 type handlers = GlobalEventHandlersEventMap & WindowEventHandlersEventMap & DocumentEventMap;
-interface TypedCallback<E> {
+interface GenericEventListener<E> {
     (evt: E): void;
 }
-interface TypedEventListenerCallback<E> {
+interface GenericEventListenerObject<E> {
     handleEvent(object: E): void;
 }
-type TypedEventListeners<E> = TypedCallback<E> | TypedEventListenerCallback<E>;
+type GenericCallbacks<E> = GenericEventListener<E> | GenericEventListenerObject<E>;
 type EventMap = Partial<{
-    [Property in keyof handlers]: TypedEventListeners<handlers[Property]>;
+    [Property in keyof handlers]: GenericCallbacks<handlers[Property]>;
 }>;
 export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
 export interface EventParamsInterface {

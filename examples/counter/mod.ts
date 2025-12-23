@@ -5,7 +5,7 @@ interface State {
 	count: number;
 }
 
-interface MyEvent extends Event {} 
+interface MyEvent extends Event {}
 
 declare global {
 	interface GlobalEventHandlersEventMap {
@@ -23,17 +23,16 @@ class Counter extends HTMLElement {
 		host: this,
 		target: this.#wc.shadowRoot,
 		connected: true,
-		// callbacks: [["click", this.#clickHandler2]],
 		callbacks: {
-			"click": this.#clickHandler,
-			"pointerup": this.#clickHandler2,
+			click: this.#onClick,
+			keydown: this.#onKeyDown,
 			"my-event": (e: Event) => {},
-		}
+		},
 	});
 
 	#state?: State = getStateFromDOM(this.#wc.shadowRoot);
 
-	#clickHandler(e: PointerEvent) {
+	#onClick(e: PointerEvent) {
 		if (!this.#state) return;
 
 		let increment = getIncrement(e);
@@ -43,7 +42,7 @@ class Counter extends HTMLElement {
 		}
 	}
 
-	#clickHandler2(e: PointerEvent) {
+	#onKeyDown(e: KeyboardEvent) {
 		if (!this.#state) return;
 
 		let increment = getIncrement(e);

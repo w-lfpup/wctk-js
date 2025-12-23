@@ -40,8 +40,8 @@ class MyElement extends HTMLElement {
 		host: this,
 		target: this.#wc.shadowRoot,
 		callbacks: {
-			"click": this.#onClick,
-			"keydown": this.#onKeyDown,
+			click: this.#onClick,
+			keydown: this.#onKeyDown,
 		},
 	});
 
