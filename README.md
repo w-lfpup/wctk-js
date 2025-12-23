@@ -2,6 +2,8 @@
 
 A web component tool kit.
 
+[![Builds](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml/badge.svg)](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml)
+
 ## About
 
 A half-dozen controllers help developers:
