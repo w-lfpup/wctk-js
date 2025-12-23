@@ -21,6 +21,7 @@ import { QuerySelector } from "wctk";
 
 class MyElement extends HTMLElement {
 	#wc = new Wc({ host: this });
+	
 	#qc = new QuerySelector({
 		parent: this.#wc.shadowRoot,
 	});
