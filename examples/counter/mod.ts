@@ -25,24 +25,12 @@ class Counter extends HTMLElement {
 		connected: true,
 		callbacks: {
 			click: this.#onClick,
-			keydown: this.#onKeyDown,
-			"my-event": (e: Event) => {},
 		},
 	});
 
 	#state?: State = getStateFromDOM(this.#wc.shadowRoot);
 
 	#onClick(e: PointerEvent) {
-		if (!this.#state) return;
-
-		let increment = getIncrement(e);
-		if (increment) {
-			this.#state.count += increment;
-			this.#state.el.textContent = this.#state.count.toString();
-		}
-	}
-
-	#onKeyDown(e: KeyboardEvent) {
 		if (!this.#state) return;
 
 		let increment = getIncrement(e);
