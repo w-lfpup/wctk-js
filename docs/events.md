@@ -39,17 +39,17 @@ class MyElement extends HTMLElement {
 	#ec = new Events({
 		host: this,
 		target: this.#wc.shadowRoot,
-		callbacks: [
-			["click", this.#onClick],
-			["keydown", this.#onKeyDown],
-		],
+		callbacks: {
+			"click": this.#onClick,
+			"keydown": this.#onKeyDown,
+		},
 	});
 
 	#onClick(e: PointerEvent) {
 		// do something with pointer events here!
 	}
 
-	#onKeyDown(e: KeyEvent) {
+	#onKeyDown(e: KeyboardEvent) {
 		// do something with key events here!
 	}
 

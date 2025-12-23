@@ -2,11 +2,7 @@ interface TypedEvent<T extends Event> {
 	(event: T): void
 }
 
-type EventMap = {
-	[K in keyof GlobalEventHandlersEventMap]: TypedEvent<GlobalEventHandlersEventMap[K]>
-};
-
-export type Callbacks<K extends keyof GlobalEventHandlersEventMap = keyof GlobalEventHandlersEventMap> = Array<[K, EventMap[K]]>;
+// export type Callbacks<K extends keyof GlobalEventHandlersEventMap = keyof GlobalEventHandlersEventMap> = Array<[K, EventMap[K]]>;
 
 export interface EventsInterface {
 	connect(): void;
@@ -14,15 +10,34 @@ export interface EventsInterface {
 }
 
 export interface EventElementInterface {
-	addEventListener: EventTarget["addEventListener"];
-	removeEventListener: EventTarget["removeEventListener"];
+	addEventListener: Element["addEventListener"];
+	removeEventListener: Element["removeEventListener"];
 }
+
+type handlers = GlobalEventHandlersEventMap & WindowEventHandlersEventMap & DocumentEventMap;
+
+interface TypedCallback<E> {
+	(evt: E): void;
+}
+
+interface TypedEventListenerCallback<E> {
+    handleEvent(object: E): void;
+}
+
+type TypedEventListeners<E> = TypedCallback<E> | TypedEventListenerCallback<E>;
+
+type EventMap = Partial<{
+	[Property in keyof handlers]: TypedEventListeners<handlers[Property]>; 
+}>;
+
+export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>
 
 export interface EventParamsInterface {
 	host: EventElementInterface;
 	connected?: boolean;
 	target?: EventElementInterface;
-	callbacks: Callbacks;
+	// callbacks: Callbacks2;
+	callbacks: EventMap;
 }
 
 export class Events implements EventsInterface {
@@ -58,9 +73,9 @@ export class Events implements EventsInterface {
 	}
 }
 
-function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
+function getBoundCallbacks(host: Object, callbacks: EventMap): Callbacks {
 	let boundCallbacks: Callbacks = [];
-	for (let [name, callback] of callbacks) {
+	for (let [name, callback] of Object.entries(callbacks)) {
 		if (
 			callback instanceof Function &&
 			!callback.hasOwnProperty("prototype")
@@ -68,7 +83,7 @@ function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
 			callback = callback.bind(host);
 		}
 
-		boundCallbacks.push([name, callback]);
+		boundCallbacks.push([name, callback as EventListenerOrEventListenerObject]);
 	}
 
 	return boundCallbacks;

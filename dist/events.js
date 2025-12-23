@@ -28,7 +28,7 @@ export class Events {
 }
 function getBoundCallbacks(host, callbacks) {
     let boundCallbacks = [];
-    for (let [name, callback] of callbacks) {
+    for (let [name, callback] of Object.entries(callbacks)) {
         if (callback instanceof Function &&
             !callback.hasOwnProperty("prototype")) {
             callback = callback.bind(host);
