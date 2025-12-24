@@ -1,8 +1,9 @@
-import { Wc, Events } from "wctk";
-
 /*
 	Form associated custom element.
 */
+
+import { Wc, Events } from "wctk";
+
 export class TextInput extends HTMLElement {
 	static formAssociated = true;
 

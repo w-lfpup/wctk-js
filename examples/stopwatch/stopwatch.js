@@ -1,35 +1,23 @@
-import { Wc, Microtask } from "wctk";
 /*
     Custom Element with performant and "asynchronous" renders
     on the microtask queue.
 */
-export class Stopwatch extends HTMLElement {
+import { Wc, Microtask } from "wctk";
+class Stopwatch extends HTMLElement {
     #wc = new Wc({ host: this });
     #rc = new Microtask({ host: this, callback: this.#render });
-    #boundUpdate = this.#update.bind(this);
     #state = getStateFromShadowDOM(this.#wc.shadowRoot);
-    #render() {
-        if (this.#state)
-            this.#state.el.textContent = this.#state.count.toFixed(2);
-    }
-    #update(timestamp) {
-        if (!this.#state)
+    update(timestamp) {
+        if (!this.#state || timestamp < this.#state.prevTimestamp)
             return;
-        this.#state.receipt = requestAnimationFrame(this.#boundUpdate);
         this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
         this.#state.prevTimestamp = timestamp;
         // push render to microtask queue
         this.#rc.queue();
     }
-    start() {
-        if (!this.#state || this.#state?.receipt)
-            return;
-        this.#state.receipt = requestAnimationFrame(this.#boundUpdate);
-        this.#state.prevTimestamp = performance.now();
-    }
-    pause() {
-        if (this.#state && this.#state.receipt)
-            this.#state.receipt = cancelAnimationFrame(this.#state.receipt);
+    #render() {
+        if (this.#state)
+            this.#state.el.textContent = this.#state.count.toFixed(2);
     }
 }
 function getStateFromShadowDOM(shadowRoot) {
@@ -43,3 +31,4 @@ function getStateFromShadowDOM(shadowRoot) {
         };
     }
 }
+export { Stopwatch };
