@@ -1,6 +1,6 @@
 # Events Controller
 
-Add methods as event listener callbacks.
+Add event listeners to web components.
 
 ## How to use
 
@@ -19,7 +19,7 @@ interface EventParams {
 }
 ```
 
-The `Events` controller binds a set of `callbacks` to a `host`.
+The `Events` controller binds a record of `callbacks` to a `host`.
 
 Afterwards, the `Events` controller adds the callbacks as event listeners on a `target` node.
 
