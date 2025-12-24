@@ -4,9 +4,9 @@
 	"main": "dist/mod.js",
 	"description": "A bare-metal web component toolkit",
 	"license": "BSD-3-Clause",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"scripts": {
-		"prepare": "npm run build && npm run build:examples",
+		"prepare": "npm run build",
 		"build": "npx tsc --project ./src",
 		"build:examples": "npx tsc --project ./examples",
 		"format": "prettier --write ./"

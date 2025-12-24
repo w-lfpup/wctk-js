@@ -1,20 +1,38 @@
-export type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
+interface GenericEventListener<E> {
+	(evt: E): void;
+}
+
+interface GenericEventListenerObject<E> {
+	handleEvent(object: E): void;
+}
+
+type GenericCallbacks<E> =
+	| GenericEventListener<E>
+	| GenericEventListenerObject<E>;
+
+type EventMap = Partial<{
+	[Property in keyof GlobalEventHandlersEventMap]: GenericCallbacks<
+		GlobalEventHandlersEventMap[Property]
+	>;
+}>;
+
+type Callbacks = Array<[string, EventListenerOrEventListenerObject]>;
+
+interface EventElementInterface {
+	addEventListener: Element["addEventListener"];
+	removeEventListener: Element["removeEventListener"];
+}
+
+export interface EventParamsInterface {
+	callbacks: EventMap;
+	connected?: boolean;
+	host: EventElementInterface;
+	target?: EventElementInterface;
+}
 
 export interface EventsInterface {
 	connect(): void;
 	disconnect(): void;
-}
-
-export interface EventElementInterface {
-	addEventListener: EventTarget["addEventListener"];
-	removeEventListener: EventTarget["removeEventListener"];
-}
-
-export interface EventParamsInterface {
-	host: EventElementInterface;
-	connected?: boolean;
-	target?: EventElementInterface;
-	callbacks: Callbacks;
 }
 
 export class Events implements EventsInterface {
@@ -50,9 +68,9 @@ export class Events implements EventsInterface {
 	}
 }
 
-function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
+function getBoundCallbacks(host: Object, callbacks: EventMap): Callbacks {
 	let boundCallbacks: Callbacks = [];
-	for (let [name, callback] of callbacks) {
+	for (let [name, callback] of Object.entries(callbacks)) {
 		if (
 			callback instanceof Function &&
 			!callback.hasOwnProperty("prototype")
@@ -60,7 +78,10 @@ function getBoundCallbacks(host: Object, callbacks: Callbacks): Callbacks {
 			callback = callback.bind(host);
 		}
 
-		boundCallbacks.push([name, callback]);
+		boundCallbacks.push([
+			name,
+			callback as EventListenerOrEventListenerObject,
+		]);
 	}
 
 	return boundCallbacks;

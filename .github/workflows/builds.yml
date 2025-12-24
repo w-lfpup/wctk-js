@@ -1,4 +1,4 @@
-name: Build and Test
+name: Builds
 
 on:
     push:
@@ -10,7 +10,7 @@ jobs:
     build_and_test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - uses: actions/setup-node@v4
             - name: Install
               run: npm ci

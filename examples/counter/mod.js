@@ -8,10 +8,12 @@ class Counter extends HTMLElement {
         host: this,
         target: this.#wc.shadowRoot,
         connected: true,
-        callbacks: [["click", this.#clickHandler]],
+        callbacks: {
+            click: this.#onClick,
+        },
     });
     #state = getStateFromDOM(this.#wc.shadowRoot);
-    #clickHandler(e) {
+    #onClick(e) {
         if (!this.#state)
             return;
         let increment = getIncrement(e);

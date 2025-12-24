@@ -5,6 +5,14 @@ interface State {
 	count: number;
 }
 
+interface MyEvent extends Event {}
+
+declare global {
+	interface GlobalEventHandlersEventMap {
+		["my-event"]: MyEvent;
+	}
+}
+
 /*
 	Custom Element with state and interactivity.
 */
@@ -15,12 +23,14 @@ class Counter extends HTMLElement {
 		host: this,
 		target: this.#wc.shadowRoot,
 		connected: true,
-		callbacks: [["click", this.#clickHandler]],
+		callbacks: {
+			click: this.#onClick,
+		},
 	});
 
 	#state?: State = getStateFromDOM(this.#wc.shadowRoot);
 
-	#clickHandler(e: Event) {
+	#onClick(e: PointerEvent) {
 		if (!this.#state) return;
 
 		let increment = getIncrement(e);

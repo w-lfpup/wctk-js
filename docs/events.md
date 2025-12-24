@@ -12,9 +12,9 @@ An Events `params` object has four properties:
 
 ```ts
 interface EventParams {
-	host: Node;
-	callbacks: Array<[string, EventListener]>;
+	callbacks: Record<string, EventListenerOrEventListenerObject>;
 	connected?: boolean;
+	host: Node;
 	target?: Node;
 }
 ```
@@ -36,20 +36,21 @@ import { Events, Wc } from "wctk";
 
 class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
+
 	#ec = new Events({
 		host: this,
 		target: this.#wc.shadowRoot,
-		callbacks: [
-			["click", this.#onClick],
-			["keydown", this.#onKeyDown],
-		],
+		callbacks: {
+			click: this.#onClick,
+			keydown: this.#onKeyDown,
+		},
 	});
 
 	#onClick(e: PointerEvent) {
 		// do something with pointer events here!
 	}
 
-	#onKeyDown(e: KeyEvent) {
+	#onKeyDown(e: KeyboardEvent) {
 		// do something with key events here!
 	}
 
