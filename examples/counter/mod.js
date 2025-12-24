@@ -1,7 +1,7 @@
-import { Wc, Events } from "wctk";
 /*
     Custom Element with state and interactivity.
 */
+import { Wc, Events } from "wctk";
 class Counter extends HTMLElement {
     #wc = new Wc({ host: this });
     #ev = new Events({

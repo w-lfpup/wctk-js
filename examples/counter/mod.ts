@@ -1,3 +1,7 @@
+/*
+	Custom Element with state and interactivity.
+*/
+
 import { Wc, Events } from "wctk";
 
 interface State {
@@ -5,17 +9,6 @@ interface State {
 	count: number;
 }
 
-interface MyEvent extends Event {}
-
-declare global {
-	interface GlobalEventHandlersEventMap {
-		["my-event"]: MyEvent;
-	}
-}
-
-/*
-	Custom Element with state and interactivity.
-*/
 class Counter extends HTMLElement {
 	#wc = new Wc({ host: this });
 
@@ -41,7 +34,7 @@ class Counter extends HTMLElement {
 	}
 }
 
-function getStateFromDOM(shadowRoot: ShadowRoot) {
+function getStateFromDOM(shadowRoot: ShadowRoot): State | undefined {
 	let slot = shadowRoot.querySelector("slot");
 	if (slot)
 		for (let el of slot.assignedNodes()) {

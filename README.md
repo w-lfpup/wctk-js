@@ -1,6 +1,6 @@
 # Wctk-JS
 
-A web component tool kit.
+A web component tool kit without dependencies.
 
 [![Builds](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml/badge.svg)](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml)
 
@@ -16,11 +16,9 @@ A half-dozen controllers help developers:
 - [query](./docs/query_selector.md) the shadow dom
 - [bind](./docs/bind.md) functions to elements
 
-All features are compositional and built to support [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) SSR.
+All features are compositional and built to support [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) and SSR.
 
-There are no base classes or decorators.
-
-`Wctk-js` even supports `#private` methods as callbacks, fully encapsulating a web component's API (aside from required [lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks)).
+There are no base classes, decorators, or mixins.
 
 ## Install
 
