@@ -79,10 +79,10 @@ class MyElement extends HTMLElement {
 		host: this,
 		target: this.#wc.shadowRoot,
 		connected: true,
-		callbacks: [
-			["click", this.#onClick],
-			["keydown", this.#onKeyDown],
-		],
+		callbacks: {
+			click: this.#onClick,
+			keydown: this.#onKeyDown,
+		},
 	});
 
 	#onClick(e: PointerEvent) {
