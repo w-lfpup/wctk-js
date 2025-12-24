@@ -4,9 +4,7 @@ Build a web component.
 
 ## How to use
 
-Add a `Wc` controller to a custom element.
-
-One line is all it takes.
+Add a `Wc` controller to a custom element with only one line
 
 ```ts
 import { Wc } from "wctk";
@@ -18,7 +16,7 @@ class MyElement extends HTMLElement {
 
 ## Adopted stylesheets and form values
 
-The `Wc` controller is also a facade for core web componet APIs like adopted stylesheets and form values.
+The `Wc` controller is also a facade for fast access to core web componet APIs like adopted stylesheets and form values.
 
 ```ts
 class MyElement extends HTMLElement {

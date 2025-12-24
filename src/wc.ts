@@ -32,21 +32,22 @@ export class Wc implements WcInterface {
 	#shadowRoot: ShadowRoot;
 
 	constructor(params: WcParamsInterface) {
-		let { host, shadowRootInit, adoptedStyleSheets, formValue, formState } =
-			params;
+		let { adoptedStyleSheets, host, formState, formValue, shadowRootInit } = params;
+
 		this.#internals = host.attachInternals();
 
 		let { shadowRoot } = this.#internals;
-		if (!shadowRoot) {
+		if (shadowRoot) {
+			this.#shadowRoot = shadowRoot;
+		} else {
 			this.#declarative = false;
-			shadowRoot = host.attachShadow(
+			this.#shadowRoot = host.attachShadow(
 				shadowRootInit ?? shadowRootInitFallback,
 			);
 		}
-		this.#shadowRoot = shadowRoot;
 
-		if (formValue) this.setFormValue(formValue, formState);
 		if (adoptedStyleSheets) this.adoptedStyleSheets = adoptedStyleSheets;
+		if (formValue) this.setFormValue(formValue, formState);
 	}
 
 	get declarative(): boolean {
