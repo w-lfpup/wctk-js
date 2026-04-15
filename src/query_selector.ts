@@ -5,7 +5,8 @@ export interface QuerySelectorInterface {
 }
 
 export class QuerySelector implements QuerySelectorInterface {
-	#queries: Map<string, Element[]> = new Map();
+	#queries: Map<string, Element> = new Map();
+	#queryAlls: Map<string, Element[]> = new Map();
 	#parentNode: ParentNode;
 
 	constructor(parentNode: ParentNode) {
@@ -13,28 +14,27 @@ export class QuerySelector implements QuerySelectorInterface {
 	}
 
 	querySelector(selector: string): Element | undefined {
-		return getQuery(this.#parentNode, this.#queries, selector)[0];
+		let results = this.#queries.get(selector);
+		if (!results) {
+			results = this.#parentNode.querySelector(selector) ?? undefined;
+			if (results) this.#queries.set(selector, results);
+		}
+
+		return results;
 	}
 
 	querySelectorAll(selector: string): Element[] {
-		return getQuery(this.#parentNode, this.#queries, selector);
+		let results = this.#queryAlls.get(selector);
+		if (!results) {
+			results = Array.from(this.#parentNode.querySelectorAll(selector));
+			this.#queryAlls.set(selector, results);
+		}
+
+		return results;
 	}
 
 	deleteAll() {
 		this.#queries = new Map();
+		this.#queryAlls = new Map();
 	}
-}
-
-function getQuery(
-	parentNode: ParentNode,
-	queries: Map<string, Element[]>,
-	selector: string,
-): Element[] {
-	let results = queries.get(selector);
-	if (!results) {
-		results = Array.from(parentNode.querySelectorAll(selector));
-		queries.set(selector, results);
-	}
-
-	return results;
 }
