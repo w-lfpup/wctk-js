@@ -8,7 +8,9 @@
 	"scripts": {
 		"prepare": "npm run build",
 		"build": "npx tsc --project ./src",
+		"build:tests": "npx tsc --project ./tests",
 		"build:examples": "npx tsc --project ./examples",
+		"test": "jackrabbit_webdriver jackrabbit.config.json tests/mod.js",
 		"format": "prettier --write ./"
 	},
 	"devDependencies": {
