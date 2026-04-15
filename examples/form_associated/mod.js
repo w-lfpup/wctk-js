@@ -7,6 +7,5 @@ document.addEventListener("submit", function (e) {
     e.preventDefault();
     let formdata = new FormData(e.target);
     if (results)
-        results.textContent = JSON.stringify(
-        Object.fromEntries(formdata), undefined, " ");
+        results.textContent = JSON.stringify(Object.fromEntries(formdata), undefined, " ");
 });

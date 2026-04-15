@@ -5,7 +5,7 @@
 import { Wc, Microtask } from "wctk";
 class Stopwatch extends HTMLElement {
     #wc = new Wc({ host: this });
-    #rc = new Microtask({ host: this, callback: this.#render });
+    #rc = new Microtask(this.#render.bind(this));
     #state = getStateFromShadowDOM(this.#wc.shadowRoot);
     update(timestamp) {
         if (!this.#state || timestamp < this.#state.prevTimestamp)

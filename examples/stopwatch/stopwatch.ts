@@ -14,7 +14,7 @@ interface State {
 
 class Stopwatch extends HTMLElement {
 	#wc = new Wc({ host: this });
-	#rc = new Microtask({ host: this, callback: this.#render });
+	#rc = new Microtask(this.#render.bind(this));
 
 	#state?: State = getStateFromShadowDOM(this.#wc.shadowRoot);
 

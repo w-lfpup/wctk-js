@@ -6,11 +6,10 @@ export class TextInput extends HTMLElement {
     static formAssociated = true;
     #wc = new Wc({ host: this });
     #ev = new Events({
-        host: this,
         target: this.#wc.shadowRoot,
         connected: true,
         callbacks: {
-            change: this.#changeHandler,
+            change: this.#changeHandler.bind(this),
         },
     });
     #changeHandler(event) {

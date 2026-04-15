@@ -2,7 +2,7 @@
 	"name": "@w-lfpup/wctk",
 	"type": "module",
 	"main": "dist/mod.js",
-	"description": "A bare-metal web component toolkit",
+	"description": "A bare-metal toolkit for web components",
 	"license": "BSD-3-Clause",
 	"version": "0.1.1",
 	"scripts": {
