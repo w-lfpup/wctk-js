@@ -1,7 +1,3 @@
-export interface QuerySelectorParamsInterface {
-	parent: ParentNode;
-}
-
 export interface QuerySelectorInterface {
 	querySelector(name: string): Element | undefined;
 	querySelectorAll(name: string): Element[] | undefined;
@@ -10,18 +6,18 @@ export interface QuerySelectorInterface {
 
 export class QuerySelector implements QuerySelectorInterface {
 	#queries: Map<string, Element[]> = new Map();
-	#params: QuerySelectorParamsInterface;
+	#parentNode: ParentNode;
 
-	constructor(params: QuerySelectorParamsInterface) {
-		this.#params = params;
+	constructor(parentNode: ParentNode) {
+		this.#parentNode = parentNode;
 	}
 
 	querySelector(selector: string): Element | undefined {
-		return getQuery(this.#params, this.#queries, selector)[0];
+		return getQuery(this.#parentNode, this.#queries, selector)[0];
 	}
 
 	querySelectorAll(selector: string): Element[] {
-		return getQuery(this.#params, this.#queries, selector);
+		return getQuery(this.#parentNode, this.#queries, selector);
 	}
 
 	deleteAll() {
@@ -30,15 +26,13 @@ export class QuerySelector implements QuerySelectorInterface {
 }
 
 function getQuery(
-	params: QuerySelectorParamsInterface,
+	parentNode: ParentNode,
 	queries: Map<string, Element[]>,
 	selector: string,
 ): Element[] {
-	const { parent } = params;
-
 	let results = queries.get(selector);
 	if (!results) {
-		results = Array.from(parent.querySelectorAll(selector));
+		results = Array.from(parentNode.querySelectorAll(selector));
 		queries.set(selector, results);
 	}
 

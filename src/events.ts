@@ -26,8 +26,7 @@ interface EventElementInterface {
 export interface EventParamsInterface {
 	callbacks: EventMap;
 	connected?: boolean;
-	host: EventElementInterface;
-	target?: EventElementInterface;
+	target: EventElementInterface;
 }
 
 export interface EventsInterface {
@@ -41,10 +40,10 @@ export class Events implements EventsInterface {
 	#target: EventElementInterface;
 
 	constructor(params: EventParamsInterface) {
-		const { host, target, callbacks, connected } = params;
+		const { target, callbacks, connected } = params;
 
-		this.#target = target ?? host;
-		this.#callbacks = getBoundCallbacks(host, callbacks);
+		this.#target = target;
+		this.#callbacks = Object.entries(callbacks) as Callbacks;
 
 		if (connected) this.connect();
 	}
@@ -66,23 +65,4 @@ export class Events implements EventsInterface {
 			this.#target.removeEventListener(name, callback);
 		}
 	}
-}
-
-function getBoundCallbacks(host: Object, callbacks: EventMap): Callbacks {
-	let boundCallbacks: Callbacks = [];
-	for (let [name, callback] of Object.entries(callbacks)) {
-		if (
-			callback instanceof Function &&
-			!callback.hasOwnProperty("prototype")
-		) {
-			callback = callback.bind(host);
-		}
-
-		boundCallbacks.push([
-			name,
-			callback as EventListenerOrEventListenerObject,
-		]);
-	}
-
-	return boundCallbacks;
 }
