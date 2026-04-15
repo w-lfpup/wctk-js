@@ -6,24 +6,18 @@ Subscribe web components to external state.
 
 ### Callbacks
 
-Create functions that subscribe and unsubscribe an element from a data store.
+Prepare callbacks that subscribe and unsubscribe an element from a data store.
 
-The result of the subscribe function is passed as the to the unsubscribe function.
+Some datastores provide these callbacks but the main hurdle is to make sure the
+result of the `subscribe` function is passed as the to the `unsubscribe` function.
 
 ```ts
 import { Datastore } from "./some-datastore.js";
 
-let store = new Datastore();
-
-function subscribe(callback): number {
-	return store.subscribe(callback);
-}
-
-function unsubscribe(results: number): void {
-	store.unsubscribe(results);
-}
-
-export { store, subscribe, unsubscribe };
+export const store = new Datastore();
+// store.getState();
+// store.subscribe(callback): receipt;
+// store.unsubscribe(receipt);
 ```
 
 ### Controller
@@ -32,7 +26,9 @@ Add a `Subscription` controller to a web component. Pass subscribe, unsubscribe,
 
 ```ts
 import { Subscription } from "wctk";
-import { getState, subscribe, unsubscribe } from "./datastore.js";
+import { store } from "./datastore.js";
+
+let { subscribe, unsubscribe } = store;
 
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
@@ -42,7 +38,7 @@ class MyElement extends HTMLElement {
 	});
 
 	#update() {
-		let state = getState();
+		let state = store.getState();
 		// do something with state
 	}
 
