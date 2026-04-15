@@ -14,8 +14,7 @@ An Events `params` object has four properties:
 interface EventParams {
 	callbacks: Record<string, EventListenerOrEventListenerObject>;
 	connected?: boolean;
-	host: Node;
-	target?: Node;
+	target: EventTarget;
 }
 ```
 
@@ -38,11 +37,10 @@ class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
 
 	#ec = new Events({
-		host: this,
 		target: this.#wc.shadowRoot,
 		callbacks: {
-			click: this.#onClick,
-			keydown: this.#onKeyDown,
+			click: this.#onClick.bind(this),
+			keydown: this.#onKeyDown.bind(this),
 		},
 	});
 
@@ -76,12 +74,11 @@ import { Events, Wc } from "wctk";
 class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
 	#ec = new Events({
-		host: this,
 		target: this.#wc.shadowRoot,
 		connected: true,
 		callbacks: {
-			click: this.#onClick,
-			keydown: this.#onKeyDown,
+			click: this.#onClick.bind(this),
+			keydown: this.#onKeyDown.bind(this),
 		},
 	});
 

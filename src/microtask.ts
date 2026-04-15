@@ -2,11 +2,13 @@ export interface MicrotaskInterface {
 	queue(): void;
 }
 
+type Callback = () => void;
+
 export class Microtask implements MicrotaskInterface {
 	#queued = false;
-	#callback: Function;
+	#callback: Callback;
 
-	constructor(callback: Function) {
+	constructor(callback: Callback) {
 		this.queue = this.queue.bind(this);
 		this.#callback = callback;
 	}
