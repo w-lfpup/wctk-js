@@ -6,7 +6,7 @@ A web component tool kit without dependencies.
 
 ## About
 
-A half-dozen controllers help developers:
+Less than half a dozen controllers help developers:
 
 - create [shadow dom](./docs/wc.md)
 - render on the [microtask queue](./docs/microtask.md)
@@ -14,7 +14,6 @@ A half-dozen controllers help developers:
 - [subscribe](./docs/subscription.md) to external data stores
 - manage [form values](./docs/wc.md#adopted-stylesheets-and-form-values)
 - [query](./docs/query_selector.md) the shadow dom
-- [bind](./docs/bind.md) functions to elements
 
 All features are compositional and built to support [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) and SSR.
 
