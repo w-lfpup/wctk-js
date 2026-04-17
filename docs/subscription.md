@@ -15,9 +15,9 @@ result of the `subscribe` function is passed as the to the `unsubscribe` functio
 import { Datastore } from "./some-datastore.js";
 
 export const store = new Datastore();
-// store.getState();
-// store.subscribe(callback): receipt;
-// store.unsubscribe(receipt);
+// store.getState(): State;
+// store.subscribe(callback: () => void): Receipt;
+// store.unsubscribe(receipt: Receipt);
 ```
 
 ### Controller
@@ -28,13 +28,11 @@ Add a `Subscription` controller to a web component. Pass subscribe, unsubscribe,
 import { Subscription } from "wctk";
 import { store } from "./datastore.js";
 
-let { subscribe, unsubscribe } = store;
-
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
 		callback: this.#update.bind(this),
-		subscribe,
-		unsubscribe,
+		subscribe: store.subscribe,
+		unsubscribe: store.unsubscribe,
 	});
 
 	#update() {
@@ -61,15 +59,15 @@ In the example below, the `connected` property is set to true and the component 
 
 ```ts
 import { Subscription } from "wctk";
-import { getState, subscribe, unsubscribe } from "./datastore.js";
+import { store } from "./datastore.js";
 
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
 		host: this,
-		callback: this.#update,
+		callback: this.#update.bind(this),
 		connected: true,
-		subscribe,
-		unsubscribe,
+		subscribe: store.subscribe,
+		unsubscribe: store.unsubscribe,
 	});
 
 	#update() {
