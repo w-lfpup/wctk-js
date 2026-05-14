@@ -10,7 +10,7 @@
 		"build": "npx tsc --project ./src",
 		"build:tests": "npx tsc --project ./tests",
 		"build:examples": "npx tsc --project ./examples",
-		"test": "jackrabbit_webdriver jackrabbit.config.json tests/mod.js",
+		"test": "npx jackrabbit_webdriver jr.json tests/dist/mod.js",
 		"format": "prettier --write ./"
 	},
 	"devDependencies": {

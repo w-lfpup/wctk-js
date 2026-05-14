@@ -63,9 +63,8 @@ import { store } from "./datastore.js";
 
 class MyElement extends HTMLElement {
 	#sc = new Subscription({
-		host: this,
-		callback: this.#update.bind(this),
 		connected: true,
+		callback: this.#update.bind(this),
 		subscribe: store.subscribe,
 		unsubscribe: store.unsubscribe,
 	});

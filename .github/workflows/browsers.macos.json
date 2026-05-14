@@ -1,0 +1,51 @@
+{
+	"jackrabbit_url": "http://127.0.0.1:4000",
+	"runAsynchronusly": false,
+	"webdrivers": [
+		{
+			"command": "safaridriver -p 4001",
+			"title": "Safari",
+			"timeout_ms": 30000,
+			"webdriver_url": "http://localhost:4001"
+		},
+		{
+			"command": "$GECKOWEBDRIVER/geckodriver -p 4001",
+			"title": "Firefox",
+			"timeout_ms": 30000,
+			"webdriver_url": "http://127.0.0.1:4001",
+			"capabilities": {
+				"alwaysMatch": {
+					"moz:firefoxOptions": {
+						"args": ["-headless"]
+					}
+				}
+			}
+		},
+		{
+			"command": "$CHROMEWEBDRIVER/chromedriver --port=4001",
+			"title": "Chrome",
+			"timeout_ms": 30000,
+			"webdriver_url": "http://localhost:4001",
+			"capabilities": {
+				"alwaysMatch": {
+					"goog:chromeOptions": {
+						"args": ["--headless"]
+					}
+				}
+			}
+		},
+		{
+			"command": "$EDGEWEBDRIVER/msedgedriver --port=4001",
+			"title": "Edge",
+			"timeout_ms": 30000,
+			"webdriver_url": "http://localhost:4001",
+			"capabilities": {
+				"alwaysMatch": {
+					"ms:edgeOptions": {
+						"args": ["--headless"]
+					}
+				}
+			}
+		}
+	]
+}

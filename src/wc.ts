@@ -3,14 +3,14 @@ export interface WcElementInterface {
 	attachShadow: Element["attachShadow"];
 }
 
-type FormDataArguments = Parameters<ElementInternals["setFormValue"]>;
+type FormValueArgs = Parameters<ElementInternals["setFormValue"]>;
 
 export interface WcParamsInterface {
 	host: WcElementInterface;
 	adoptedStyleSheets?: CSSStyleSheet[];
 	shadowRootInit?: ShadowRootInit;
-	formValue?: FormDataArguments[0];
-	formState?: FormDataArguments[1];
+	formValue?: FormValueArgs[0];
+	formState?: FormValueArgs[1];
 }
 
 export interface WcInterface {
@@ -75,7 +75,7 @@ export class Wc implements WcInterface {
 		return this.#internals.reportValidity();
 	}
 
-	setFormValue(value: FormDataArguments[0], state?: FormDataArguments[1]) {
+	setFormValue(value: FormValueArgs[0], state: FormValueArgs[1]) {
 		this.#internals.setFormValue(value, state);
 	}
 
