@@ -75,7 +75,7 @@ export class Wc implements WcInterface {
 		return this.#internals.reportValidity();
 	}
 
-	setFormValue(value: FormValueArgs[0], state: FormValueArgs[1]) {
+	setFormValue(value: FormValueArgs[0], state?: FormValueArgs[1]) {
 		this.#internals.setFormValue(value, state);
 	}
 

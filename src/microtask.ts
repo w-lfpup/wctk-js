@@ -7,13 +7,13 @@ type Callback = () => void;
 export class Microtask implements MicrotaskInterface {
 	#queued = false;
 	#callback: Callback;
+	queue = this.#queue.bind(this);
 
 	constructor(callback: Callback) {
-		this.queue = this.queue.bind(this);
 		this.#callback = callback;
 	}
 
-	queue() {
+	#queue() {
 		if (this.#queued) return;
 		this.#queued = true;
 
