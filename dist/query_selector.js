@@ -6,21 +6,19 @@ export class QuerySelector {
         this.#parentNode = parentNode;
     }
     querySelector(selector) {
-        let results = this.#queries.get(selector);
-        if (!results) {
-            results = this.#parentNode.querySelector(selector) ?? undefined;
-            if (results)
-                this.#queries.set(selector, results);
-        }
-        return results;
+        if (this.#queries.has(selector))
+            return this.#queries.get(selector);
+        let query = this.#parentNode.querySelector(selector) ?? undefined;
+        this.#queries.set(selector, query);
+        return query;
     }
     querySelectorAll(selector) {
         let results = this.#queryAlls.get(selector);
-        if (!results) {
-            results = Array.from(this.#parentNode.querySelectorAll(selector));
-            this.#queryAlls.set(selector, results);
-        }
-        return results;
+        if (results)
+            return results;
+        let query = Array.from(this.#parentNode.querySelectorAll(selector));
+        this.#queryAlls.set(selector, query);
+        return query;
     }
     deleteAll() {
         this.#queries = new Map();

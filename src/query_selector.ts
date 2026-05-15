@@ -5,7 +5,7 @@ export interface QuerySelectorInterface {
 }
 
 export class QuerySelector implements QuerySelectorInterface {
-	#queries: Map<string, Element> = new Map();
+	#queries: Map<string, Element | undefined> = new Map();
 	#queryAlls: Map<string, Element[]> = new Map();
 	#parentNode: ParentNode;
 
@@ -14,23 +14,20 @@ export class QuerySelector implements QuerySelectorInterface {
 	}
 
 	querySelector(selector: string): Element | undefined {
-		let results = this.#queries.get(selector);
-		if (!results) {
-			results = this.#parentNode.querySelector(selector) ?? undefined;
-			if (results) this.#queries.set(selector, results);
-		}
+		if (this.#queries.has(selector)) return this.#queries.get(selector);
 
-		return results;
+		let query = this.#parentNode.querySelector(selector) ?? undefined;
+		this.#queries.set(selector, query);
+		return query;
 	}
 
 	querySelectorAll(selector: string): Element[] {
 		let results = this.#queryAlls.get(selector);
-		if (!results) {
-			results = Array.from(this.#parentNode.querySelectorAll(selector));
-			this.#queryAlls.set(selector, results);
-		}
+		if (results) return results;
 
-		return results;
+		let query = Array.from(this.#parentNode.querySelectorAll(selector));
+		this.#queryAlls.set(selector, query);
+		return query;
 	}
 
 	deleteAll() {
