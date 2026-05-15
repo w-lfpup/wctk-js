@@ -4,7 +4,7 @@ class Counter extends HTMLElement {
     #ev = new Events({
         target: this.#wc.shadowRoot,
         connected: true,
-        callbacks: {
+        listeners: {
             click: this.#onClick.bind(this),
         },
     });
