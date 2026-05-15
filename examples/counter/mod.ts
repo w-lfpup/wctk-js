@@ -5,7 +5,7 @@
 import { Wc, Events } from "wctk";
 
 interface State {
-	el: HTMLSpanElement;
+	el: HTMLSpanElement | undefined;
 	count: number;
 }
 
@@ -20,7 +20,7 @@ class Counter extends HTMLElement {
 		},
 	});
 
-	#state?: State = getStateFromDOM(this.#wc.shadowRoot);
+	#state: State = getStateFromDOM(this.#wc.shadowRoot);
 
 	#onClick(e: PointerEvent) {
 		if (!this.#state) return;
@@ -28,19 +28,21 @@ class Counter extends HTMLElement {
 		let increment = getIncrement(e);
 		if (increment) {
 			this.#state.count += increment;
-			this.#state.el.textContent = this.#state.count.toString();
+			let el = this.#state.el;
+			if (el) el.textContent = this.#state.count.toString();
 		}
 	}
 }
 
-function getStateFromDOM(shadowRoot: ShadowRoot): State | undefined {
+function getStateFromDOM(shadowRoot: ShadowRoot): State {
 	let slot = shadowRoot.querySelector("slot");
+	let el: HTMLSpanElement | undefined;
 	if (slot)
-		for (let el of slot.assignedNodes()) {
-			if (el instanceof HTMLSpanElement) {
-				return { el, count: parseInt(el.textContent ?? "0") };
-			}
+		for (let slotted of slot.assignedNodes()) {
+			if (slotted instanceof HTMLSpanElement) el = slotted;
 		}
+
+	return { el, count: parseInt(el?.textContent ?? "0") };
 }
 
 function getIncrement(e: Event) {

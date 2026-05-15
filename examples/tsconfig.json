@@ -2,6 +2,7 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"declaration": false,
+		"removeComments": true,
 		"paths": {
 			"wctk": ["../dist/mod.d.ts"],
 			"wctk/*": ["../dist/"]

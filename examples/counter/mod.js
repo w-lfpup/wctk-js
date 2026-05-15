@@ -1,6 +1,3 @@
-/*
-    Custom Element with state and interactivity.
-*/
 import { Wc, Events } from "wctk";
 class Counter extends HTMLElement {
     #wc = new Wc({ host: this });
@@ -18,18 +15,21 @@ class Counter extends HTMLElement {
         let increment = getIncrement(e);
         if (increment) {
             this.#state.count += increment;
-            this.#state.el.textContent = this.#state.count.toString();
+            let el = this.#state.el;
+            if (el)
+                el.textContent = this.#state.count.toString();
         }
     }
 }
 function getStateFromDOM(shadowRoot) {
     let slot = shadowRoot.querySelector("slot");
+    let el;
     if (slot)
-        for (let el of slot.assignedNodes()) {
-            if (el instanceof HTMLSpanElement) {
-                return { el, count: parseInt(el.textContent ?? "0") };
-            }
+        for (let slotted of slot.assignedNodes()) {
+            if (slotted instanceof HTMLSpanElement)
+                el = slotted;
         }
+    return { el, count: parseInt(el?.textContent ?? "0") };
 }
 function getIncrement(e) {
     let { target } = e;
