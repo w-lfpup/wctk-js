@@ -24,8 +24,6 @@ class Stopwatch extends HTMLElement {
 	#render() {
 		let { el } = this.#state;
 		if (el) el.textContent = this.#state.count.toFixed(2);
-		
-		this.#rc.queue();
 	}
 
 	#update = this.#undboundUpdate.bind(this);
@@ -33,25 +31,38 @@ class Stopwatch extends HTMLElement {
 		this.#state.count += (now - this.#state.prevTimestamp) * 0.001;
 		this.#state.prevTimestamp = now;
 
-		this.#render();
+		this.#rc.queue();
 		this.#state.receipt = window.requestAnimationFrame(this.#update)
 	}
 
-	start() {}
+	start() {
+		this.#state.prevTimestamp = performance.now();
+		this.#state.receipt = window.requestAnimationFrame(this.#update);
+	}
 
-	pause() {}
+	pause() {
+		if (this.#state.receipt)
+			this.#state.receipt = window.cancelAnimationFrame(this.#state.receipt);
+	}
 
-	stop() {}
+	stop() {
+		if (this.#state.receipt) window.cancelAnimationFrame(this.#state.receipt);
+		this.#state.count = 0;
+		this.#rc.queue();
+	}
 }
 
 function getStateFromShadowDOM(shadowRoot: ShadowRoot): State {
 	let el = shadowRoot.querySelector("span");
+	let count = parseInt(el?.textContent ?? "0");
+	if (Number.isNaN(count)) count = 0;
+	let prevTimestamp = performance.now();
 
 	return {
 		el,
-		count: parseInt(el?.textContent ?? "0"),
-		prevTimestamp: performance.now(),
-		receipt: -1,
+		count,
+		prevTimestamp,
+		receipt: undefined,
 	};
 }
 
