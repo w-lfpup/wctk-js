@@ -12,10 +12,12 @@ class Stopwatch extends HTMLElement {
     #undboundUpdate(now) {
         this.#state.count += (now - this.#state.prevTimestamp) * 0.001;
         this.#state.prevTimestamp = now;
-        this.#rc.queue();
         this.#state.receipt = window.requestAnimationFrame(this.#update);
+        this.#rc.queue();
     }
     start() {
+        if (this.#state.receipt)
+            return;
         this.#state.prevTimestamp = performance.now();
         this.#state.receipt = window.requestAnimationFrame(this.#update);
     }
