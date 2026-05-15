@@ -11,7 +11,7 @@ export class TextInput extends HTMLElement {
 	#ev = new Events({
 		target: this.#wc.shadowRoot,
 		connected: true,
-		callbacks: {
+		listeners: {
 			change: this.#changeHandler.bind(this),
 		},
 	});

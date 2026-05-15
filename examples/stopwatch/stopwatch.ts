@@ -5,7 +5,8 @@
 
 // This example uses window.requestAnimationFrame.
 // Multiple stopwatches means multiple animation frame requests.
-// This is not terribly performant.
+// This is not terribly performant but it's a quick way to get
+// accurate timestamp data for a stopwatch.
 
 import { Wc, Microtask } from "wctk";
 
@@ -16,7 +17,7 @@ interface State {
 	receipt: number | void;
 }
 
-class Stopwatch extends HTMLElement {
+export class Stopwatch extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#rc = new Microtask(this.#render.bind(this));
 	#state: State = getStateFromShadowDOM(this.#wc.shadowRoot);
@@ -36,7 +37,7 @@ class Stopwatch extends HTMLElement {
 
 	start() {
 		if (this.#state.receipt) return;
-		
+
 		this.#state.prevTimestamp = performance.now();
 		this.#state.receipt = window.requestAnimationFrame(this.#update);
 	}
@@ -67,5 +68,3 @@ function getStateFromShadowDOM(shadowRoot: ShadowRoot): State {
 		receipt: undefined,
 	};
 }
-
-export { Stopwatch };

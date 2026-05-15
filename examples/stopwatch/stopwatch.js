@@ -1,5 +1,5 @@
 import { Wc, Microtask } from "wctk";
-class Stopwatch extends HTMLElement {
+export class Stopwatch extends HTMLElement {
     #wc = new Wc({ host: this });
     #rc = new Microtask(this.#render.bind(this));
     #state = getStateFromShadowDOM(this.#wc.shadowRoot);
@@ -46,4 +46,3 @@ function getStateFromShadowDOM(shadowRoot) {
         receipt: undefined,
     };
 }
-export { Stopwatch };

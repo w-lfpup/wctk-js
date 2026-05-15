@@ -13,7 +13,7 @@ interface EventElementInterface {
     removeEventListener: Element["removeEventListener"];
 }
 export interface EventParamsInterface {
-    callbacks: EventMap;
+    listeners: EventMap;
     connected?: boolean;
     target: EventElementInterface;
 }

@@ -1,11 +1,11 @@
 export class Events {
     #connected = false;
-    #callbacks = [];
+    #listeners = [];
     #target;
     constructor(params) {
-        const { target, callbacks, connected } = params;
+        const { target, listeners, connected } = params;
         this.#target = target;
-        this.#callbacks = Object.entries(callbacks);
+        this.#listeners = Object.entries(listeners);
         if (connected)
             this.connect();
     }
@@ -13,16 +13,16 @@ export class Events {
         if (this.#connected)
             return;
         this.#connected = true;
-        for (let [name, callback] of this.#callbacks) {
-            this.#target.addEventListener(name, callback);
+        for (let [name, listener] of this.#listeners) {
+            this.#target.addEventListener(name, listener);
         }
     }
     disconnect() {
         if (!this.#connected)
             return;
         this.#connected = false;
-        for (let [name, callback] of this.#callbacks) {
-            this.#target.removeEventListener(name, callback);
+        for (let [name, listener] of this.#listeners) {
+            this.#target.removeEventListener(name, listener);
         }
     }
 }
