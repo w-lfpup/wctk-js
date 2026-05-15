@@ -3,24 +3,24 @@
 	on the microtask queue.
 */
 
-// use request animation frame for an example.
+// This example uses window.requestAnimationFrame.
 // Multiple stopwatches means multiple animation frame requests.
 // This is not terribly performant.
 
 import { Wc, Microtask } from "wctk";
 
 interface State {
-	receipt: number | void;
 	count: number;
-	prevTimestamp: DOMHighResTimeStamp;
 	el: HTMLSpanElement | null;
+	prevTimestamp: DOMHighResTimeStamp;
+	receipt: number | void;
 }
 
 class Stopwatch extends HTMLElement {
 	#wc = new Wc({ host: this });
 	#rc = new Microtask(this.#render.bind(this));
 	#state: State = getStateFromShadowDOM(this.#wc.shadowRoot);
-	
+
 	#render() {
 		let { el } = this.#state;
 		if (el) el.textContent = this.#state.count.toFixed(2);
@@ -32,7 +32,7 @@ class Stopwatch extends HTMLElement {
 		this.#state.prevTimestamp = now;
 
 		this.#rc.queue();
-		this.#state.receipt = window.requestAnimationFrame(this.#update)
+		this.#state.receipt = window.requestAnimationFrame(this.#update);
 	}
 
 	start() {
@@ -41,12 +41,13 @@ class Stopwatch extends HTMLElement {
 	}
 
 	pause() {
-		if (this.#state.receipt)
-			this.#state.receipt = window.cancelAnimationFrame(this.#state.receipt);
+		let { receipt } = this.#state;
+		if (receipt) window.cancelAnimationFrame(receipt);
+		this.#state.receipt = undefined;
 	}
 
 	stop() {
-		if (this.#state.receipt) window.cancelAnimationFrame(this.#state.receipt);
+		this.pause();
 		this.#state.count = 0;
 		this.#rc.queue();
 	}
@@ -59,8 +60,8 @@ function getStateFromShadowDOM(shadowRoot: ShadowRoot): State {
 	let prevTimestamp = performance.now();
 
 	return {
-		el,
 		count,
+		el,
 		prevTimestamp,
 		receipt: undefined,
 	};

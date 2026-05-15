@@ -20,12 +20,13 @@ class Stopwatch extends HTMLElement {
         this.#state.receipt = window.requestAnimationFrame(this.#update);
     }
     pause() {
-        if (this.#state.receipt)
-            this.#state.receipt = window.cancelAnimationFrame(this.#state.receipt);
+        let { receipt } = this.#state;
+        if (receipt)
+            window.cancelAnimationFrame(receipt);
+        this.#state.receipt = undefined;
     }
     stop() {
-        if (this.#state.receipt)
-            window.cancelAnimationFrame(this.#state.receipt);
+        this.pause();
         this.#state.count = 0;
         this.#rc.queue();
     }
@@ -37,8 +38,8 @@ function getStateFromShadowDOM(shadowRoot) {
         count = 0;
     let prevTimestamp = performance.now();
     return {
-        el,
         count,
+        el,
         prevTimestamp,
         receipt: undefined,
     };
