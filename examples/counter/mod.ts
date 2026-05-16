@@ -16,13 +16,13 @@ class Counter extends HTMLElement {
 		target: this.#wc.shadowRoot,
 		connected: true,
 		listeners: {
-			click: this.#onClick.bind(this),
+			click: this.#clickHandler.bind(this),
 		},
 	});
 
 	#state: State = getStateFromDOM(this.#wc.shadowRoot);
 
-	#onClick(e: PointerEvent) {
+	#clickHandler(e: PointerEvent) {
 		if (!this.#state) return;
 
 		let increment = getIncrement(e);

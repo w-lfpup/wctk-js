@@ -16,7 +16,7 @@ class MyElement extends HTMLElement {
 
 ## Adopted stylesheets and form values
 
-The `Wc` controller is also a facade for fast access to core web componet APIs like adopted stylesheets and form values.
+The `Wc` controller interfaces with core web componet APIs like adopted stylesheets and form values.
 
 ```ts
 class MyElement extends HTMLElement {
