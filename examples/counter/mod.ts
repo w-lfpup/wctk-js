@@ -23,8 +23,6 @@ class Counter extends HTMLElement {
 	#state: State = getStateFromDOM(this.#wc.shadowRoot);
 
 	#clickHandler(e: PointerEvent) {
-		if (!this.#state) return;
-
 		let increment = getIncrement(e);
 		if (increment) {
 			this.#state.count += increment;
@@ -46,9 +44,8 @@ function getStateFromDOM(shadowRoot: ShadowRoot): State {
 }
 
 function getIncrement(e: Event) {
-	let { target } = e;
-	if (target instanceof HTMLButtonElement) {
-		return target.hasAttribute("increase") ? 1 : -1;
+	if (e.target instanceof HTMLButtonElement) {
+		return e.target.hasAttribute("increase") ? 1 : -1;
 	}
 }
 
