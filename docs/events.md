@@ -12,16 +12,15 @@ An Events `params` object has four properties:
 
 ```ts
 interface EventParams {
-	callbacks: Record<string, EventListenerOrEventListenerObject>;
+	listeners: Record<string, EventListenerOrEventListenerObject>;
 	connected?: boolean;
-	host: Node;
-	target?: Node;
+	target: EventTarget;
 }
 ```
 
-The `Events` controller binds a record of `callbacks` to a `host`.
+The `Events` controller binds a record of `listeners` to a `host`.
 
-Afterwards, the `Events` controller adds the callbacks as event listeners on a `target` node.
+Afterwards, the `Events` controller adds the listeners as event listeners on a `target` node.
 
 The `target` node can be a shadowRoot, a document, or the custom element itself.
 
@@ -38,11 +37,10 @@ class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
 
 	#ec = new Events({
-		host: this,
 		target: this.#wc.shadowRoot,
-		callbacks: {
-			click: this.#onClick,
-			keydown: this.#onKeyDown,
+		listeners: {
+			click: this.#onClick.bind(this),
+			keydown: this.#onKeyDown.bind(this),
 		},
 	});
 
@@ -68,7 +66,7 @@ class MyElement extends HTMLElement {
 
 ### Shortcut life cycle methods
 
-In the example below, the `connected` property is set to true and callbacks are immediately added to the `target`.
+In the example below, the `connected` property is set to true and listeners are immediately added to the `target`.
 
 ```ts
 import { Events, Wc } from "wctk";
@@ -76,12 +74,11 @@ import { Events, Wc } from "wctk";
 class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
 	#ec = new Events({
-		host: this,
 		target: this.#wc.shadowRoot,
 		connected: true,
-		callbacks: {
-			click: this.#onClick,
-			keydown: this.#onKeyDown,
+		listeners: {
+			click: this.#onClick.bind(this),
+			keydown: this.#onKeyDown.bind(this),
 		},
 	});
 

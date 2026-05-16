@@ -1,16 +1,12 @@
-/*
-    Form associated custom element.
-*/
 import { Wc, Events } from "wctk";
 export class TextInput extends HTMLElement {
     static formAssociated = true;
     #wc = new Wc({ host: this });
     #ev = new Events({
-        host: this,
         target: this.#wc.shadowRoot,
         connected: true,
-        callbacks: {
-            change: this.#changeHandler,
+        listeners: {
+            change: this.#changeHandler.bind(this),
         },
     });
     #changeHandler(event) {
@@ -18,7 +14,6 @@ export class TextInput extends HTMLElement {
         if (target instanceof HTMLInputElement)
             this.#wc.setFormValue(target.value);
     }
-    // lifecycle method
     formStateRestoreCallback(state) {
         let input = this.#wc.shadowRoot.querySelector("input");
         if (input)

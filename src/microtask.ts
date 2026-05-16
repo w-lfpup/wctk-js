@@ -1,30 +1,19 @@
-export interface MicrotaskParamsInterface {
-	host: Object;
-	callback: Function;
-}
-
 export interface MicrotaskInterface {
 	queue(): void;
 }
 
+type Callback = () => void;
+
 export class Microtask implements MicrotaskInterface {
 	#queued = false;
-	#callback: Function;
+	#callback: Callback;
+	queue = this.#queue.bind(this);
 
-	constructor(params: MicrotaskParamsInterface) {
-		let { host, callback } = params;
-
-		this.queue = this.queue.bind(this);
+	constructor(callback: Callback) {
 		this.#callback = callback;
-		if (
-			callback instanceof Function &&
-			!callback.hasOwnProperty("prototype")
-		) {
-			this.#callback = callback.bind(host);
-		}
 	}
 
-	queue() {
+	#queue() {
 		if (this.#queued) return;
 		this.#queued = true;
 

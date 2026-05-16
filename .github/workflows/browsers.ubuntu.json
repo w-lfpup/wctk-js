@@ -1,0 +1,37 @@
+{
+	"jackrabbit_url": "http://127.0.0.1:4000",
+	"runAsynchronusly": false,
+	"webdrivers": [
+		{
+			"title": "Firefox",
+			"command": "$GECKOWEBDRIVER/geckodriver -p 4001",
+			"timeout_ms": 30000,
+			"webdriver_url": "http://localhost:4001",
+			"capabilities": {
+				"alwaysMatch": {
+					"moz:firefoxOptions": {
+						"args": ["-headless"]
+					}
+				}
+			}
+		},
+		{
+			"title": "Chrome",
+			"command": "$CHROMEWEBDRIVER/chromedriver --port=4005",
+			"timeout_ms": 30000,
+			"webdriver_url": "http://localhost:4005",
+			"capabilities": {
+				"alwaysMatch": {
+					"goog:chromeOptions": {
+						"args": [
+							"--headless",
+							"--disbale-gpu",
+							"--disable-dev-shm-usage",
+							"--start-maximized"
+						]
+					}
+				}
+			}
+		}
+	]
+}

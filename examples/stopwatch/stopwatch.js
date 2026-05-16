@@ -1,34 +1,48 @@
-/*
-    Custom Element with performant and "asynchronous" renders
-    on the microtask queue.
-*/
 import { Wc, Microtask } from "wctk";
-class Stopwatch extends HTMLElement {
+export class Stopwatch extends HTMLElement {
     #wc = new Wc({ host: this });
-    #rc = new Microtask({ host: this, callback: this.#render });
+    #rc = new Microtask(this.#render.bind(this));
     #state = getStateFromShadowDOM(this.#wc.shadowRoot);
-    update(timestamp) {
-        if (!this.#state || timestamp < this.#state.prevTimestamp)
-            return;
-        this.#state.count += (timestamp - this.#state.prevTimestamp) * 0.001;
-        this.#state.prevTimestamp = timestamp;
-        // push render to microtask queue
+    #render() {
+        let { el } = this.#state;
+        if (el)
+            el.textContent = this.#state.count.toFixed(2);
+    }
+    #update = this.#undboundUpdate.bind(this);
+    #undboundUpdate(now) {
+        this.#state.count += (now - this.#state.prevTimestamp) * 0.001;
+        this.#state.prevTimestamp = now;
+        this.#state.receipt = window.requestAnimationFrame(this.#update);
         this.#rc.queue();
     }
-    #render() {
-        if (this.#state)
-            this.#state.el.textContent = this.#state.count.toFixed(2);
+    start() {
+        if (this.#state.receipt)
+            return;
+        this.#state.prevTimestamp = performance.now();
+        this.#state.receipt = window.requestAnimationFrame(this.#update);
+    }
+    pause() {
+        let { receipt } = this.#state;
+        if (receipt)
+            window.cancelAnimationFrame(receipt);
+        this.#state.receipt = undefined;
+    }
+    stop() {
+        this.pause();
+        this.#state.count = 0;
+        this.#rc.queue();
     }
 }
 function getStateFromShadowDOM(shadowRoot) {
     let el = shadowRoot.querySelector("span");
-    if (el instanceof HTMLSpanElement) {
-        return {
-            el,
-            count: parseInt(el.textContent ?? "0"),
-            receipt: 0,
-            prevTimestamp: performance.now(),
-        };
-    }
+    let count = parseInt(el?.textContent ?? "0");
+    if (Number.isNaN(count))
+        count = 0;
+    let prevTimestamp = performance.now();
+    return {
+        count,
+        el,
+        prevTimestamp,
+        receipt: undefined,
+    };
 }
-export { Stopwatch };

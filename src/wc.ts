@@ -3,14 +3,14 @@ export interface WcElementInterface {
 	attachShadow: Element["attachShadow"];
 }
 
-type FormDataArguments = Parameters<ElementInternals["setFormValue"]>;
+type FormValueArgs = Parameters<ElementInternals["setFormValue"]>;
 
 export interface WcParamsInterface {
 	host: WcElementInterface;
 	adoptedStyleSheets?: CSSStyleSheet[];
 	shadowRootInit?: ShadowRootInit;
-	formValue?: FormDataArguments[0];
-	formState?: FormDataArguments[1];
+	formValue?: FormValueArgs[0];
+	formState?: FormValueArgs[1];
 }
 
 export interface WcInterface {
@@ -27,26 +27,26 @@ const shadowRootInitFallback: ShadowRootInit = {
 };
 
 export class Wc implements WcInterface {
-	#declarative: boolean = true;
+	#declarative: boolean = false;
 	#internals: ElementInternals;
 	#shadowRoot: ShadowRoot;
 
 	constructor(params: WcParamsInterface) {
-		let { adoptedStyleSheets, host, formState, formValue, shadowRootInit } = params;
+		let { adoptedStyleSheets, host, formState, formValue, shadowRootInit } =
+			params;
 
 		this.#internals = host.attachInternals();
 
-		let { shadowRoot } = this.#internals;
-		if (shadowRoot) {
-			this.#shadowRoot = shadowRoot;
+		if (this.#internals.shadowRoot) {
+			this.#declarative = true;
+			this.#shadowRoot = this.#internals.shadowRoot;
 		} else {
-			this.#declarative = false;
 			this.#shadowRoot = host.attachShadow(
 				shadowRootInit ?? shadowRootInitFallback,
 			);
 		}
 
-		if (adoptedStyleSheets) this.adoptedStyleSheets = adoptedStyleSheets;
+		this.adoptedStyleSheets = adoptedStyleSheets ?? [];
 		if (formValue) this.setFormValue(formValue, formState);
 	}
 
@@ -74,7 +74,7 @@ export class Wc implements WcInterface {
 		return this.#internals.reportValidity();
 	}
 
-	setFormValue(value: FormDataArguments[0], state?: FormDataArguments[1]) {
+	setFormValue(value: FormValueArgs[0], state?: FormValueArgs[1]) {
 		this.#internals.setFormValue(value, state);
 	}
 

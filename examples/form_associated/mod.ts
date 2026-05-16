@@ -13,7 +13,6 @@ document.addEventListener("submit", function (e: SubmitEvent) {
 
 	if (results)
 		results.textContent = JSON.stringify(
-			// @ts-expect-error
 			Object.fromEntries(formdata),
 			undefined,
 			" ",

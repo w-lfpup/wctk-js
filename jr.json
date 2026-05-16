@@ -1,0 +1,25 @@
+{
+	"jackrabbit_url": "http://localhost:4000",
+	"run_asynchronously": false,
+	"webdrivers": [
+		{
+			"command": "safaridriver -p 4001",
+			"title": "Safari",
+			"timeout_ms": 20000,
+			"webdriver_url": "http://localhost:4001"
+		},
+		{
+			"command": "geckodriver -p 4001",
+			"title": "Firefox",
+			"timeout_ms": 20000,
+			"webdriver_url": "http://localhost:4001",
+			"capabilities": {
+				"alwaysMatch": {
+					"moz:firefoxOptions": {
+						"args": ["-headless"]
+					}
+				}
+			}
+		}
+	]
+}

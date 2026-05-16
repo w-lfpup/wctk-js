@@ -1,24 +1,21 @@
 # Wctk-JS
 
-A web component tool kit without dependencies.
+An SSR friendly (w)eb(c)omponent (t)ool (k)it without dependencies.
 
 [![Builds](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml/badge.svg)](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml)
 
 ## About
 
-A half-dozen controllers help developers:
+There are no base classes, decorators, or mixins.
 
-- create [shadow dom](./docs/wc.md)
+All features are compositional and built to support SSR and [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
+
+Four (4) controllers help developers:
+
+- manage [shadow dom](./docs/wc.md) and [form values](./docs/wc.md#adopted-stylesheets-and-form-values)
 - render on the [microtask queue](./docs/microtask.md)
 - listen for [events](./docs/events.md)
-- [subscribe](./docs/subscription.md) to external data stores
-- manage [form values](./docs/wc.md#adopted-stylesheets-and-form-values)
-- [query](./docs/query_selector.md) the shadow dom
-- [bind](./docs/bind.md) functions to elements
-
-All features are compositional and built to support [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) and SSR.
-
-There are no base classes, decorators, or mixins.
+- cache selector [queries](./docs/query_selector.md)
 
 ## Install
 

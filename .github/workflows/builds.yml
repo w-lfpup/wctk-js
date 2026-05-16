@@ -1,4 +1,4 @@
-name: Builds
+name: Tests
 
 on:
     push:
@@ -11,8 +11,17 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v6
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
             - name: Install
               run: npm ci
-            - name: Format
-              run: npm run format
+            - name: Test browsers
+              run: npx jackrabbit_webdriver .github/workflows/browsers.ubuntu.json tests/dist/mod.js
+    # build_and_test_macos:
+    #     runs-on: macos-latest
+    #     steps:
+    #         - uses: actions/checkout@v6
+    #         - uses: actions/setup-node@v6
+    #         - name: Install
+    #           run: npm ci
+    #         - name: Test browsers
+    #           run: npx jackrabbit_webdriver .github/workflows/browsers.macos.json tests/dist/mod.js

@@ -16,10 +16,7 @@ import { Microtask } from "wctk";
 class MyElement extends HTMLElement {
 	static observedAttributes = ["width"];
 
-	#rc = new Microtask({
-		host: this,
-		callback: this.#render,
-	});
+	#rc = new Microtask(this.#render.bind(this));
 
 	#render() {
 		// update DOM here!
@@ -32,4 +29,4 @@ class MyElement extends HTMLElement {
 }
 ```
 
-The `Microtask.queue()` method can be called multiple times per event loop but the callback will only be called _once_ per microtask in the event loop.
+The `Microtask.queue()` method can be called multiple times per event loop but the callback will only be called _once_ at the tail end of the event loop during the microtaskqueue phase.
