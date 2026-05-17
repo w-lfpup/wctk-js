@@ -1,4 +1,3 @@
-import { findElement } from "@w-lfpup/jackrabbit/browser/dist/commands.js";
 import { QuerySelector } from "../../dist/mod.js";
 
 let qs: QuerySelector;
@@ -25,11 +24,11 @@ function testQuerySelectorAll() {
 	let peas = qs.querySelectorAll("p");
 	let spans = qs.querySelectorAll("span");
 
-	if (!peas.length || 1 !== peas.length) return "failed to query peas";
-	if (!spans.length || 2 !== spans.length) return "failed to query spans";
+	if (!peas.length) return "failed to query peas";
+	if (!spans.length) return "failed to query spans";
+	if (1 !== peas.length) return `failed to query ${peas.length}/1 peas`;
+	if (2 !== spans.length) return `failed to query ${spans.length}/2 spans`;
 }
-
-// testing form values might involve features JR has yet to implement, refresh page and such
 
 function testDeleteAll() {
 	qs.deleteAll();

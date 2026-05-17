@@ -8,7 +8,7 @@ An SSR friendly (w)eb(c)omponent (t)ool (k)it without dependencies.
 
 There are no base classes, decorators, or mixins.
 
-All features are compositional and built to support SSR and [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
+All features are compositional and designed for SSR and [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
 
 Four (4) controllers help developers:
 
@@ -16,6 +16,8 @@ Four (4) controllers help developers:
 - render on the [microtask queue](./docs/microtask.md)
 - listen for [events](./docs/events.md)
 - cache selector [queries](./docs/query_selector.md)
+
+All controllers (aside from the WC controller) are extremely flexible and not restricted to web components. The can be used on any `HTMLElement`.
 
 ## Install
 
