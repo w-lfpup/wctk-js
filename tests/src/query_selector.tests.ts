@@ -14,7 +14,7 @@ function setup() {
 
 function testQuerySelector() {
 	let p = qs.querySelector("p");
-	let span = qs.querySelector("span");
+	let span = qs.querySelector("[data-second]");
 
 	if (!p) return "failed to query p";
 	if (!span) return "failed to query span";
