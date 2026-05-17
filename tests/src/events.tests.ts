@@ -29,8 +29,6 @@ function setup() {
 }
 
 async function testClickEvents() {
-	// click button
-	// click button again
 	let buttonId = await findElement("button");
 	if (!buttonId) return "failed to query button";
 	await elementClick(buttonId);
@@ -46,8 +44,6 @@ async function testClickEvents() {
 }
 
 async function testInputEvents() {
-	// query input
-	// send keys to input
 	const expectedMessage = "UwU";
 	let inputId = await findElement("input");
 	if (!inputId) return "failed to query input element";
