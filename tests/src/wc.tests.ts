@@ -1,19 +1,50 @@
-import { findElement } from "@w-lfpup/jackrabbit/browser/dist/commands.js";
+import { Wc } from "../../dist/mod.js";
 
-function setup() {}
+class WcDeclarativeElement extends HTMLElement {
+	#wc = new Wc({ host: this });
 
-function testDeclarativeShadowDomExists() {}
-function testDeclarativeShadowDomDoesNotExist() {}
+	get delcarative(): boolean {
+		return this.#wc.declarative;
+	}
+}
 
-// testing form values might involve features JR has yet to implement, refresh page and such
+window.customElements.define("declarative-element", WcDeclarativeElement);
 
-function tearDown() {}
+let testEl: WcDeclarativeElement | undefined;
+let declarativeEl: WcDeclarativeElement | undefined;
+
+function setup() {
+	document.body.setHTMLUnsafe(`
+		<declarative-element></declarative-element>
+		<declarative-element data-declarative>
+			<template shadowrootmode="open">
+				<p>howdy!</p>
+			</template>
+		</declarative-element>
+	`);
+
+	[testEl, declarativeEl] = document.querySelectorAll<WcDeclarativeElement>(
+		"declarative-element",
+	);
+}
+
+function testDeclarativeShadowDomDoesNotExist() {
+	if (!testEl) return "failed to query declarative-element";
+	if (testEl.delcarative)
+		return "element incorrectly labelled as declarative";
+}
+
+function testDeclarativeShadowDomExists() {
+	if (!declarativeEl)
+		return "failed to query declarative-element with declarative shadow dom";
+	if (!declarativeEl.delcarative)
+		return "element incorrectly labelled as not declarative";
+}
 
 export const tests = [
 	setup,
 	testDeclarativeShadowDomExists,
 	testDeclarativeShadowDomDoesNotExist,
-	tearDown,
 ];
 
 export const options = {
