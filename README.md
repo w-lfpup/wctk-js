@@ -44,7 +44,7 @@ class MyElement extends HTMLElement {
 	#wc = new Wc({ host: this });
 }
 
-window.customElements.define("my-element", MyElement);
+customElements.define("my-element", MyElement);
 ```
 
 ## Examples
