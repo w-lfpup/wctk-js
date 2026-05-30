@@ -17,7 +17,7 @@ Four (4) controllers help developers:
 - listen for [events](./docs/events.md)
 - cache selector [queries](./docs/query_selector.md)
 
-All controllers (aside from the WC controller) are extremely flexible and not restricted to web components. The can be used on any `HTMLElement`.
+Controllers are flexible and not restricted to webcomponents. The can be used on any `HTMLElement`.
 
 ## Install
 
@@ -33,7 +33,7 @@ Install with npm.
 npm install --save-dev @w-lfpup/wctk
 ```
 
-## Create a Web Component
+## Create a webcomponent
 
 Add a `Wc` controller to a custom element with only one line
 
@@ -65,7 +65,7 @@ events, reactivity, and forms.
 If you know vanilla javascript and the DOM you are good to go.
 
 The `wctk` is designed with SSR and declarative shadow dom in mind. Developers
-can pick up what the HTML threw down with interactive SSR friendly web components.
+can pick up what the HTML threw down with interactive SSR friendly webcomponents.
 
 Templating is not provided. You can use lit-html or react or vue. But first consider the majority
 of components only have a few moving pieces. Do you really need templating for that custom button?

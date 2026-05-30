@@ -4,7 +4,7 @@ Add callbacks to the `microtask queue`.
 
 ## How to use
 
-Add a `Microtask` controller to a web component. Provide a callback.
+Add a `Microtask` controller to a webcomponent. Provide a callback.
 
 Call `Microtask.queue()` to push the callback to the microtask queue.
 
@@ -29,4 +29,4 @@ class MyElement extends HTMLElement {
 }
 ```
 
-The `Microtask.queue()` method can be called multiple times per event loop but the callback will only be called _once_ at the tail end of the event loop during the microtaskqueue phase.
+The `Microtask.queue()` method can be called multiple times per event loop but the callback will only be called _once_ during the microtaskqueue phase of the event-loop.

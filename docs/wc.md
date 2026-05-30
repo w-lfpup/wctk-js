@@ -1,10 +1,10 @@
 # Wc Controller
 
-Build a web component.
+Build a webcomponent.
 
 ## How to use
 
-Add a `Wc` controller to a custom element with only one line
+Add a `Wc` controller to a custom element:
 
 ```ts
 import { Wc } from "wctk";
