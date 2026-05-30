@@ -21,16 +21,16 @@ All controllers (aside from the WC controller) are extremely flexible and not re
 
 ## Install
 
+Install directly from github.
+
+```bash
+npm install --save-dev https://github.com/w-lfpup/wctk-js/
+```
+
 Install with npm.
 
 ```bash
 npm install --save-dev @w-lfpup/wctk
-```
-
-Or install directly from github.
-
-```bash
-npm install --save-dev https://github.com/w-lfpup/wctk-js/
 ```
 
 ## Create a Web Component
@@ -59,15 +59,17 @@ The following examples demonstrate several common SSR use cases:
 
 ## Design Goals
 
+The `wctk` is a collection of bare-metal facades over vanilla browser apis. They provide the basics for
+events, reactivity, and forms.
+
 If you know vanilla javascript and the DOM you are good to go.
 
-The majority of components only have a few moving pieces. Do you really need templating or flux-patterns
-or tree-walks for your super cool custom button? Do you really need a framework for that checkbox?
+The `wctk` is designed with SSR and declarative shadow dom in mind. Developers
+can pick up what the HTML threw down with interactive SSR friendly web components.
 
-The `wctk` is a collection of bare-metal facades over vanilla browser apis. They provide the basics for events, reactivity, and forms.
-
-AFAIK `wctk` is the ONLY web component library built with SSR and declarative shadow dom in mind. Developers
-can pick-up what the HTML threw down and immediately create interactive SSR friendly web components.
+Templating is not provided. You can use lit-html or react or vue. But first consider the majority
+of components only have a few moving pieces. Do you really need templating for that custom button?
+Do you really need a flux-pattern for that checkbox?
 
 ## License
 

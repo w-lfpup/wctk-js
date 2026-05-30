@@ -4,14 +4,15 @@
 	"main": "dist/mod.js",
 	"description": "A bare-metal toolkit for web components",
 	"license": "BSD-3-Clause",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"scripts": {
 		"prepare": "npm run build",
 		"build": "npm run build:src && npm run build:tests && npm run build:examples",
 		"build:src": "npx tsc --project ./src",
 		"build:tests": "npx tsc --project ./tests",
 		"build:examples": "npx tsc --project ./examples",
-		"test": "npx jackrabbit_webdriver jr.json tests/dist/mod.js",
+		"test": "npm run test:browsers",
+		"test:browsers": "npx jackrabbit_webdriver jr.json tests/dist/mod.js",
 		"format": "prettier --write ./"
 	},
 	"devDependencies": {

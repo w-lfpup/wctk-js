@@ -4,7 +4,7 @@ export interface MicrotaskInterface {
 type Callback = () => void;
 export declare class Microtask implements MicrotaskInterface {
     #private;
-    queue: () => void;
     constructor(callback: Callback);
+    queue: () => void;
 }
 export {};

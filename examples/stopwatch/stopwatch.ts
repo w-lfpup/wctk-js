@@ -5,7 +5,7 @@
 
 // This example uses window.requestAnimationFrame.
 // Multiple stopwatches means multiple animation frame requests.
-// This is not terribly performant but it's a quick way to get
+// This is not terribly performant but it's a quick way to retrieve
 // accurate timestamp data for a stopwatch.
 
 import { Wc, Microtask } from "wctk";

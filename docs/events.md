@@ -74,8 +74,8 @@ import { Events, Wc } from "wctk";
 class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
 	#ec = new Events({
-		target: this.#wc.shadowRoot,
 		connected: true,
+		target: this.#wc.shadowRoot,
 		listeners: {
 			click: this.#onClick.bind(this),
 			keydown: this.#onKeyDown.bind(this),

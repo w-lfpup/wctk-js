@@ -3,8 +3,8 @@ export class TextInput extends HTMLElement {
     static formAssociated = true;
     #wc = new Wc({ host: this });
     #ev = new Events({
-        target: this.#wc.shadowRoot,
         connected: true,
+        target: this.#wc.shadowRoot,
         listeners: {
             change: this.#changeHandler.bind(this),
         },
