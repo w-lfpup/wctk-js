@@ -1,30 +1,26 @@
 # Events Controller
 
-Add event listeners to web components.
+Add event listeners to webcomponents.
 
 ## How to use
 
-Add an `Events` controller to a web component. Use a params object on instantiation.
+Add an `Events` controller to a webcomponent. Use a params object on instantiation.
 
 ### Params
 
-An Events `params` object has four properties:
+An Events `params` object has three properties:
 
 ```ts
 interface EventParams {
-	listeners: Record<string, EventListenerOrEventListenerObject>;
 	connected?: boolean;
+	listeners: Record<string, EventListenerOrEventListenerObject>;
 	target: EventTarget;
 }
 ```
 
-The `Events` controller binds a record of `listeners` to a `host`.
-
-Afterwards, the `Events` controller adds the listeners as event listeners on a `target` node.
+The `Events` controller adds event listeners on a `target` node.
 
 The `target` node can be a shadowRoot, a document, or the custom element itself.
-
-If the `target` property is undefined, the `host` property is used as a fallback.
 
 ### Controller
 
@@ -64,7 +60,7 @@ class MyElement extends HTMLElement {
 }
 ```
 
-### Shortcut life cycle methods
+### Shortcut life-cycle methods
 
 In the example below, the `connected` property is set to true and listeners are immediately added to the `target`.
 
@@ -74,8 +70,8 @@ import { Events, Wc } from "wctk";
 class MyElement extends HTMLElement {
 	#wc = new Wc({ this: host });
 	#ec = new Events({
-		target: this.#wc.shadowRoot,
 		connected: true,
+		target: this.#wc.shadowRoot,
 		listeners: {
 			click: this.#onClick.bind(this),
 			keydown: this.#onKeyDown.bind(this),

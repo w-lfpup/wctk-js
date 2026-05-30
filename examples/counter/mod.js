@@ -2,8 +2,8 @@ import { Wc, Events } from "wctk";
 class Counter extends HTMLElement {
     #wc = new Wc({ host: this });
     #ev = new Events({
-        target: this.#wc.shadowRoot,
         connected: true,
+        target: this.#wc.shadowRoot,
         listeners: {
             click: this.#clickHandler.bind(this),
         },

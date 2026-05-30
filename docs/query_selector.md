@@ -4,7 +4,7 @@ Lazily map selector queries.
 
 ## How to use
 
-Add a `QuerySelector` controller to a web component.
+Add a `QuerySelector` controller to a webcomponent.
 
 ```html
 <my-element>
