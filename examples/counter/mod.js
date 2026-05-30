@@ -6,6 +6,7 @@ class Counter extends HTMLElement {
         connected: true,
         listeners: {
             click: this.#clickHandler.bind(this),
+            boop: getIncrement,
         },
     });
     #state = getStateFromDOM(this.#wc.shadowRoot);

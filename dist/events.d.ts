@@ -1,13 +1,13 @@
-interface GenericEventListener<E> {
+interface GenericEventListener<E extends Event> {
     (evt: E): void;
 }
-interface GenericEventListenerObject<E> {
+interface GenericEventListenerObject<E extends Event> {
     handleEvent(object: E): void;
 }
-type GenericCallbacks<E> = GenericEventListener<E> | GenericEventListenerObject<E>;
+type GenericCallbacks<E extends Event> = GenericEventListener<E> | GenericEventListenerObject<E>;
 type EventMap = Partial<{
     [Property in keyof GlobalEventHandlersEventMap]: GenericCallbacks<GlobalEventHandlersEventMap[Property]>;
-}>;
+}> | Record<string, EventListenerOrEventListenerObject>;
 interface EventElementInterface {
     addEventListener: Element["addEventListener"];
     removeEventListener: Element["removeEventListener"];
