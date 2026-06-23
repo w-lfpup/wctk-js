@@ -1,10 +1,12 @@
 export interface MicrotaskInterface {
     queue(): void;
 }
-type Callback = () => void;
+interface Callback {
+    (): void;
+}
 export declare class Microtask implements MicrotaskInterface {
     #private;
-    constructor(callback: Callback);
     queue: () => void;
+    constructor(callback: Callback);
 }
 export {};

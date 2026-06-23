@@ -13,11 +13,11 @@ export class QuerySelector {
         return query;
     }
     querySelectorAll(selector) {
-        let results = this.#queryAlls.get(selector);
-        if (results)
-            return results;
-        let query = Array.from(this.#parentNode.querySelectorAll(selector));
-        this.#queryAlls.set(selector, query);
+        let query = this.#queryAlls.get(selector);
+        if (!query) {
+            query = Array.from(this.#parentNode.querySelectorAll(selector));
+            this.#queryAlls.set(selector, query);
+        }
         return query;
     }
     deleteAll() {
