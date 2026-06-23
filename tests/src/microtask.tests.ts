@@ -1,4 +1,4 @@
-import { nextFrame } from "@w-lfpup/jackrabbit/browser/dist/commands.js";
+import { nextFrame } from "@w-lfpup/jackrabbit";
 import { Microtask } from "../../dist/mod.js";
 
 let microtaskController: Microtask;

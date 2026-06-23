@@ -2,7 +2,7 @@ import {
 	findElement,
 	elementClick,
 	elementSendKeys,
-} from "@w-lfpup/jackrabbit/browser/dist/commands.js";
+} from "@w-lfpup/jackrabbit";
 import { Events } from "../../dist/mod.js";
 
 let eventController: Events;
