@@ -22,16 +22,22 @@ function testQuerySelector() {
 
 function testQuerySelectorAll() {
 	let peas = qs.querySelectorAll("p");
-	let spans = qs.querySelectorAll("span");
-
 	if (!peas.length) return "failed to query peas";
-	if (!spans.length) return "failed to query spans";
 	if (1 !== peas.length) return `failed to query ${peas.length}/1 peas`;
+
+	let spans = qs.querySelectorAll("span");
+	if (!spans.length) return "failed to query spans";
 	if (2 !== spans.length) return `failed to query ${spans.length}/2 spans`;
 }
 
 function testDeleteAll() {
 	qs.deleteAll();
+
+	let peas = qs.querySelectorAll("p");
+	if (peas.length) return "failed to not return peas!";
+
+	let spans = qs.querySelectorAll("span");
+	if (spans.length) return "failed to not return spans!";
 }
 
 export const tests = [
