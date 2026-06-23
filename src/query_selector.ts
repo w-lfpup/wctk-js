@@ -18,15 +18,17 @@ export class QuerySelector implements QuerySelectorInterface {
 
 		let query = this.#parentNode.querySelector(selector) ?? undefined;
 		this.#queries.set(selector, query);
+
 		return query;
 	}
 
 	querySelectorAll(selector: string): Element[] {
-		let results = this.#queryAlls.get(selector);
-		if (results) return results;
+		let query = this.#queryAlls.get(selector);
+		if (!query) {
+			query = Array.from(this.#parentNode.querySelectorAll(selector));
+			this.#queryAlls.set(selector, query);
+		}
 
-		let query = Array.from(this.#parentNode.querySelectorAll(selector));
-		this.#queryAlls.set(selector, query);
 		return query;
 	}
 

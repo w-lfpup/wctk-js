@@ -6,6 +6,9 @@ An SSR friendly (w)eb(c)omponent (t)ool (k)it without dependencies.
 
 ## About
 
+The `wctk` is a collection of bare-metal facades over vanilla browser apis. They provide the basics for
+events, reactivity, and forms.
+
 There are no base classes, decorators, or mixins.
 
 All features are compositional and designed for SSR and [declarative shadow dom](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
@@ -58,9 +61,6 @@ The following examples demonstrate several common SSR use cases:
 - a [form associated](https://w-lfpup.github.io/wctk-js/examples/form_associated/) element ([code](https://github.com/w-lfpup/wctk-js/tree/main/examples/form_associated/)).
 
 ## Design Goals
-
-The `wctk` is a collection of bare-metal facades over vanilla browser apis. They provide the basics for
-events, reactivity, and forms.
 
 If you know vanilla javascript and the DOM you are good to go.
 

@@ -1,4 +1,4 @@
-import { findElement, log } from "@w-lfpup/jackrabbit/browser/dist/commands.js";
+import { nextFrame } from "@w-lfpup/jackrabbit/browser/dist/commands.js";
 import { Microtask } from "../../dist/mod.js";
 
 let microtaskController: Microtask;
@@ -7,14 +7,6 @@ let expectedSleepy = "-_-";
 let expectedHappy = "^_^";
 
 let span: HTMLSpanElement | null;
-
-function nextFrame() {
-	return new Promise<void>((resolve, reject) => {
-		window.queueMicrotask(function () {
-			resolve();
-		});
-	});
-}
 
 function updateExpression() {
 	if (!span) return;

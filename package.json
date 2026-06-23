@@ -15,13 +15,13 @@
 		"test:browsers": "npx jackrabbit_webdriver jr.json tests/dist/mod.js",
 		"format": "prettier --write ./"
 	},
-	"devDependencies": {
-		"@w-lfpup/jackrabbit": "^0.3.2",
-		"prettier": "^3.8.3",
-		"typescript": "^6.0.2"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/w-lfpup/wctk-js.git"
+	},
+	"devDependencies": {
+		"@w-lfpup/jackrabbit": "^0.3.3",
+		"prettier": "^3.8.4",
+		"typescript": "^6.0.3"
 	}
 }

@@ -8,13 +8,10 @@ export class Wc {
     constructor(params) {
         let { adoptedStyleSheets, host, formState, formValue, shadowRootInit } = params;
         this.#internals = host.attachInternals();
-        if (this.#internals.shadowRoot) {
-            this.#declarative = true;
-            this.#shadowRoot = this.#internals.shadowRoot;
-        }
-        else {
-            this.#shadowRoot = host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
-        }
+        this.#declarative = null !== this.#internals.shadowRoot;
+        this.#shadowRoot =
+            this.#internals.shadowRoot ??
+                host.attachShadow(shadowRootInit ?? shadowRootInitFallback);
         this.adoptedStyleSheets = adoptedStyleSheets ?? [];
         if (formValue)
             this.setFormValue(formValue, formState);

@@ -2,17 +2,20 @@ export interface MicrotaskInterface {
 	queue(): void;
 }
 
-type Callback = () => void;
+interface Callback {
+	(): void;
+}
 
 export class Microtask implements MicrotaskInterface {
 	#queued = false;
 	#callback: Callback;
+	#microtask = this.#unboundMicrotask.bind(this);
+	queue = this.#queue.bind(this);
 
 	constructor(callback: Callback) {
 		this.#callback = callback;
 	}
 
-	queue = this.#queue.bind(this);
 	#queue() {
 		if (this.#queued) return;
 		this.#queued = true;
@@ -20,7 +23,6 @@ export class Microtask implements MicrotaskInterface {
 		window.queueMicrotask(this.#microtask);
 	}
 
-	#microtask = this.#unboundMicrotask.bind(this);
 	#unboundMicrotask() {
 		this.#queued = false;
 		this.#callback();
