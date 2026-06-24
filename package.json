@@ -4,7 +4,7 @@
 	"main": "dist/mod.js",
 	"description": "A bare-metal webcomponent toolkit",
 	"license": "BSD-3-Clause",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"scripts": {
 		"prepare": "npm run build",
 		"build": "npm run build:src && npm run build:tests && npm run build:examples",
