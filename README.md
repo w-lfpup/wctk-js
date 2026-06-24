@@ -2,7 +2,7 @@
 
 An SSR friendly (w)eb(c)omponent (t)ool (k)it without dependencies.
 
-[![Builds](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml/badge.svg)](https://github.com/w-lfpup/wctk-js/actions/workflows/builds.yml)
+[![Tests](https://github.com/w-lfpup/wctk-js/actions/workflows/tests.yml/badge.svg)](https://github.com/w-lfpup/wctk-js/actions/workflows/tests.yml)
 
 ## About
 
