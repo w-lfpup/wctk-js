@@ -8,7 +8,6 @@ export class TextInput extends HTMLElement {
 	static formAssociated = true;
 
 	#wc = new Wc({ host: this });
-
 	#ev = new Events({
 		connected: true,
 		target: this.#wc.shadowRoot,

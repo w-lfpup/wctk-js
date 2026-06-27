@@ -12,9 +12,7 @@ type GenericCallbacks<E extends Event> =
 	| GenericEventListener<E>
 	| GenericEventListenerObject<E>;
 
-type EventMaps = DocumentEventMap &
-	GlobalEventHandlersEventMap &
-	ElementEventMap;
+type EventMaps = DocumentEventMap & HTMLElementEventMap;
 
 type ListenerMap =
 	| Partial<{
@@ -32,8 +30,8 @@ interface EventElementInterface {
 }
 
 export interface EventParamsInterface {
-	listeners: ListenerMap;
 	connected?: boolean;
+	listeners: ListenerMap;
 	target: EventElementInterface;
 }
 
