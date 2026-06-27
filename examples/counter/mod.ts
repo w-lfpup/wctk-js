@@ -11,7 +11,6 @@ interface State {
 
 class Counter extends HTMLElement {
 	#wc = new Wc({ host: this });
-
 	#ev = new Events({
 		connected: true,
 		target: this.#wc.shadowRoot,
