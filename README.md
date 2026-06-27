@@ -1,12 +1,12 @@
 # Wctk-JS
 
-An SSR friendly (w)eb(c)omponent (t)ool (k)it without dependencies.
+An SSR friendly webcomponent tool kit without dependencies.
 
 [![Tests](https://github.com/w-lfpup/wctk-js/actions/workflows/tests.yml/badge.svg)](https://github.com/w-lfpup/wctk-js/actions/workflows/tests.yml)
 
 ## About
 
-The `wctk` is a collection of bare-metal facades over vanilla browser apis. They provide the basics for
+The `wctk` is a collection of bare-metal facades over web apis. They provide the basics for
 events, reactivity, and forms.
 
 There are no base classes, decorators, or mixins.
@@ -20,25 +20,23 @@ Four (4) controllers help developers:
 - listen for [events](./docs/events.md)
 - cache selector [queries](./docs/query_selector.md)
 
-Controllers are flexible and not restricted to webcomponents. The can be used on any `HTMLElement`.
-
 ## Install
 
-Install directly from github.
-
-```bash
-npm install --save-dev https://github.com/w-lfpup/wctk-js/
-```
-
-Install with npm.
+Install from npm:
 
 ```bash
 npm install --save-dev @w-lfpup/wctk
 ```
 
+Install directly from github:
+
+```bash
+npm install --save-dev https://github.com/w-lfpup/wctk-js/
+```
+
 ## Create a webcomponent
 
-Add a `Wc` controller to a custom element with only one line
+Add a `Wc` controller to a custom element.
 
 ```ts
 import { Wc } from "wctk";
@@ -67,7 +65,7 @@ If you know vanilla javascript and the DOM you are good to go.
 The `wctk` is designed with SSR and declarative shadow dom in mind. Developers
 can pick up what the HTML threw down with interactive SSR friendly webcomponents.
 
-Templating is not provided. You can use lit-html or react or vue. But first consider the majority
+Templating is not provided. But before you reach for lit-html or vue or react, consider the majority
 of components only have a few moving pieces. Do you really need templating for that custom button?
 Do you really need a flux-pattern for that checkbox?
 
