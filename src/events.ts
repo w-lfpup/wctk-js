@@ -12,9 +12,7 @@ type GenericCallbacks<E extends Event> =
 	| GenericEventListener<E>
 	| GenericEventListenerObject<E>;
 
-type EventMaps = DocumentEventMap &
-	GlobalEventHandlersEventMap &
-	ElementEventMap;
+type EventMaps = DocumentEventMap & HTMLElementEventMap;
 
 type ListenerMap =
 	| Partial<{

@@ -5,7 +5,7 @@ interface GenericEventListenerObject<E extends Event> extends EventListenerObjec
     handleEvent(object: E): void;
 }
 type GenericCallbacks<E extends Event> = GenericEventListener<E> | GenericEventListenerObject<E>;
-type EventMaps = DocumentEventMap & GlobalEventHandlersEventMap & ElementEventMap;
+type EventMaps = DocumentEventMap & HTMLElementEventMap;
 type ListenerMap = Partial<{
     [Property in keyof EventMaps]: GenericCallbacks<EventMaps[Property]>;
 }> | Record<string, EventListenerOrEventListenerObject>;
