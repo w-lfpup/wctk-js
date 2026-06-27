@@ -14,8 +14,8 @@ interface EventElementInterface {
     removeEventListener: Element["removeEventListener"];
 }
 export interface EventParamsInterface {
-    listeners: ListenerMap;
     connected?: boolean;
+    listeners: ListenerMap;
     target: EventElementInterface;
 }
 export interface EventsInterface {

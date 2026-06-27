@@ -32,8 +32,8 @@ interface EventElementInterface {
 }
 
 export interface EventParamsInterface {
-	listeners: ListenerMap;
 	connected?: boolean;
+	listeners: ListenerMap;
 	target: EventElementInterface;
 }
 

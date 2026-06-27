@@ -2,3 +2,7 @@
 docs/
 examples/
 tests/
+
+jr.json
+.prettierrc
+.prettierignore
