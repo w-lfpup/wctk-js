@@ -36,10 +36,15 @@ function getStateFromDOM(shadowRoot: ShadowRoot): State {
 	let el: HTMLSpanElement | undefined;
 	if (slot)
 		for (let slotted of slot.assignedNodes()) {
-			if (slotted instanceof HTMLSpanElement) el = slotted;
+			if (slotted instanceof HTMLSpanElement) {
+				el = slotted;
+			}
 		}
 
-	return { el, count: parseInt(el?.textContent ?? "0") };
+	let count = parseInt(el?.textContent ?? "0");
+	if (Number.isNaN(count)) count = 0;
+
+	return { el, count };
 }
 
 function getIncrement(e: Event) {
