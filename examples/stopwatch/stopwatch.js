@@ -35,10 +35,10 @@ export class Stopwatch extends HTMLElement {
 }
 function getStateFromShadowDOM(shadowRoot) {
     let el = shadowRoot.querySelector("span");
+    let prevTimestamp = performance.now();
     let count = parseInt(el?.textContent ?? "0");
     if (Number.isNaN(count))
         count = 0;
-    let prevTimestamp = performance.now();
     return {
         count,
         el,

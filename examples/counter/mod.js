@@ -24,10 +24,14 @@ function getStateFromDOM(shadowRoot) {
     let el;
     if (slot)
         for (let slotted of slot.assignedNodes()) {
-            if (slotted instanceof HTMLSpanElement)
+            if (slotted instanceof HTMLSpanElement) {
                 el = slotted;
+            }
         }
-    return { el, count: parseInt(el?.textContent ?? "0") };
+    let count = parseInt(el?.textContent ?? "0");
+    if (Number.isNaN(count))
+        count = 0;
+    return { el, count };
 }
 function getIncrement(e) {
     if (e.target instanceof HTMLButtonElement) {
